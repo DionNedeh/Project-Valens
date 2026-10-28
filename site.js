@@ -144,6 +144,15 @@
         }
       }
     }
+    for (i = 5; i <= 7; i += 1) {
+      picked = checkRoot.querySelector('input[name="q' + i + '"]:checked');
+      if (picked) {
+        answered += 1;
+        if (picked.value === "yes") {
+          yes += 1;
+        }
+      }
+    }
     return { yes: yes, answered: answered };
   }
 

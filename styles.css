@@ -603,3 +603,18 @@ legend {
     background: white;
   }
 }
+
+.sources {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+}
+
+.sources li {
+  padding: 0.95rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.sources a {
+  font-weight: 600;
+}
