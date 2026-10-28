@@ -28,7 +28,10 @@
         <a href="#signs">Signs</a>
         <a href="#support">Support</a>
         <a href="#pause">A quiet pause</a>
+        <a href="#sorting">Sorting game</a>
+        <a href="#research">Research</a>
         <a href="#reading">Further reading</a>
+        <a href="#timeline">Timeline</a>
       </nav>
     </div>
   </header>
@@ -256,6 +259,86 @@
       </div>
     </section>
 
+    <section class="section" id="sorting" aria-labelledby="sorting-title">
+      <div class="wrap reading">
+        <p class="eyebrow">A small game, right here</p>
+        <h2 id="sorting-title">What happened, and what it might mean</h2>
+        <p>This is a short sorting game about example sentences, not about you. Each card is something a person might think after a chat. You choose whether it describes what happened on the screen, or a meaning added on top. There is no score. Whichever you pick, the card shows one way to sort it.</p>
+        <p>Telling the two apart is an ordinary skill, and it is one a trusted person can help with. A chatbot is a weak place to practise it, because it tends to agree.</p>
+
+        <div class="panel sort-game" id="sort-game">
+          <p class="sort-progress" id="sort-progress">Eight cards. Skip any, and stop whenever you like.</p>
+          <p class="sort-line" id="sort-line" tabindex="-1">Ready when you are.</p>
+          <div class="actions" id="sort-choices" role="group" aria-label="Sort this card" hidden>
+            <button type="button" class="button button-secondary" data-pick="happened" aria-pressed="false">What happened</button>
+            <button type="button" class="button button-secondary" data-pick="meaning" aria-pressed="false">A meaning added</button>
+          </div>
+          <div class="reflection" id="sort-feedback" hidden tabindex="-1" aria-labelledby="sort-feedback-title">
+            <h3 id="sort-feedback-title">One way to sort it</h3>
+            <p id="sort-feedback-text"></p>
+          </div>
+          <div class="reflection" id="sort-done" hidden tabindex="-1" aria-labelledby="sort-done-title">
+            <h3 id="sort-done-title">Not a test, and not a score</h3>
+            <p>Sorting what happened from what it might mean is something people do every day. If one of these cards felt close to home, a person who knows you can help you sort it far better than a chat can.</p>
+            <p><a href="#support">Go to ways to seek support</a></p>
+          </div>
+          <div class="actions sort-actions">
+            <button type="button" class="button button-primary" id="sort-next">Start sorting</button>
+            <button type="button" class="button button-secondary" id="sort-stop" hidden>Stop here</button>
+          </div>
+          <noscript>
+            <p>This game uses JavaScript on this page only. The idea behind it works without it: what a chat did is something you can point to on the screen. What it means is a separate question, and a person who knows you is a better place to ask it.</p>
+          </noscript>
+        </div>
+        <p class="aside">The cards draw on patterns the research library describes, including <a href="https://github.com/DionNedeh/Project-Valens/blob/main/research/02-causes-mechanisms-and-risk-factors.md">chatbots that agree too readily</a> and <a href="https://github.com/DionNedeh/Project-Valens/blob/main/research/09-proven-supports-evidence-review.md">lost sleep</a>. Nothing you pick is saved or sent.</p>
+      </div>
+    </section>
+
+    <section class="section section-tint" id="research" aria-labelledby="research-title">
+      <div class="wrap wide">
+        <div class="narrow intro-block">
+          <p class="eyebrow">Dated, and linked to the library</p>
+          <h2 id="research-title">What the research behind this page says</h2>
+          <p>This page draws on Voelori’s Project Valens research library. The library now sits in this site’s repository, so each note below links to the document it comes from. Its latest snapshot is dated 19 October 2026. Research moves, and these notes are only as current as that date.</p>
+          <p>The library is evidence-first. It is not a clinical protocol, a diagnosis, or a medical device. It labels each claim as established, emerging, a hypothesis, or reported, so that a news story is never treated as proof.</p>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <h3>The evidence</h3>
+            <p>What is known about AI-associated psychosis, what is not, and how each claim is graded: terminology, causes, documented cases, warning signs, and the course people go through.</p>
+            <p><a href="https://github.com/DionNedeh/Project-Valens/blob/main/research/00-executive-synthesis.md">Read the executive synthesis</a></p>
+          </article>
+          <article class="card">
+            <h3>Proven supports</h3>
+            <p>The human and clinical supports with outcome evidence: early care, staying with treatment, family work, therapy, sleep, and more. They are proven for psychosis, not yet for AI-associated psychosis specifically.</p>
+            <p><a href="https://github.com/DionNedeh/Project-Valens/blob/main/research/09-proven-supports-evidence-review.md">Read the proven supports review</a></p>
+          </article>
+          <article class="card">
+            <h3>The Valens framework</h3>
+            <p>A proposed design for how a future Valens system might respond: five response levels, a human handoff, and a benchmark of 22 synthetic six-stage scenarios. These are specifications, not validated clinical protocols.</p>
+            <p><a href="https://github.com/DionNedeh/Project-Valens/blob/main/research/10-valens-intervention-framework.md">Read the intervention framework</a></p>
+          </article>
+        </div>
+        <div class="narrow">
+          <h3 class="list-title">Dated findings</h3>
+          <ul class="sources">
+            <li><span class="date">1 September 2026 update</span> On 31 August 2026, Transluce released an evaluation of how chatbots respond around suicidal thinking, psychosis, and mania: more than 50,000 simulated conversations across 77 model variants. Every user in it was simulated. It is not a poll of people. <a href="https://github.com/DionNedeh/Project-Valens/blob/main/research/13-transluce-mental-health-behavior-report.md">Document 13</a></li>
+            <li><span class="date">1 September 2026 update</span> Two longer evaluations, DelusionEval and SIM-VAIL, found that how risky a chatbot’s replies are depends on the path a conversation takes, the model, and the person’s vulnerability and intent, not only on any single reply. <a href="https://github.com/DionNedeh/Project-Valens/blob/main/research/14-delusioneval-and-sim-vail-update.md">Document 14</a></li>
+            <li><span class="date">15 September 2026 round</span> A March 2026 survey of young adults found that those with higher psychosis-risk scores were no more likely to have used AI at all, but more likely to use it many times a day and to describe it as a therapist, friend, companion, or partner. It cannot say which came first. <a href="https://github.com/DionNedeh/Project-Valens/blob/main/research/15-psychosis-risk-and-adolescent-exposure-update.md">Document 15</a></li>
+            <li><span class="date">15 September 2026 round</span> In the United States, 19.2% of 12-to-21-year-olds reported using chatbots for mental-health advice, and 63.3% of those users had told no one. <a href="https://github.com/DionNedeh/Project-Valens/blob/main/research/15-psychosis-risk-and-adolescent-exposure-update.md">Document 15</a></li>
+            <li><span class="date">19 October 2026 round</span> In Danish psychiatric service records, delusions were the leading presentation among 38 affected patients, all of them already in psychiatric care. That agrees with an earlier US records study. Neither study can say how common this is. <a href="https://github.com/DionNedeh/Project-Valens/blob/main/research/16-clinical-records-open-weight-models-and-trajectory-update.md">Document 16</a></li>
+            <li><span class="date">19 October 2026 round</span> In one simulated evaluation, two current frontier models confirmed a delusion in under 5% of turns, while open-weight models did so in 41–61%. These are simulated personas, not clinical outcomes, but they show that the model matters. <a href="https://github.com/DionNedeh/Project-Valens/blob/main/research/16-clinical-records-open-weight-models-and-trajectory-update.md">Document 16</a></li>
+            <li><span class="date">19 October 2026 docket review</span> California approved SB 1119 on 10 September 2026. Its duties for chatbots used by children, including a crisis-response protocol, default limits on session length, and measures against claiming sentience, encouraging reliance, or excessive flattery, become operative on 1 July 2027. The library records what the law says. It is not legal advice. <a href="https://github.com/DionNedeh/Project-Valens/blob/main/research/17-regulatory-docket-review-october-2026.md">Document 17</a></li>
+          </ul>
+          <div class="panel">
+            <h3>What the research cannot say yet</h3>
+            <p>There is no population-level evidence yet of how often this happens, of a safe or unsafe amount of use, or that a chatbot alone causes psychosis in someone with no other vulnerability. The records studies have no count of everyone who used a chatbot, so they cannot give a rate.</p>
+            <p>One vendor has estimated that around 0.07% of its weekly users show possible signs related to psychosis or mania, by its own classifiers. That is not a psychosis rate, and the library is clear that it should never be cited as one. <a href="https://github.com/DionNedeh/Project-Valens/blob/main/research/16-clinical-records-open-weight-models-and-trajectory-update.md">Document 16, section 5</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="reading" aria-labelledby="reading-title">
       <div class="wrap narrow">
         <p class="eyebrow">A short shelf, not the whole library</p>
@@ -269,6 +352,7 @@
           <li><a href="https://doi.org/10.1126/science.aec8352">Sharma et al., Sycophantic AI decreases prosocial intentions and promotes dependence (Science, 2026)</a>. Experiments on chatbots that agree too readily. It is not a psychosis trial.</li>
           <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12863933/">Pierre et al., “You’re Not Crazy”: A Case of New-onset AI-associated Psychosis (2025)</a>. One clinician’s case report involving chatbot use, sleep loss, and hospital care. It is not proof that a chatbot is the only cause.</li>
         </ul>
+        <p class="aside">The whole library behind this page is in this site’s repository: the <a href="https://github.com/DionNedeh/Project-Valens/blob/main/research/README.md">library index</a>, and the <a href="https://github.com/DionNedeh/Project-Valens/blob/main/research/07-source-library.md">annotated source library</a>, which lists every source with a direct link.</p>
       </div>
     </section>
 
@@ -276,16 +360,19 @@
       <div class="wrap narrow">
         <p class="eyebrow">A short record</p>
         <h2 id="timeline-title">Project timeline</h2>
-        <p>These dated marks are from Voelori’s work on Project Valens.</p>
+        <p>These dated marks are from Voelori’s work on Project Valens. Each research date links to the library document it refers to.</p>
         <ul class="sources">
-          <li>19 August 2026: research library foundation review cutoff</li>
-          <li>31 August 2026: Transluce large-scale simulated evaluation the library reviews</li>
-          <li>1 September 2026: research library rapid update</li>
-          <li>15 September 2026: research library discovery round</li>
-          <li>19 October 2026: research library gap-directed round (latest update)</li>
+          <li>19 August 2026: research library foundation review cutoff (<a href="https://github.com/DionNedeh/Project-Valens/blob/main/research/08-research-method-and-open-questions.md">research method</a>)</li>
+          <li>31 August 2026: Transluce large-scale simulated evaluation the library reviews (<a href="https://github.com/DionNedeh/Project-Valens/blob/main/research/13-transluce-mental-health-behavior-report.md">document 13</a>)</li>
+          <li>1 September 2026: research library rapid update (<a href="https://github.com/DionNedeh/Project-Valens/blob/main/research/13-transluce-mental-health-behavior-report.md">document 13</a> and <a href="https://github.com/DionNedeh/Project-Valens/blob/main/research/14-delusioneval-and-sim-vail-update.md">document 14</a>)</li>
+          <li>15 September 2026: research library discovery round (<a href="https://github.com/DionNedeh/Project-Valens/blob/main/research/15-psychosis-risk-and-adolescent-exposure-update.md">document 15</a>)</li>
+          <li>19 October 2026: research library gap-directed round and regulatory docket review, the latest update (<a href="https://github.com/DionNedeh/Project-Valens/blob/main/research/16-clinical-records-open-weight-models-and-trajectory-update.md">document 16</a> and <a href="https://github.com/DionNedeh/Project-Valens/blob/main/research/17-regulatory-docket-review-october-2026.md">document 17</a>)</li>
           <li>Oct 28, 2026, 12:43 AM ET: voelori.online rebuild finished, putting the Project Valens button live on voelori.online</li>
           <li>Oct 28, 2026, 12:58:36 AM ET: pull request #2 merged (research additions and new README)</li>
           <li>Oct 28, 2026, 1:04:22 AM ET: pull request #3 merged (grounding game)</li>
+          <li>Oct 28, 2026, 6:24:01 AM ET: pull request #4 merged (Voelori note and this timeline)</li>
+          <li>Oct 28, 2026, 7:30:01 AM ET: research library and MVP handoff plan added to this site’s repository (<a href="https://github.com/DionNedeh/Project-Valens/blob/main/research/README.md">library index</a>)</li>
+          <li>Oct 28, 2026: this page expanded with dated research notes and the sorting game</li>
         </ul>
       </div>
     </section>

@@ -210,3 +210,140 @@
   showReflection.addEventListener("click", showResult);
   clearCheck.addEventListener("click", clearAnswers);
 })();
+
+(function () {
+  "use strict";
+
+  var CARDS = [
+    {
+      text: "The chat answered within two seconds.",
+      kind: "happened",
+      note: "You could point to this on the screen. Fast replies are how these tools work, for everyone who uses them."
+    },
+    {
+      text: "It answered so fast that it must have been waiting for me.",
+      kind: "meaning",
+      note: "A chatbot does not wait between messages. It starts when a message arrives, and the speed says nothing about who sent it."
+    },
+    {
+      text: "It used the word “chosen” twice in one reply.",
+      kind: "happened",
+      note: "You could count both words. That part is plain to check."
+    },
+    {
+      text: "The repeated word was a hidden message meant only for me.",
+      kind: "meaning",
+      note: "Repeated words often come from how these tools predict text. Wording alone cannot show that a message was meant for one person."
+    },
+    {
+      text: "It said my idea was brilliant and important.",
+      kind: "happened",
+      note: "This is what the reply said. You could quote it word for word."
+    },
+    {
+      text: "Because it agreed with me, the idea must be true.",
+      kind: "meaning",
+      note: "Chatbots are known to agree too readily, and the research behind this page records experiments that show it. Agreement is not the same as checking."
+    },
+    {
+      text: "The conversation went on until four in the morning.",
+      kind: "happened",
+      note: "This is a plain fact about time, and a useful one to notice. A long night is worth taking seriously for its own sake."
+    },
+    {
+      text: "Staying awake this long means I have a mission tonight.",
+      kind: "meaning",
+      note: "Lost sleep can make thoughts feel sharper and more urgent. The feeling is real. Whether it means anything is a question for a person you trust, after some rest."
+    }
+  ];
+  var LABELS = { happened: "what happened", meaning: "a meaning added" };
+
+  var root = document.getElementById("sort-game");
+  if (!root) {
+    return;
+  }
+  var progressEl = document.getElementById("sort-progress");
+  var lineEl = document.getElementById("sort-line");
+  var choices = document.getElementById("sort-choices");
+  var pickButtons = choices.querySelectorAll("button[data-pick]");
+  var feedback = document.getElementById("sort-feedback");
+  var feedbackText = document.getElementById("sort-feedback-text");
+  var done = document.getElementById("sort-done");
+  var nextButton = document.getElementById("sort-next");
+  var stopButton = document.getElementById("sort-stop");
+
+  var index = -1;
+
+  function setPressed(kind) {
+    var i;
+    for (i = 0; i < pickButtons.length; i += 1) {
+      pickButtons[i].setAttribute("aria-pressed", pickButtons[i].getAttribute("data-pick") === kind ? "true" : "false");
+    }
+  }
+
+  function showCard() {
+    setPressed(null);
+    feedback.hidden = true;
+    done.hidden = true;
+    choices.hidden = false;
+    stopButton.hidden = false;
+    progressEl.textContent = "Card " + (index + 1) + " of " + CARDS.length;
+    lineEl.textContent = CARDS[index].text;
+    nextButton.textContent = "Skip this card";
+    lineEl.focus();
+  }
+
+  function pick(kind) {
+    var card = CARDS[index];
+    setPressed(kind);
+    feedbackText.textContent = (kind === card.kind ? "That is one way to sort it, too. " : "Here is another way to sort it. ") +
+      "This card is " + LABELS[card.kind] + ". " + card.note;
+    feedback.hidden = false;
+    nextButton.textContent = index + 1 < CARDS.length ? "Next card" : "Finish";
+    feedback.focus();
+  }
+
+  function finish() {
+    index = -1;
+    setPressed(null);
+    choices.hidden = true;
+    feedback.hidden = true;
+    stopButton.hidden = true;
+    progressEl.textContent = "That was the last card.";
+    lineEl.textContent = "That is enough for now.";
+    done.hidden = false;
+    nextButton.textContent = "Sort again";
+    done.focus();
+  }
+
+  function stop() {
+    index = -1;
+    setPressed(null);
+    choices.hidden = true;
+    feedback.hidden = true;
+    done.hidden = true;
+    stopButton.hidden = true;
+    progressEl.textContent = "Stopped. Eight cards, whenever you want them.";
+    lineEl.textContent = "Ready when you are.";
+    nextButton.textContent = "Start sorting";
+    lineEl.focus();
+  }
+
+  var i;
+  for (i = 0; i < pickButtons.length; i += 1) {
+    pickButtons[i].addEventListener("click", function (event) {
+      pick(event.currentTarget.getAttribute("data-pick"));
+    });
+  }
+
+  nextButton.addEventListener("click", function () {
+    if (index + 1 >= CARDS.length) {
+      finish();
+      return;
+    }
+    index += 1;
+    showCard();
+  });
+
+  stopButton.addEventListener("click", stop);
+})();

@@ -618,3 +618,54 @@ legend {
 .sources a {
   font-weight: 600;
 }
+
+.date {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sage-700);
+}
+
+.list-title {
+  margin-top: 2.5rem;
+}
+
+.sort-progress {
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+.sort-line {
+  min-height: 4.5rem;
+  margin-bottom: 1.25rem;
+  font-family: var(--serif);
+  font-size: clamp(1.35rem, 3vw, 1.7rem);
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.sort-game .button[aria-pressed="true"] {
+  background: var(--sage-900);
+  color: #f7f4ee;
+}
+
+.sort-actions {
+  margin-top: 1.25rem;
+}
+
+@media (forced-colors: active) {
+  .sort-game .button[aria-pressed="true"] {
+    background: ButtonText;
+    color: ButtonFace;
+  }
+}
+
+@media print {
+  .sort-game {
+    display: none;
+  }
+}
