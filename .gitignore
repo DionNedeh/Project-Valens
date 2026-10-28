@@ -1,0 +1,16 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Benchmark run output
+research/benchmark/runs/
+
+# OS and sync artifacts
+Thumbs.db
+desktop.ini
+.DS_Store
