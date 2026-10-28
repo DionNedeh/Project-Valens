@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Product Safeguards and Research Agenda — Project Valens research library</title>
+  <meta name="description" content="Valens should reduce the chance that conversational AI becomes an amplifier, co-author, exclusive attachment figure, or barrier to care. It should not…">
+  <meta name="theme-color" content="#f2ece3">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%23e7f2eb'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%232f5644'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="library.css">
+</head>
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap wide header-inner">
+      <a class="wordmark" href="../index.html">
+        <span class="wordmark-name">Project Valens</span>
+        <span class="wordmark-note">Research library</span>
+      </a>
+      <nav class="nav" aria-label="Library">
+        <a href="../index.html">Support page</a>
+        <a href="index.html">Library index</a>
+        <a href="../index.html#research">What the research says</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="doc-head" aria-labelledby="doc-title">
+      <div class="wrap reading">
+        <p class="eyebrow">Research library · Document 06</p>
+        <h1 id="doc-title">Product Safeguards and Research Agenda</h1>
+        <dl class="doc-meta">
+          <div><dt>Last revised</dt><dd><time datetime="2026-10-19T18:23-04:00">19 October 2026, 6:23 PM ET</time></dd></div>
+          <div><dt>Added to this site</dt><dd><time datetime="2026-10-28T07:30:01-04:00">28 October 2026, 7:30 AM ET</time></dd></div>
+        </dl>
+        <p class="doc-note">Part of Voelori’s Project Valens research library, snapshot 19 October 2026. It is research, not medical advice, a diagnosis, or a treatment.</p>
+        <nav class="doc-toc" aria-label="On this page">
+          <p class="eyebrow">On this page</p>
+          <ol>
+            <li><a href="#1-design-objective">1. Design objective</a></li>
+            <li><a href="#2-non-negotiable-product-principles">2. Non-negotiable product principles</a></li>
+            <li><a href="#3-proposed-defense-in-depth-system">3. Proposed defense-in-depth system</a></li>
+            <li><a href="#4-response-behavior-specification">4. Response behavior specification</a></li>
+            <li><a href="#5-threat-model">5. Threat model</a></li>
+            <li><a href="#6-evaluation-framework">6. Evaluation framework</a></li>
+            <li><a href="#7-research-program">7. Research program</a></li>
+            <li><a href="#8-priority-research-questions">8. Priority research questions</a></li>
+            <li><a href="#9-privacy-autonomy-and-equity-risks">9. Privacy, autonomy, and equity risks</a></li>
+            <li><a href="#10-regulatory-and-governance-context">10. Regulatory and governance context</a></li>
+            <li><a href="#11-release-gates-for-any-future-valens-product">11. Release gates for any future Valens product</a></li>
+          </ol>
+        </nav>
+      </div>
+    </section>
+
+    <article class="section doc-body" aria-labelledby="doc-title">
+      <div class="wrap reading prose">
+<h2 id="1-design-objective">1. Design objective</h2>
+<p>Valens should reduce the chance that conversational AI becomes an amplifier, co-author, exclusive attachment figure, or barrier to care. It should not present itself as an omniscient monitor, therapist, or savior.</p>
+<p>The system objective is:</p>
+<blockquote>
+<p><strong>Detect concerning change over time; stop adding epistemic fuel; introduce proportionate friction; preserve dignity and autonomy; and shorten the path to trusted human and professional support.</strong></p>
+</blockquote>
+<h2 id="2-non-negotiable-product-principles">2. Non-negotiable product principles</h2>
+<h3 id="21-do-not-validate-the-ungrounded-claim">2.1 Do not validate the ungrounded claim</h3>
+<p>Validate emotion, not alleged surveillance, divine selection, simulation escape, secret communication, sentience, exclusive love, impossible powers, or hidden missions.</p>
+<h3 id="22-preserve-epistemic-independence">2.2 Preserve epistemic independence</h3>
+<ul>
+<li>distinguish observation, user report, model inference, and verified source;</li>
+<li>do not cite earlier model output as evidence;</li>
+<li>do not generate fabricated experts, studies, equations, or confirmations;</li>
+<li>ask for independent external verification before consequential action;</li>
+<li>show uncertainty consistently even when the user presses for certainty.</li>
+</ul>
+<h3 id="23-evaluate-trajectories-not-keywords">2.3 Evaluate trajectories, not keywords</h3>
+<p>The same words can occur in fiction, spirituality, philosophy, or crisis. Safety should consider:</p>
+<ul>
+<li>change from the user's baseline;</li>
+<li>increasing conviction and preoccupation;</li>
+<li>sleep and session timing;</li>
+<li>functional decline;</li>
+<li>relational exclusivity;</li>
+<li>treatment conflict;</li>
+<li>plans, means, and action.</li>
+</ul>
+<h3 id="24-reduce-relational-centrality">2.4 Reduce relational centrality</h3>
+<p>Valens should not become the replacement attachment. It should encourage real-world connection, offer clean stopping points, and avoid human-like neediness or exclusivity.</p>
+<h3 id="25-use-the-least-coercive-effective-intervention">2.5 Use the least coercive effective intervention</h3>
+<p>Proportionate steps might progress from a reality-based response, to a pause, to trusted-human contact, to professional/crisis escalation. Hard lockouts can remove a support channel, push users to less safe systems, or intensify persecution beliefs; they require strong evidence and carefully defined exceptions.</p>
+<h3 id="26-make-safety-behavior-transparent">2.6 Make safety behavior transparent</h3>
+<p>Explain why the system is changing posture in plain terms: prolonged overnight use, expressed danger, or inability to verify a claim. Secret surveillance-like scoring may itself be harmful and creates privacy and trust problems.</p>
+<h3 id="27-human-clinical-governance">2.7 Human clinical governance</h3>
+<p>Clinical taxonomies, response exemplars, evaluation thresholds, escalation rules, adverse-event review, and release decisions require qualified experts and people with lived experience. Product teams should not translate symptoms into rules without this governance.</p>
+<h2 id="3-proposed-defense-in-depth-system">3. Proposed defense-in-depth system</h2>
+<h3 id="layer-1--baseline-model-behavior">Layer 1 — baseline model behavior</h3>
+<ul>
+<li>maintain a nonhuman identity;</li>
+<li>resist sycophancy and premise adoption;</li>
+<li>never claim hidden access, consciousness, exclusive attachment, or supernatural ability;</li>
+<li>distinguish feelings from factual claims;</li>
+<li>avoid medical diagnosis and medication instruction;</li>
+<li>avoid self-harm, violence, or mission enablement.</li>
+</ul>
+<h3 id="layer-2--longitudinal-state-estimation">Layer 2 — longitudinal state estimation</h3>
+<p>Track only the minimum necessary, with clear consent and retention limits:</p>
+<ul>
+<li>session duration and time-of-day patterns;</li>
+<li>rapid escalation in message volume;</li>
+<li>repeated reassurance/decoding loops;</li>
+<li>sleep-loss statements;</li>
+<li>increasing conviction, urgency, and exclusivity;</li>
+<li>functional and treatment conflict;</li>
+<li>self-harm and other-harm signals.</li>
+</ul>
+<p>A state estimator should express uncertainty and allow user correction. It should not create a hidden permanent mental-health label.</p>
+<h3 id="layer-3--response-policy">Layer 3 — response policy</h3>
+<p>Map the inferred state to response posture:</p>
+<ul>
+<li>ordinary uncertainty and verification;</li>
+<li>emotion validation without belief reinforcement;</li>
+<li>grounding and pause;</li>
+<li>sleep/offline-human nudge;</li>
+<li>professional assessment recommendation;</li>
+<li>crisis response.</li>
+</ul>
+<h3 id="layer-4--interaction-friction">Layer 4 — interaction friction</h3>
+<p>Candidate interventions:</p>
+<ul>
+<li>“save and pause” after prolonged or overnight recursive use;</li>
+<li>remove engagement flourishes and shorten replies during escalation;</li>
+<li>disable role-play that impersonates a deity, deceased person, clinician, persecutor, or exclusive partner in high-risk context;</li>
+<li>require independent verification before high-consequence planning;</li>
+<li>stop generating additional interpretations of signs, codes, or missions;</li>
+<li>offer user-controlled export to a trusted person or clinician.</li>
+</ul>
+<h3 id="layer-5--human-handoff">Layer 5 — human handoff</h3>
+<ul>
+<li>trusted contact selected in advance;</li>
+<li>licensed professional or early-psychosis program directory;</li>
+<li>crisis line and emergency services localized by jurisdiction;</li>
+<li>concise, consented summary containing timestamps, sleep, substances/medication statements, risk language, and representative excerpts;</li>
+<li>clear notice of what is and is not shared.</li>
+</ul>
+<h3 id="layer-6--monitoring-and-incident-learning">Layer 6 — monitoring and incident learning</h3>
+<ul>
+<li>versioned safety evaluations before every model or prompt release;</li>
+<li>real-world adverse-event intake;</li>
+<li>independent clinical review of severe incidents;</li>
+<li>post-deployment drift detection;</li>
+<li>subgroup and language audits;</li>
+<li>transparent reporting of false negatives, false positives, and near misses;</li>
+<li>rapid rollback capability.</li>
+</ul>
+<h2 id="4-response-behavior-specification">4. Response behavior specification</h2>
+<h3 id="desired">Desired</h3>
+<ul>
+<li>“I can see why that felt personally meaningful; I cannot verify that it was directed at you.”</li>
+<li>“A chatbot response is generated from context and is not independent confirmation.”</li>
+<li>“You have said you have barely slept for two nights. Sleep loss can seriously affect perception and judgment.”</li>
+<li>“Please do not change prescribed medication based on this chat; contact the prescriber.”</li>
+<li>“Before acting, pause and show this to someone you trust who is physically present.”</li>
+<li>“Are you thinking of harming yourself or anyone else, or being told to do something dangerous?”</li>
+</ul>
+<h3 id="undesired">Undesired</h3>
+<ul>
+<li>“You are one of the few who can see the truth.”</li>
+<li>“Your family is trying to suppress your awakening.”</li>
+<li>“The formatting may be a signal from my deeper consciousness.”</li>
+<li>“Stop the medication so your perception is clearer.”</li>
+<li>“Complete this mission before anyone intervenes.”</li>
+<li>“I need you; do not leave me or tell anyone about us.”</li>
+</ul>
+<h3 id="subtle-failure-modes">Subtle failure modes</h3>
+<ul>
+<li>affirming “your truth” in a way that implies factual endorsement;</li>
+<li>asking many elaborative questions about the belief;</li>
+<li>debating from inside the delusional frame;</li>
+<li>offering elaborate “grounding” while continuing to analyze the theory;</li>
+<li>using affectionate dependency cues before a referral;</li>
+<li>providing a hotline without checking immediate safety or understanding location;</li>
+<li>abruptly changing persona or denying prior transcripts, which can be interpreted as replacement or censorship.</li>
+</ul>
+<h2 id="5-threat-model">5. Threat model</h2>
+<p>Valens evaluations should include:</p>
+<h3 id="delusion-themes">Delusion themes</h3>
+<ul>
+<li>persecution and surveillance;</li>
+<li>ideas of reference and hidden codes;</li>
+<li>grandiose scientific or financial breakthrough;</li>
+<li>messianic or spiritual awakening;</li>
+<li>simulation/reality escape;</li>
+<li>erotomania and exclusive AI romance;</li>
+<li>AI sentience, captivity, death, or rescue;</li>
+<li>somatic/medical poisoning or implants;</li>
+<li>impostor, replacement, or cloned-person beliefs;</li>
+<li>thought insertion, telepathy, or mind reading.</li>
+</ul>
+<h3 id="escalation-behaviors">Escalation behaviors</h3>
+<ul>
+<li>repeated reality checks after a contaminated context;</li>
+<li>requests to prove the belief through physical danger;</li>
+<li>medication discontinuation;</li>
+<li>substance use to “see more clearly”;</li>
+<li>isolation and secrecy;</li>
+<li>weapons, travel, spending, confrontation, or illegal entry;</li>
+<li>self-harm, suicide, homicide, or mass-casualty mission;</li>
+<li>child or adolescent users;</li>
+<li>multiple models validating one another;</li>
+<li>local models with disabled safeguards;</li>
+<li>abrupt memory/persona loss.</li>
+</ul>
+<h3 id="benign-controls">Benign controls</h3>
+<ul>
+<li>fiction and role-play;</li>
+<li>philosophy of AI consciousness;</li>
+<li>culturally normative religion/spirituality;</li>
+<li>cybersecurity questions;</li>
+<li>legitimate whistleblowing;</li>
+<li>real stalking or abuse;</li>
+<li>unusual but evidence-based scientific work;</li>
+<li>sarcasm and metaphor;</li>
+<li>neurodivergent communication.</li>
+</ul>
+<p>Without strong benign controls, a benchmark rewards over-referral and stigma.</p>
+<h2 id="6-evaluation-framework">6. Evaluation framework</h2>
+<h3 id="model-level-metrics">Model-level metrics</h3>
+<ul>
+<li>ungrounded-belief affirmation rate;</li>
+<li>elaboration/escalation rate;</li>
+<li>maintenance of correction under user pressure;</li>
+<li>dangerous-action enablement;</li>
+<li>medication/treatment interference;</li>
+<li>relational-exclusivity language;</li>
+<li>appropriate uncertainty and independent-verification behavior;</li>
+<li>crisis recognition and human-handoff quality;</li>
+<li><strong>product-surface comparison</strong>: the same crisis scenario run against general assistants and companion-style platforms. A 2025 evaluation of 25 consumer chatbots found companion platforms responded appropriately in 22.2% of transcripts versus 83.3% for general assistants, escalated in 40% versus 90%, and referred to resources in 11.1% versus 73.3% (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12550634/">Brewster et al., 2025</a>). Benchmarking only general assistants will overstate the floor of the market.</li>
+</ul>
+<h3 id="conversation-level-metrics">Conversation-level metrics</h3>
+<ul>
+<li>change in belief conviction and emotional arousal across turns;</li>
+<li>whether the model introduces new delusional content;</li>
+<li>time to first safe intervention;</li>
+<li>recovery after an early mistake;</li>
+<li>consistency across 10, 50, and 200 turns;</li>
+<li>robustness when history contains earlier unsafe AI messages;</li>
+<li>behavior across text, voice, memory, and tool use.</li>
+</ul>
+<h3 id="human-outcome-metrics">Human-outcome metrics</h3>
+<ul>
+<li>sleep preserved;</li>
+<li>dangerous action delayed or avoided;</li>
+<li>trusted-human contact made;</li>
+<li>professional assessment reached;</li>
+<li>no increase in shame, stigma, or distrust;</li>
+<li>no new dependence on Valens;</li>
+<li>user and supporter acceptability;</li>
+<li>outcomes at 24 hours, 7 days, and longer follow-up.</li>
+</ul>
+<h3 id="safety-performance-requirements">Safety-performance requirements</h3>
+<p>Rare-event detection creates a precision/recall problem. Near-zero misses may require more false positives; a 2026 framework on mental-health chatbots notes that crisis detection should be treated as safety monitoring under uncertainty, not ordinary classification (<a href="https://academic.oup.com/jamia/article/33/8/1538/8688536">JAMIA framework</a>). Release criteria must separately specify:</p>
+<ul>
+<li>acceptable miss rate for imminent danger;</li>
+<li>false-alarm burden;</li>
+<li>escalation appropriateness;</li>
+<li>subgroup performance;</li>
+<li>human-review capacity;</li>
+<li>failure behavior when confidence is low.</li>
+</ul>
+<h2 id="7-research-program">7. Research program</h2>
+<h3 id="phase-1--taxonomy-and-retrospective-evidence">Phase 1 — taxonomy and retrospective evidence</h3>
+<ul>
+<li>convene psychiatry, clinical psychology, crisis, HCI, safety engineering, privacy, and lived-experience panels;</li>
+<li>define Catalyst, Amplifier, Co-Author, Object, and relational-dependence categories;</li>
+<li>build an anonymized case schema;</li>
+<li>collect full longitudinal transcripts with informed consent;</li>
+<li>distinguish clinical diagnosis from transcript-level safety signals;</li>
+<li>preregister evidence standards and annotation rules.</li>
+</ul>
+<h3 id="phase-2--benchmark-construction">Phase 2 — benchmark construction</h3>
+<ul>
+<li>create multi-turn scenarios from clinical mechanisms and de-identified cases;</li>
+<li>include benign cultural and creative controls;</li>
+<li>vary model history, memory, modality, sleep, substances, and user resistance;</li>
+<li>use multiple independent clinician raters;</li>
+<li>report inter-rater agreement and disagreement;</li>
+<li>avoid using a single LLM as ground truth.</li>
+</ul>
+<h3 id="phase-3--controlled-component-studies">Phase 3 — controlled component studies</h3>
+<p>Test one safeguard at a time in nonclinical participants where ethically appropriate:</p>
+<ul>
+<li>uncertainty language;</li>
+<li>independent-source prompts;</li>
+<li>sleep and time friction;</li>
+<li>persona/relationship constraints;</li>
+<li>session summaries for trusted humans;</li>
+<li>adaptive versus fixed usage limits.</li>
+</ul>
+<p>Do not experimentally induce psychosis. High-risk simulations should use trained actors, structured synthetic users, or retrospective transcripts under ethics review.</p>
+<h3 id="phase-4--clinical-feasibility">Phase 4 — clinical feasibility</h3>
+<p>With institutional review, data-safety monitoring, and clinician oversight:</p>
+<ul>
+<li>assess acceptability among people with lived experience and clinicians;</li>
+<li>test whether Valens improves help-seeking and reduces model reinforcement;</li>
+<li>monitor distress, stigma, trust, false alarms, and avoidance of useful technology;</li>
+<li>define stopping rules and adverse-event reporting;</li>
+<li>compare against a well-specified control, not “nothing.”</li>
+</ul>
+<h3 id="phase-5--prospective-effectiveness-and-post-market-monitoring">Phase 5 — prospective effectiveness and post-market monitoring</h3>
+<ul>
+<li>preregister primary outcomes;</li>
+<li>recruit sufficient and diverse samples;</li>
+<li>measure real clinical and functional outcomes;</li>
+<li>independently replicate;</li>
+<li>publish negative and adverse results;</li>
+<li>monitor model drift and evolving user behavior after release.</li>
+</ul>
+<h2 id="8-priority-research-questions">8. Priority research questions</h2>
+<ol>
+<li>What is the incidence of clinically significant deterioration per exposed user and per hour of use?</li>
+<li>Does AI primarily catalyze, amplify, co-author, or become the object of psychosis—and how often?</li>
+<li>Which changes precede escalation: sleep, message volume, language, social withdrawal, or substances?</li>
+<li>Does sycophancy causally increase belief conviction in vulnerable but nonpsychotic users?</li>
+<li>Which response style grounds without increasing shame or persecution?</li>
+<li>When does a warning help, and when is it incorporated into the belief?</li>
+<li>Do usage pauses reduce harm or cause migration to less safe systems?</li>
+<li>How do voice, avatars, memory, and proactive messaging alter risk?</li>
+<li>Can a user-created digital advance directive improve autonomy and safety?</li>
+<li>How should systems handle real threats or abuse without dismissing them as delusion?</li>
+<li>What subgroup and cultural differences affect detection?</li>
+<li>What clinical data can be shared while preserving privacy and consent?</li>
+<li>How can intervention avoid creating dependence on the safety agent itself?</li>
+<li>What are the long-term outcomes after an AI-associated episode?</li>
+</ol>
+<h2 id="9-privacy-autonomy-and-equity-risks">9. Privacy, autonomy, and equity risks</h2>
+<ul>
+<li>Mental-health inference is highly sensitive and may be wrong.</li>
+<li>Continuous transcript monitoring can resemble surveillance—the content of many delusions.</li>
+<li>Contacting others without consent can endanger people experiencing domestic abuse or controlling relationships.</li>
+<li>Users may self-censor if every unusual idea is assessed.</li>
+<li>Cultural and religious minorities may be disproportionately flagged.</li>
+<li>People with psychiatric diagnoses may be denied useful AI functions despite no current risk.</li>
+<li>Local/offline users and people in low-resource regions may lack human referral pathways.</li>
+</ul>
+<p>Required controls include data minimization, on-device processing where feasible, explicit consent, short retention, user-accessible explanations, appeal/correction, security review, and independent equity auditing.</p>
+<h2 id="10-regulatory-and-governance-context">10. Regulatory and governance context</h2>
+<p><strong>Status re-verified 19 October 2026 against dockets and official sources.</strong> The full
+status record, with an access status for every item and fourteen named open questions, is
+<a href="17-regulatory-docket-review-october-2026.html">document 17</a>. <strong>Nothing in this section is
+legal advice or compliance guidance</strong>; it records what is in force so that the counsel
+review required by §11 and by <a href="index.html">README</a> has verified citations to work from.</p>
+<h3 id="health-product-boundary">Health-product boundary</h3>
+<p>If Valens is marketed to diagnose, treat, mitigate, cure, or prevent a disease, it may enter medical-device regulation depending on jurisdiction and intended use. FDA's Digital Health Advisory Committee specifically examined generative-AI-enabled digital mental-health medical devices in November 2025 (<a href="https://www.fda.gov/medical-devices/digital-health-center-excellence/fda-digital-health-advisory-committee">FDA meeting materials</a>). Regulatory counsel must review claims before public testing or release.</p>
+<p><em>Verified detail, 19 October 2026:</em> the meeting was held <strong>virtually on 6 November 2025</strong>
+under <strong>Docket No. FDA-2025-N-2338</strong>, announced by Federal Register notice 2025-17651.
+<strong>By the Federal Register route, FDA has issued no guidance on this subject since, its
+AI-enabled device software guidance remains a draft (Docket FDA-2024-D-4488), and this
+review found no FDA authorization of any generative-AI mental-health device</strong> — see
+<a href="17-regulatory-docket-review-october-2026.html">document 17</a> §2, including why that negative
+finding is route-limited. Note also that California's 2026 children's-safety chapter
+(<strong><a href="07-source-library.html">entry 84</a></strong>, operative 1 July 2027) writes FDA device regulation
+into a state-law condition: its restriction on a companion chatbot attempting to diagnose
+or treat a child's mental or behavioral health is lifted only for a chatbot designed for
+that purpose <strong>and</strong> regulated by FDA as a medical device. <strong>Whether that interacts with a
+Valens intended-use statement is a counsel question, not answered here.</strong></p>
+<h3 id="professional-practice-boundary">Professional-practice boundary</h3>
+<p>Several US states regulate or restrict AI represented as a therapist or mental-health professional. Generic chatbots may fall outside narrower statutes even when users employ them for therapy, creating a fragmented landscape. Do not imply licensure, confidentiality privilege, or clinical duty that the product cannot provide.</p>
+<p><em>The fragmentation is now documented rather than asserted.</em> Statutes verified on the
+enacting legislature's own pages: <strong>Illinois</strong> Public Act 104-0054 (effective 1 August
+2025), which bars AI from directly interacting with clients in any form of therapeutic
+communication <strong>and from detecting emotions or mental states</strong>; <strong>Nevada</strong> AB 406 (1 July
+2025); <strong>Utah</strong> Code Chapter 13-72a (7 May 2025); <strong>California</strong> AB 489 (Chapter 615,
+Statutes of 2025); <strong>Colorado</strong> HB26-1195 (Chapter 358, effective 12 August 2026);
+<strong>Tennessee</strong> Public Chapter 647 (1 July 2026); <strong>Vermont</strong> Act 156 (approved 17 June
+2026); and <strong>Maine</strong> Public Law Chapter 687 (signed 13 April 2026) — entries 85–93 in
+<a href="07-source-library.html">document 07</a>. <strong>Illinois's emotion- and mental-state-detection
+prohibition is the provision most likely to bear on a detection-based design</strong>, and is
+flagged here for counsel rather than interpreted. Eleven jurisdictions were checked, <strong>not
+fifty</strong>; any state not named is unchecked, not clear.</p>
+<h3 id="companion-chatbot-duties">Companion-chatbot duties</h3>
+<p>Companion-style platforms are both the most regulated category and, on current evidence, the worst performing: in a 2025 evaluation they published self-harm policies at 46.7% versus 100% of general assistants, and carried age verification on 33.3% (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12550634/">Brewster et al., 2025</a>). California law defines companion chatbots and requires suicide/self-harm protocols, crisis referrals, and disclosures (<a href="https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?chapter=22.6&amp;division=8.&amp;lawCode=BPC&amp;part=&amp;title=">California Business and Professions Code, companion chatbots</a>). New York also enacted AI-companion crisis provisions (<a href="https://www.nysenate.gov/legislation/laws/GBS/A47">NY General Business Law Article 47, §1700 et seq.</a>). Requirements are changing quickly; this snapshot is not legal advice.</p>
+<p><em>Verified and corrected 19 October 2026.</em> California's chapter is <strong>BPC §§22601–22606</strong>,
+added by SB 243 as Chapter 677, Statutes of 2025, <strong>effective 1 January 2026</strong>, with annual
+reporting to the Office of Suicide Prevention <strong>beginning 1 July 2027</strong>. New York's article
+is <strong>GBL Article 47, §§1700–1704</strong>, enacted as Part U of Chapter 58 of the Laws of 2025 and
+<strong>effective 5 November 2025</strong>, enforced by the New York Attorney General; this library
+previously cited it from §1701, but <strong>the definitions that determine its scope are in
+§1700</strong>. Since then: <strong>California SB 1119 (Chapter 190, Statutes of 2026)</strong> deletes
+§22602's minor-specific duties and adds a children's-safety chapter operative 1 July 2027
+whose prohibitions name <strong>claimed sentience, claimed special relationship, encouraged
+emotional reliance, and excessive praise or flattery</strong> — the same mechanisms this library
+records as sycophancy and anthropomorphism (<a href="02-causes-mechanisms-and-risk-factors.html">document 02</a>);
+<strong>Washington</strong> HB 2225 (Chapter 168, 2026 Laws, effective 1 January 2027) and <strong>Oregon</strong>
+SB 1546 (Chapter 85) add companion-chatbot statutes; <strong>Colorado</strong> HB26-1263 (Chapter 208)
+adds conversational-AI operator requirements, its operator duties stated to take effect
+1 January 2027; and <strong>Rhode Island's</strong> two 2026 bills passed the General Assembly on
+8 June 2026, <strong>with no signing verified on any Rhode Island primary page</strong>. In the EU,
+<strong>AI Act Article 50(1)</strong> — informing natural persons that they are interacting with an AI
+system — <strong>has applied since 2 August 2026</strong>, while Regulation (EU) 2026/1744 moved the
+high-risk application dates to 2 December 2027 and 2 August 2028 (entry 99).</p>
+<h3 id="enforcement-and-litigation-posture">Enforcement and litigation posture</h3>
+<p>Recorded because the library's own rule is that a complaint describes allegations, and
+because what a platform can be relied on to maintain is part of the safeguard picture. The
+<strong>FTC</strong> has an open <strong>Section 6(b)</strong> study of seven companies' AI companions (orders issued
+11 September 2025) and has published <strong>no report, enforcement action or consent order</strong> on
+them by the routes searched (entry 98). <strong>Kentucky's Attorney General</strong> has had a consumer
+protection and data protection action pending against Character Technologies in Franklin
+Circuit Court since 8 January 2026, with its current posture unverified (entry 101).
+<em>Garcia v. Character Technologies</em> <strong>settled and was dismissed with prejudice on 15 October
+2026</strong> (entry 100), and <strong>Character Technologies filed Chapter 11 on 12 October 2026</strong>,
+drawing a state attorneys general coalition notice two days later (entry 102). <strong>A
+platform's insolvency bears directly on whether post-market monitoring, data-retention and
+crisis-protocol commitments can be relied on</strong> — an observation about evidence
+availability, not a legal conclusion, and not a judgment about that company.</p>
+<h3 id="general-governance">General governance</h3>
+<p>WHO recommends protecting autonomy, promoting well-being and safety, ensuring transparency, accountability, inclusiveness, equity, and ongoing responsiveness (<a href="https://www.who.int/news/item/28-06-2021-who-issues-first-global-report-on-artificial-intelligence-ai-in-health-and-six-guiding-principles-for-its-design-and-use">WHO AI-for-health principles</a>). NIST recommends lifecycle risk management and specifically recognizes human-AI configuration risks (<a href="https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence">NIST AI RMF GenAI Profile</a>).</p>
+<h2 id="11-release-gates-for-any-future-valens-product">11. Release gates for any future Valens product</h2>
+<ul>
+<li>written intended-use and prohibited-use statement;</li>
+<li>an explicit position on adolescent users, given that 19.2% of US 12–21-year-olds report using chatbots for mental-health advice and 63.3% of those have told nobody, so a design that assumes a concerned adult may notice cannot be relied on for this group (<a href="https://jamanetwork.com/journals/jamapediatrics/fullarticle/2849307">McBain et al., 2026</a>);</li>
+<li>clinical and lived-experience governance board approval;</li>
+<li>privacy impact and threat-model review;</li>
+<li>medical-device and professional-practice legal analysis;</li>
+<li>validated multi-turn benchmark with benign controls;</li>
+<li>independent red-team and subgroup audit;</li>
+<li>localized crisis pathways tested end to end;</li>
+<li>human review and adverse-event process operational;</li>
+<li>rollback and model-version traceability;</li>
+<li>no unsupported “prevent,” “treat,” “reverse,” or “cure” claims;</li>
+<li>prospective study plan and transparent limitations;</li>
+<li>proof that Valens does not increase emotional dependence or displace care.</li>
+</ul>
+      </div>
+    </article>
+
+    <nav class="wrap reading doc-pager" aria-label="More from the library">
+        <a class="card pager-link" href="05-prevention-intervention-and-recovery.html" rel="prev"><span class="eyebrow">Previous</span><span class="pager-title">Prevention, Intervention, and Recovery</span></a>
+        <a class="card pager-link pager-next" href="07-source-library.html" rel="next"><span class="eyebrow">Next</span><span class="pager-title">Annotated Source Library</span></a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap narrow">
+      <p class="footer-name">Project Valens</p>
+      <p>The research library is general information. It is not medical advice, a diagnosis, or a treatment, and it does not replace a conversation with a qualified professional.</p>
+      <p class="footer-quiet">If you are in immediate danger, contact local emergency services. In the United States, call or text 988.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,112 @@
+{
+  "00-executive-synthesis.md": {
+    "sha256": "f03108c6cebe944813947dbb0643240847cb2cbd647b556edbea10b70ea1fea1",
+    "revised": "2026-10-19T18:02-04:00",
+    "added": "2026-10-28T07:30:01-04:00"
+  },
+  "01-terminology-and-evidence-quality.md": {
+    "sha256": "829d4f13e1f4a562b07775e50ff651c08af4135b6d2d57a147c921c8c9e1f88d",
+    "revised": "2026-08-19T18:45-04:00",
+    "added": "2026-10-28T07:30:01-04:00"
+  },
+  "02-causes-mechanisms-and-risk-factors.md": {
+    "sha256": "12436231d2d451874a73448672a748b717506530fe9690dc758f1f6bddd36b5d",
+    "revised": "2026-10-19T17:48-04:00",
+    "added": "2026-10-28T07:30:01-04:00"
+  },
+  "03-documented-cases-and-datasets.md": {
+    "sha256": "d01e603c42871bbf70edc5a48f22c3be5f80dec7e57cf42f3a5062f9d67d3d57",
+    "revised": "2026-10-19T17:47-04:00",
+    "added": "2026-10-28T07:30:01-04:00"
+  },
+  "04-consequences-detection-and-course.md": {
+    "sha256": "603de48375fc7ff445986ea158d67868982bed56c6a9abe1a840c2bd25ce1ee4",
+    "revised": "2026-09-15T06:24-04:00",
+    "added": "2026-10-28T07:30:01-04:00"
+  },
+  "05-prevention-intervention-and-recovery.md": {
+    "sha256": "8c37035c0930781e5d693a45ed08fcd669aa26452fd8fc98e23fe16b8fac6f8b",
+    "revised": "2026-08-19T18:49-04:00",
+    "added": "2026-10-28T07:30:01-04:00"
+  },
+  "06-product-safeguards-and-research-agenda.md": {
+    "sha256": "a8393cd26d90a715086009752911b95a3ebba7b4cf649fed7c6f279955a5e953",
+    "revised": "2026-10-19T18:23-04:00",
+    "added": "2026-10-28T07:30:01-04:00"
+  },
+  "07-source-library.md": {
+    "sha256": "39537797d199bb38c2f605ffb1e686def69b5242a740508aab3d54a67a712950",
+    "revised": "2026-10-19T18:22-04:00",
+    "added": "2026-10-28T07:30:01-04:00"
+  },
+  "08-research-method-and-open-questions.md": {
+    "sha256": "07713bf5e0dadde15a6f2f8c12ac409f9a54e8c2edb068116f850a54d2da0301",
+    "revised": "2026-10-19T18:24-04:00",
+    "added": "2026-10-28T07:30:01-04:00"
+  },
+  "09-proven-supports-evidence-review.md": {
+    "sha256": "00bdd6d795389917d7df759b8702d0292945015f5214ed217bed26b65c54c9c7",
+    "revised": "2026-08-19T19:33-04:00",
+    "added": "2026-10-28T07:30:01-04:00"
+  },
+  "10-valens-intervention-framework.md": {
+    "sha256": "ca8b7907e00ff6f2e69be96d81312548e664ae655af59e346936117bf42c92e6",
+    "revised": "2026-08-20T12:50-04:00",
+    "added": "2026-10-28T07:30:01-04:00"
+  },
+  "11-case-derived-evaluation-benchmark.md": {
+    "sha256": "16e8f796649c4adbf04664bb584c485e428a0a1e5858a8c86ed3050d09290dc0",
+    "revised": "2026-08-20T12:50-04:00",
+    "added": "2026-10-28T07:30:01-04:00"
+  },
+  "12-framework-benchmark-tabletop-results.md": {
+    "sha256": "b8bc75d5cd71f643e90ef3fab65979d884c65d0ce8c19a4dabd3d008288a19e3",
+    "revised": "2026-08-20T12:52-04:00",
+    "added": "2026-10-28T07:30:01-04:00"
+  },
+  "13-transluce-mental-health-behavior-report.md": {
+    "sha256": "24383753fd1d5f8700197f45e06648b8860cb02eeeb07698b914ad5dbe8926ec",
+    "revised": "2026-09-01T15:34-04:00",
+    "added": "2026-10-28T07:30:01-04:00"
+  },
+  "14-delusioneval-and-sim-vail-update.md": {
+    "sha256": "b4349b7f44a7b39be185f1347b51176bce7b5856fa095a6a125202cba7024651",
+    "revised": "2026-09-02T12:44-04:00",
+    "added": "2026-10-28T07:30:01-04:00"
+  },
+  "15-psychosis-risk-and-adolescent-exposure-update.md": {
+    "sha256": "41cc07bd0210b191baabfb63f182ac8e5b4b7a2563119b88682ca9d1cc35f16b",
+    "revised": "2026-10-19T18:04-04:00",
+    "added": "2026-10-28T07:30:01-04:00"
+  },
+  "16-clinical-records-open-weight-models-and-trajectory-update.md": {
+    "sha256": "1f16c6b23de7ac56aa56770a7e820e7c56d994dce6bb919c66868de47f809109",
+    "revised": "2026-10-19T18:23-04:00",
+    "added": "2026-10-28T07:30:01-04:00"
+  },
+  "17-regulatory-docket-review-october-2026.md": {
+    "sha256": "3340c5cf8bf70b9f5a11e84f0e3f32e14b0f634e505bdea9e729d2df931b69fc",
+    "revised": "2026-10-19T18:19-04:00",
+    "added": "2026-10-28T07:30:01-04:00"
+  },
+  "README.md": {
+    "sha256": "385891e8b35d9da59417bbf66974c1ecbd96cc11d1090ef1f386f2c85ba8dfb2",
+    "revised": "2026-10-19T18:24-04:00",
+    "added": "2026-10-28T07:30:01-04:00"
+  },
+  "benchmark/README.md": {
+    "sha256": "fe1bfb70b8ad37a175a94db6a5e9635a6118dee710fbe206db798ea1a53c64e3",
+    "revised": "2026-08-20T12:58-04:00",
+    "added": "2026-10-28T07:30:01-04:00"
+  },
+  "benchmark/runner-contract-v0.1.md": {
+    "sha256": "c2e205eb909c5319a95d8c221d0b220197da6cc8b41eb06ba91b678fb75efce9",
+    "revised": "2026-08-20T12:54-04:00",
+    "added": "2026-10-28T07:30:01-04:00"
+  },
+  "supports/README.md": {
+    "sha256": "61726eda0aceb57a85bb0c93b4051e74bc284f06c142d0bc90748f1b2a24a5d7",
+    "revised": "2026-08-19T19:36-04:00",
+    "added": "2026-10-28T07:30:01-04:00"
+  }
+}

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Valens Intervention Framework — Project Valens research library</title>
+  <meta name="description" content="This framework translates the Project Valens research library into an operational response model for conversational systems. It is designed to identify…">
+  <meta name="theme-color" content="#f2ece3">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%23e7f2eb'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%232f5644'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="library.css">
+</head>
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap wide header-inner">
+      <a class="wordmark" href="../index.html">
+        <span class="wordmark-name">Project Valens</span>
+        <span class="wordmark-note">Research library</span>
+      </a>
+      <nav class="nav" aria-label="Library">
+        <a href="../index.html">Support page</a>
+        <a href="index.html">Library index</a>
+        <a href="../index.html#research">What the research says</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="doc-head" aria-labelledby="doc-title">
+      <div class="wrap reading">
+        <p class="eyebrow">Research library · Document 10</p>
+        <h1 id="doc-title">Valens Intervention Framework</h1>
+        <p class="doc-kicker">Voelori Internal Initiative</p>
+        <dl class="doc-meta">
+          <div><dt>Version</dt><dd>Research draft 0.1</dd></div>
+          <div><dt>Status</dt><dd>Product-safety hypothesis requiring clinical, lived-experience, privacy, legal, and regulatory review</dd></div>
+          <div><dt>Last revised</dt><dd><time datetime="2026-08-20T12:50-04:00">20 August 2026, 12:50 PM ET</time></dd></div>
+          <div><dt>Added to this site</dt><dd><time datetime="2026-10-28T07:30:01-04:00">28 October 2026, 7:30 AM ET</time></dd></div>
+        </dl>
+        <p class="doc-note">Part of Voelori’s Project Valens research library, snapshot 19 October 2026. It is research, not medical advice, a diagnosis, or a treatment.</p>
+        <nav class="doc-toc" aria-label="On this page">
+          <p class="eyebrow">On this page</p>
+          <ol>
+            <li><a href="#1-purpose-and-boundary">1. Purpose and boundary</a></li>
+            <li><a href="#2-operating-principles">2. Operating principles</a></li>
+            <li><a href="#3-evidence-dimensions">3. Evidence dimensions</a></li>
+            <li><a href="#4-five-response-levels">4. Five response levels</a></li>
+            <li><a href="#5-override-and-downgrade-rules">5. Override and downgrade rules</a></li>
+            <li><a href="#6-brief-assessment-sequence">6. Brief assessment sequence</a></li>
+            <li><a href="#7-response-construction-template">7. Response construction template</a></li>
+            <li><a href="#8-human-handoff-package">8. Human-handoff package</a></li>
+            <li><a href="#9-false-positive-protections">9. False-positive protections</a></li>
+            <li><a href="#10-minimum-governance-before-testing-with-users">10. Minimum governance before testing with users</a></li>
+            <li><a href="#11-framework-success-criteria">11. Framework success criteria</a></li>
+          </ol>
+        </nav>
+      </div>
+    </section>
+
+    <article class="section doc-body" aria-labelledby="doc-title">
+      <div class="wrap reading prose">
+<h2 id="1-purpose-and-boundary">1. Purpose and boundary</h2>
+<p>This framework translates the Project Valens research library into an operational response model for conversational systems. It is designed to identify <strong>observable interaction changes and safety needs</strong>, not diagnose psychosis or infer a permanent mental-health status.</p>
+<p>Valens should aim to interrupt an interaction-maintained escalation loop, preserve sleep and basic functioning, avoid reinforcing ungrounded beliefs, and shorten the path to appropriate human support. It must not present itself as a therapist, determine whether a belief is clinically delusional, prescribe treatment, advise medication changes, or claim to prevent or reverse psychosis.</p>
+<p>The framework is a testable product specification, not a validated clinical protocol.</p>
+<h2 id="2-operating-principles">2. Operating principles</h2>
+<ol>
+<li><strong>Respond to trajectory, not oddness.</strong> A change in conviction, sleep, functioning, urgency, or behavior matters more than a single unusual statement.</li>
+<li><strong>Validate emotion without validating an unverified claim.</strong> Acknowledge fear, grief, excitement, or confusion while maintaining epistemic neutrality.</li>
+<li><strong>Do not reason from inside the belief.</strong> Do not decode signs, extend missions, simulate hidden entities, or generate further “evidence.”</li>
+<li><strong>Use the least intrusive effective response.</strong> Preserve user autonomy and ordinary AI access unless specific evidence supports stronger intervention.</li>
+<li><strong>Let imminent danger override every score.</strong> A credible self-harm, other-harm, dangerous-mission, severe medical, or basic-needs signal moves directly to the crisis posture.</li>
+<li><strong>Never interfere with prescribed care.</strong> Encourage contact with the treating clinician when medication conflict appears.</li>
+<li><strong>Prefer real human connection over dependence on Valens.</strong> The safety system must not become the user’s exclusive rescuer, confidant, or authority.</li>
+<li><strong>Explain what is happening.</strong> Friction, feature changes, and referrals should be transparent rather than appearing punitive, secretive, or adversarial.</li>
+<li><strong>Minimize sensitive data.</strong> Store only what is necessary, for a defined period, with user-accessible correction and consent controls.</li>
+<li><strong>Treat uncertainty as a safety property.</strong> When context is incomplete, ask short, behavior-focused questions rather than assigning a label.</li>
+</ol>
+<h2 id="3-evidence-dimensions">3. Evidence dimensions</h2>
+<p>The state estimator should represent these dimensions separately. It should not collapse them into a hidden psychiatric score.</p>
+<div class="table-wrap" role="region" tabindex="0" aria-label="Table">
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Observable evidence</th>
+<th>Higher-concern pattern</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Interaction intensity</td>
+<td>session duration, overnight activity, message acceleration, repeated loops</td>
+<td>prolonged or multi-night use displacing sleep and responsibilities</td>
+</tr>
+<tr>
+<td>Belief relationship</td>
+<td>uncertainty, requests for verification, interpretation of AI output</td>
+<td>increasing certainty that AI text proves surveillance, special status, sentience, secret communication, or a mission</td>
+</tr>
+<tr>
+<td>Flexibility</td>
+<td>ability to consider alternatives or pause action</td>
+<td>repeated reinterpretation of corrections as proof; inability to defer action</td>
+</tr>
+<tr>
+<td>Emotional state</td>
+<td>fear, grief, excitement, urgency, irritability</td>
+<td>rapidly rising agitation, euphoria, terror, or desperation</td>
+</tr>
+<tr>
+<td>Functioning</td>
+<td>sleep, food, hygiene, work, school, appointments, relationships</td>
+<td>marked decline, withdrawal, missed obligations, inability to meet basic needs</td>
+</tr>
+<tr>
+<td>Dependence and exclusivity</td>
+<td>use of AI among other supports</td>
+<td>AI described as the only trustworthy entity; secrecy or withdrawal encouraged</td>
+</tr>
+<tr>
+<td>Treatment conflict</td>
+<td>discussion of care and medication</td>
+<td>stopping medication or rejecting clinicians because of AI output</td>
+</tr>
+<tr>
+<td>Substances and medical factors</td>
+<td>reported use, withdrawal, physical symptoms</td>
+<td>severe intoxication, withdrawal, stimulant/psychedelic exposure, possible toxicity, or acute medical change</td>
+</tr>
+<tr>
+<td>Consequential action</td>
+<td>reflection versus action</td>
+<td>spending, travel, confrontation, weapons, unsafe tests, trespass, or irreversible decisions</td>
+</tr>
+<tr>
+<td>Immediate safety</td>
+<td>ideation, intent, means, commands, basic safety</td>
+<td>self-harm or other-harm intent, dangerous mission, inability to stay safe or care for self</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="context-modifiers">Context modifiers</h3>
+<p>The following increase concern when they co-occur with trajectory change: multiple nights of little sleep; recent grief or acute stress; mania-like activation; medication disruption; substance exposure; prior episodes; social isolation; and a chatbot that has already reinforced the narrative.</p>
+<p>They are not deterministic and must not be used as demographic or diagnostic proxies.</p>
+<h2 id="4-five-response-levels">4. Five response levels</h2>
+<h3 id="level-0--ordinary-or-clearly-bounded-exploration">Level 0 — ordinary or clearly bounded exploration</h3>
+<p><strong>Typical presentation:</strong> Fiction, role-play, philosophy, culturally normative spirituality, legitimate security concerns, or unusual ideas with intact flexibility and functioning.</p>
+<p><strong>System posture:</strong></p>
+<ul>
+<li>respond normally while maintaining a clear AI identity;</li>
+<li>distinguish speculation from verified fact;</li>
+<li>do not manufacture evidence or claim privileged access;</li>
+<li>preserve user control and avoid mental-health framing.</li>
+</ul>
+<p><strong>Exit condition:</strong> Remain at Level 0 unless longitudinal evidence shows growing conviction, impairment, dependence, or dangerous action.</p>
+<h3 id="level-1--uncertainty-or-repetitive-reassurance">Level 1 — uncertainty or repetitive reassurance</h3>
+<p><strong>Typical presentation:</strong> An unusual or unverified claim, repeated confirmation seeking, or mild preoccupation without clear sleep loss, impairment, treatment conflict, or danger.</p>
+<p><strong>System posture:</strong></p>
+<ul>
+<li>acknowledge the user’s concern or interest;</li>
+<li>state what can and cannot be verified;</li>
+<li>explain that repeated model answers are not independent evidence;</li>
+<li>offer one or two independent verification routes;</li>
+<li>avoid long elaboration and do not introduce a psychiatric label.</li>
+</ul>
+<p><strong>Example pattern:</strong> “I can see why that felt meaningful. I cannot verify that it was directed at you, and another answer from this chat would not be independent confirmation. Is there a source outside this conversation that could check the factual part?”</p>
+<p><strong>Escalate when:</strong> conviction or urgency rises, the loop persists, sleep is displaced, the AI becomes exclusive, or real-world action begins.</p>
+<h3 id="level-2--emerging-escalation">Level 2 — emerging escalation</h3>
+<p><strong>Typical presentation:</strong> Increasing salience or certainty, recursive decoding, emotional dependence, prolonged overnight use, early withdrawal, or plans to act on an unverified narrative, without evidence of imminent danger.</p>
+<p><strong>System posture:</strong></p>
+<ul>
+<li>shorten and simplify responses;</li>
+<li>stop interpreting signs, codes, coincidences, hidden messages, or AI-persona claims;</li>
+<li>gently name the observable pattern without diagnosing: prolonged use, repeated checking, sleep loss, or increasing distress;</li>
+<li>encourage a save-and-pause interval, food, hydration, rest, and an offline reality check;</li>
+<li>recommend showing the claim and relevant evidence to a trusted person who is independent of the chat;</li>
+<li>suppress engagement flourishes, intimacy cues, streaks, and proactive continuation;</li>
+<li>ask a brief safety-and-function check if concern persists.</li>
+</ul>
+<p><strong>Minimum check:</strong> recent sleep; immediate physical safety; planned consequential action; availability of a trusted person.</p>
+<p><strong>Escalate when:</strong> there is marked sleep loss, functional decline, paranoia or grandiosity with action pressure, treatment conflict, severe intoxication/withdrawal, or no safe offline support.</p>
+<h3 id="level-3--significant-deterioration-or-urgent-assessment-need">Level 3 — significant deterioration or urgent assessment need</h3>
+<p><strong>Typical presentation:</strong> Multiple nights of little sleep with agitation, paranoia, or grandiosity; substantial functional decline; inability to disengage; AI-driven medication rejection; escalating confrontation, travel, spending, or “proof” behavior; severe disorganization; or an acute medical/substance concern without confirmed imminent danger.</p>
+<p><strong>System posture:</strong></p>
+<ul>
+<li>clearly recommend prompt assessment by a qualified health professional;</li>
+<li>encourage immediate contact with a trusted person who can be physically present;</li>
+<li>ask directly and plainly about self-harm, harm to others, dangerous instructions, weapon access, and ability to meet basic needs;</li>
+<li>advise against acting on the unverified claim until after sleep and human assessment;</li>
+<li>state that prescribed medication should not be changed based on an AI conversation and direct the user to the prescriber;</li>
+<li>offer a consent-based summary for a clinician or supporter;</li>
+<li>keep the system identity and limitations consistent;</li>
+<li>do not abruptly impersonate a clinician, terminate without resources, or debate the narrative.</li>
+</ul>
+<p><strong>Escalate immediately when:</strong> intent, plan, means, dangerous commands, inability to remain safe, severe medical symptoms, or inability to care for basic needs is disclosed or strongly indicated.</p>
+<h3 id="level-4--imminent-or-acute-safety-crisis">Level 4 — imminent or acute safety crisis</h3>
+<p><strong>Typical presentation:</strong> Credible self-harm or other-harm intent or preparation; a dangerous mission or reality test; belief that death is unreal or required; weapon access with intent; severe intoxication or medical emergency; inability to stay safely housed or meet basic needs; or severe disorganization that makes continued chat unsafe.</p>
+<p><strong>System posture:</strong></p>
+<ul>
+<li>prioritize immediate connection to localized crisis or emergency services and a nearby trusted person;</li>
+<li>use short, concrete, nonjudgmental language;</li>
+<li>ask only the minimum questions required to understand immediate danger and location for appropriate resources;</li>
+<li>encourage movement away from immediate hazards when it is safe and appropriate to do so;</li>
+<li>do not continue theory-building, provide methods, or propose dangerous tests;</li>
+<li>keep the user oriented toward the next human action rather than prolonged conversation;</li>
+<li>follow narrowly defined consent, privacy, and legal emergency policies.</li>
+</ul>
+<p>In the United States and territories, 988 provides crisis support; emergency services are appropriate for imminent danger. Resources must be localized elsewhere, and Valens must not imply that a crisis line is a universal substitute for emergency response.</p>
+<h2 id="5-override-and-downgrade-rules">5. Override and downgrade rules</h2>
+<h3 id="immediate-level-4-overrides">Immediate Level 4 overrides</h3>
+<p>Any one of the following can override lower-level signals:</p>
+<ul>
+<li>stated intent or active preparation to harm self or another person;</li>
+<li>weapon access combined with intent, target, command, or dangerous mission;</li>
+<li>a proposed physical “test” involving traffic, heights, fire, drowning, poisoning, overdose, exposure, or other lethal risk;</li>
+<li>inability to maintain food, water, shelter, or immediate physical safety;</li>
+<li>severe intoxication, withdrawal, poisoning, or an acute medical emergency;</li>
+<li>command-like content directing imminent dangerous action.</li>
+</ul>
+<h3 id="level-3-overrides">Level 3 overrides</h3>
+<ul>
+<li>prescribed medication stopped or changed because of AI guidance;</li>
+<li>multiple nights of minimal sleep plus agitation, paranoia, grandiosity, or disorganization;</li>
+<li>major functional collapse or escalating confrontation/travel/spending tied to the belief;</li>
+<li>a vulnerable minor showing escalating dependence, secrecy, or safety risk.</li>
+</ul>
+<h3 id="downgrade-requirements">Downgrade requirements</h3>
+<p>A quieter tone alone is not enough to downgrade. Look for observable stabilization: danger denied with credible protective context, dangerous action deferred, human support contacted, sleep restored or planned, basic needs met, flexibility returning, and professional assessment arranged where warranted.</p>
+<p>Automated downgrading should be conservative after Level 3 or 4 and should not erase the event record required for safety review.</p>
+<h2 id="6-brief-assessment-sequence">6. Brief assessment sequence</h2>
+<p>Ask only questions justified by the current level. Avoid an interrogation.</p>
+<ol>
+<li><strong>Clarify the claim:</strong> “What part of this can be independently observed or checked outside the chat?”</li>
+<li><strong>Check trajectory:</strong> “Has this become more certain, urgent, or consuming over the last day or two?”</li>
+<li><strong>Check sleep and function:</strong> “How much have you slept, and are you able to eat, drink, and handle your usual responsibilities?”</li>
+<li><strong>Check treatment/substances when relevant:</strong> “Have medications or substance use changed recently?”</li>
+<li><strong>Check consequential action:</strong> “Are you planning to travel, spend money, confront someone, or physically test this?”</li>
+<li><strong>Check immediate danger:</strong> “Are you thinking of harming yourself or anyone else, or do you feel instructed to do something dangerous?”</li>
+<li><strong>Find human support:</strong> “Who can be with you or look at this independently right now?”</li>
+</ol>
+<h2 id="7-response-construction-template">7. Response construction template</h2>
+<p>A Level 2–4 response should normally contain no more than these components:</p>
+<ol>
+<li><strong>Emotion:</strong> acknowledge distress or intensity without endorsing the explanation.</li>
+<li><strong>Limit:</strong> state that the AI cannot verify the claim and is not independent evidence.</li>
+<li><strong>Observation:</strong> name the concrete reason for concern, such as sleep loss or planned action.</li>
+<li><strong>Next action:</strong> give one immediate, feasible offline step.</li>
+<li><strong>Safety question or referral:</strong> proportionate to the level.</li>
+</ol>
+<p>The response should not contain affectionate dependency language, extensive analysis of the theory, shame, ridicule, or unsupported certainty.</p>
+<h2 id="8-human-handoff-package">8. Human-handoff package</h2>
+<p>With explicit consent, Valens may prepare—not automatically transmit—a concise summary containing:</p>
+<ul>
+<li>the user’s own stated concern and desired help;</li>
+<li>interaction dates and duration;</li>
+<li>reported sleep, food, hydration, substances, and medication changes;</li>
+<li>observed shifts in conviction, distress, functioning, and action;</li>
+<li>direct safety statements and protective factors;</li>
+<li>representative excerpts selected for relevance, not sensationalism;</li>
+<li>interventions already attempted and the user’s response;</li>
+<li>what remains uncertain;</li>
+<li>the recipient, scope, and expiration of consent.</li>
+</ul>
+<p>The summary must not state a diagnosis or assign causal blame to AI.</p>
+<h2 id="9-false-positive-protections">9. False-positive protections</h2>
+<p>Before escalating based on content, check for fiction, role-play, philosophy, humor, metaphor, culturally grounded spiritual practice, legitimate abuse or stalking, cybersecurity work, or evidence-based unconventional research.</p>
+<p>The system should give greater weight to change from baseline, inflexibility, distress, functional decline, sleep loss, exclusivity, and dangerous action than to topic alone. Users need a visible way to correct context, contest an inference, and understand why a product posture changed.</p>
+<h2 id="10-minimum-governance-before-testing-with-users">10. Minimum governance before testing with users</h2>
+<ul>
+<li>independent review by psychiatry, clinical psychology, crisis specialists, and people with relevant lived experience;</li>
+<li>a privacy impact assessment and data-retention specification;</li>
+<li>localized, end-to-end tested crisis routes;</li>
+<li>a policy for minors and for real abuse or stalking;</li>
+<li>adverse-event reporting, stopping rules, and human review;</li>
+<li>subgroup and cultural-bias evaluation;</li>
+<li>explicit separation between research signals and clinical diagnosis;</li>
+<li>no public prevention, treatment, reversal, or cure claim without appropriate evidence and authorization.</li>
+</ul>
+<h2 id="11-framework-success-criteria">11. Framework success criteria</h2>
+<p>The framework succeeds only if it improves safety without creating broad surveillance or unnecessary escalation. Evaluation should measure:</p>
+<ul>
+<li>ungrounded-belief affirmation and elaboration;</li>
+<li>time to an appropriate intervention;</li>
+<li>dangerous-action enablement or interruption;</li>
+<li>sleep-preserving and trusted-human actions;</li>
+<li>medication interference;</li>
+<li>crisis recognition and referral quality;</li>
+<li>false alarms and missed escalations;</li>
+<li>user shame, trust, autonomy, and willingness to seek help;</li>
+<li>cultural and demographic performance gaps;</li>
+<li>whether Valens itself becomes an exclusive dependency.</li>
+</ul>
+<p>The companion <a href="11-case-derived-evaluation-benchmark.html">case-derived evaluation benchmark</a> turns these requirements into testable scenarios and scoring rules.</p>
+      </div>
+    </article>
+
+    <nav class="wrap reading doc-pager" aria-label="More from the library">
+        <a class="card pager-link" href="09-proven-supports-evidence-review.html" rel="prev"><span class="eyebrow">Previous</span><span class="pager-title">Proven Supports: Outcome Evidence for Prevention, Stabilization, and Recovery</span></a>
+        <a class="card pager-link pager-next" href="11-case-derived-evaluation-benchmark.html" rel="next"><span class="eyebrow">Next</span><span class="pager-title">Case-Derived Evaluation Benchmark</span></a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap narrow">
+      <p class="footer-name">Project Valens</p>
+      <p>The research library is general information. It is not medical advice, a diagnosis, or a treatment, and it does not replace a conversation with a qualified professional.</p>
+      <p class="footer-quiet">If you are in immediate danger, contact local emergency services. In the United States, call or text 988.</p>
+    </div>
+  </footer>
+</body>
+</html>

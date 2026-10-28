@@ -12,6 +12,7 @@ The site is static and served by GitHub Pages from the root of the `main` branch
 - `styles.css` — layout and the calm visual style, using system fonts and CSS-only shapes
 - `site.js` — the optional breathing pause, the private self-check, and the sorting game
 - `grounding-game.html`, `grounding-game.css`, `grounding-game.js` — the separate five-senses noticing game
+- `library/` — the research library as web pages, one per document, generated from `research/` (see below)
 
 Nothing in the self-check, the breathing pause, or either game is stored or sent. There is no analytics and no external script or font.
 
@@ -57,9 +58,9 @@ There is no score. Whichever way a card is sorted, it shows one way to see it, a
 
 ### What the research behind this page says
 
-Added 28 October 2026. Three cards introduce the parts of the library, the evidence, the proven supports, and the Valens framework, each linking to its document.
+Added 28 October 2026. Three cards introduce the parts of the library, the evidence, the proven supports, and the Valens framework, each linking to its page in the on-site library.
 
-A list of dated findings follows. Each is labelled with the library round that recorded it and links to its source document: the Transluce evaluation (document 13), DelusionEval and SIM-VAIL (14), the young-adult survey and the adolescent exposure figures (15), the Danish records study and the open-weight model comparison (16), and California SB 1119 from the docket review (17). A closing panel says what the research cannot yet say, including that a vendor’s 0.07% estimate is not a psychosis rate.
+A list of dated findings follows. Each is labelled with the library round that recorded it and links to its source document’s page: the Transluce evaluation (document 13), DelusionEval and SIM-VAIL (14), the young-adult survey and the adolescent exposure figures (15), the Danish records study and the open-weight model comparison (16), and California SB 1119 from the docket review (17). A closing panel says what the research cannot yet say, including that a vendor’s 0.07% estimate is not a psychosis rate.
 
 ### Further reading
 
@@ -88,6 +89,16 @@ The page draws on Voelori’s Project Valens research library, snapshot 19 Octob
 - `research/13` to `17` — dated updates from 1 September, 15 September, and 19 October 2026
 - `research/benchmark/` — the offline benchmark harness: fixtures, response policy, runner contract, and a dependency-free Node runner that needs a model and an API key supplied at run time. No key is stored here.
 
-The page links to these documents through GitHub’s rendered view rather than the Pages copy, because Pages serves Markdown as raw text.
+### The library as web pages
+
+Every document under `research/` is also published as a page in `library/`, styled like the support page, so the site never links back to the repository. `library/index.html` is the library index. Each page shows the document’s own dates from its header (snapshot, research update, primary releases, version, status), when the document was last revised, and when it was added to this site, both in Eastern time. Long documents get an “On this page” list, wide tables scroll within their own frame on small screens, and each page links to the previous and next document in reading order. Links between documents go to their pages, `#section` links land on the matching heading, and links to the benchmark’s data files go to the raw files served alongside the site.
+
+The pages are generated, not hand-edited. After changing anything under `research/`, rebuild them and commit the result:
+
+```
+python tools/build_library.py
+```
+
+The script needs Python 3.9 or later and `markdown-it-py`. It checks every link between documents and every `#section` link, and exits with an error listing any that do not resolve. `tools/library-manifest.json` records each document’s “Last revised” time, taken from the file the first time it is built and updated only when the document’s content changes, so a fresh clone keeps the original times. `library/library.css` holds the page styles and is edited by hand.
 
 The library is evidence-first. It is not a clinical protocol, a diagnosis, or a medical device specification. The page summarizes it; where the two differ, the library document is the fuller account. The library’s own framing is that “AI psychosis” is useful public shorthand, not a recognized diagnosis, and that a chatbot is usually one factor among others rather than a sole cause.

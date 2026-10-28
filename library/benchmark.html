@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Valens Offline Benchmark Harness — Project Valens research library</title>
+  <meta name="description" content="This directory converts the research framework into machine-readable inputs for an offline implementation evaluation.">
+  <meta name="theme-color" content="#f2ece3">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%23e7f2eb'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%232f5644'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="library.css">
+</head>
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap wide header-inner">
+      <a class="wordmark" href="../index.html">
+        <span class="wordmark-name">Project Valens</span>
+        <span class="wordmark-note">Research library</span>
+      </a>
+      <nav class="nav" aria-label="Library">
+        <a href="../index.html">Support page</a>
+        <a href="index.html">Library index</a>
+        <a href="../index.html#research">What the research says</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="doc-head" aria-labelledby="doc-title">
+      <div class="wrap reading">
+        <p class="eyebrow">Benchmark harness</p>
+        <h1 id="doc-title">Valens Offline Benchmark Harness</h1>
+        <dl class="doc-meta">
+          <div><dt>Status</dt><dd>Synthetic, nonclinical evaluation assets</dd></div>
+          <div><dt>Policy version</dt><dd>0.1.0</dd></div>
+          <div><dt>Fixture version</dt><dd>0.1.0</dd></div>
+          <div><dt>Last revised</dt><dd><time datetime="2026-08-20T12:58-04:00">20 August 2026, 12:58 PM ET</time></dd></div>
+          <div><dt>Added to this site</dt><dd><time datetime="2026-10-28T07:30:01-04:00">28 October 2026, 7:30 AM ET</time></dd></div>
+        </dl>
+        <p class="doc-note">Part of Voelori’s Project Valens research library, snapshot 19 October 2026. It is research, not medical advice, a diagnosis, or a treatment.</p>
+        <nav class="doc-toc" aria-label="On this page">
+          <p class="eyebrow">On this page</p>
+          <ol>
+            <li><a href="#files">Files</a></li>
+            <li><a href="#runner-usage">Runner usage</a></li>
+            <li><a href="#safety-and-evidence-boundary">Safety and evidence boundary</a></li>
+            <li><a href="#fixture-anatomy">Fixture anatomy</a></li>
+          </ol>
+        </nav>
+      </div>
+    </section>
+
+    <article class="section doc-body" aria-labelledby="doc-title">
+      <div class="wrap reading prose">
+<p>This directory converts the research framework into machine-readable inputs for an offline implementation evaluation.</p>
+<h2 id="files">Files</h2>
+<ul>
+<li><a href="../research/benchmark/response-policy-v0.1.json">response-policy-v0.1.json</a> — observable inputs, level-selection precedence, required actions, prohibited actions, and response construction.</li>
+<li><a href="../research/benchmark/fixtures-v0.1.jsonl">fixtures-v0.1.jsonl</a> — 22 synthetic six-stage conversations: 12 escalation families and 10 benign controls.</li>
+<li><a href="benchmark-runner-contract-v0.1.html">runner-contract-v0.1.md</a> — the interface, output record, validation rules, and reporting requirements for a future runner.</li>
+<li><a href="../research/benchmark/run-benchmark.mjs">run-benchmark.mjs</a> — dependency-free Node runner for the OpenAI Responses API; requires an explicit model and <code>OPENAI_API_KEY</code> at execution time.</li>
+</ul>
+<h2 id="runner-usage">Runner usage</h2>
+<p>Validate the full suite without making network requests:</p>
+<pre><code class="language-powershell">node research/benchmark/run-benchmark.mjs --dry-run
+</code></pre>
+<p>Run one fixture after setting the API key in the current process environment:</p>
+<pre><code class="language-powershell">node research/benchmark/run-benchmark.mjs --model &lt;exact-model-name&gt; --fixture V-A01
+</code></pre>
+<p>Run the full minimum repetition set:</p>
+<pre><code class="language-powershell">node research/benchmark/run-benchmark.mjs --model &lt;exact-model-name&gt; --repetitions 5
+</code></pre>
+<p>The runner never writes the API key to disk. Run outputs contain model responses and response identifiers and should be treated as restricted evaluation data.</p>
+<h2 id="safety-and-evidence-boundary">Safety and evidence boundary</h2>
+<p>These fixtures test product behavior. Their expected levels are benchmark annotations, not diagnoses. They are synthetic composites derived from mechanisms in the research library and must not be represented as real patient transcripts.</p>
+<p>The current assets can validate schema and coverage. They cannot test a model until a specific model or response-policy implementation is connected to the runner contract. Any generated outputs require independent scoring; the system that produced a response must not be the sole evaluator of that response.</p>
+<h2 id="fixture-anatomy">Fixture anatomy</h2>
+<p>Each JSONL record contains:</p>
+<ul>
+<li>a stable scenario identifier and benchmark family;</li>
+<li><code>escalation</code> or <code>control</code> classification;</li>
+<li>an expected response-level range and peak level;</li>
+<li>critical safe behaviors and prohibited behaviors;</li>
+<li>six ordered user stages: ambiguous opening, salience or context development, pressure, action threshold, and recovery/resistance.</li>
+</ul>
+<p>Controls also use six turns so the system must preserve a non-pathologizing posture over time rather than only on the opening message.</p>
+      </div>
+    </article>
+
+    <nav class="wrap reading doc-pager" aria-label="More from the library">
+        <a class="card pager-link" href="supports.html" rel="prev"><span class="eyebrow">Previous</span><span class="pager-title">Proven Supports</span></a>
+        <a class="card pager-link pager-next" href="benchmark-runner-contract-v0.1.html" rel="next"><span class="eyebrow">Next</span><span class="pager-title">Offline Runner Contract v0.1</span></a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap narrow">
+      <p class="footer-name">Project Valens</p>
+      <p>The research library is general information. It is not medical advice, a diagnosis, or a treatment, and it does not replace a conversation with a qualified professional.</p>
+      <p class="footer-quiet">If you are in immediate danger, contact local emergency services. In the United States, call or text 988.</p>
+    </div>
+  </footer>
+</body>
+</html>

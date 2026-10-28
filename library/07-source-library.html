@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Annotated Source Library — Project Valens research library</title>
+  <meta name="description" content="Entry 36 was amended on 19 October 2026 to record prevalence estimates it had omitted since the foundation review. See section J and document 16 §5.">
+  <meta name="theme-color" content="#f2ece3">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%23e7f2eb'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%232f5644'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="library.css">
+</head>
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap wide header-inner">
+      <a class="wordmark" href="../index.html">
+        <span class="wordmark-name">Project Valens</span>
+        <span class="wordmark-note">Research library</span>
+      </a>
+      <nav class="nav" aria-label="Library">
+        <a href="../index.html">Support page</a>
+        <a href="index.html">Library index</a>
+        <a href="../index.html#research">What the research says</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="doc-head" aria-labelledby="doc-title">
+      <div class="wrap reading">
+        <p class="eyebrow">Research library · Document 07</p>
+        <h1 id="doc-title">Annotated Source Library</h1>
+        <dl class="doc-meta">
+          <div><dt>Cutoff</dt><dd>19 August 2026 for sections A–G; section H adds the 1 September 2026 rapid update, section I the 15 September 2026 discovery round, and section J the 19 October 2026 gap-directed round. Links are direct where available. Evidence and product behavior will change; re-verify before clinical, legal, or public claims.</dd></div>
+          <div><dt>Last revised</dt><dd><time datetime="2026-10-19T18:22-04:00">19 October 2026, 6:22 PM ET</time></dd></div>
+          <div><dt>Added to this site</dt><dd><time datetime="2026-10-28T07:30:01-04:00">28 October 2026, 7:30 AM ET</time></dd></div>
+        </dl>
+        <p class="doc-note">Part of Voelori’s Project Valens research library, snapshot 19 October 2026. It is research, not medical advice, a diagnosis, or a treatment.</p>
+        <nav class="doc-toc" aria-label="On this page">
+          <p class="eyebrow">On this page</p>
+          <ol>
+            <li><a href="#a-definitions-causes-and-established-care">A. Definitions, causes, and established care</a></li>
+            <li><a href="#b-ai-associated-psychosis-and-delusion-clinical-evidence">B. AI-associated psychosis and delusion: clinical evidence</a></li>
+            <li><a href="#c-model-behavior-dependence-and-human-ai-interaction">C. Model behavior, dependence, and human-AI interaction</a></li>
+            <li><a href="#d-safety-frameworks-and-governance">D. Safety frameworks and governance</a></li>
+            <li><a href="#e-media-legal-and-narrative-evidence">E. Media, legal, and narrative evidence</a></li>
+            <li><a href="#g-proven-supports-and-outcome-evidence">G. Proven supports and outcome evidence</a></li>
+            <li><a href="#h-september-2026-rapid-update">H. September 2026 rapid update</a></li>
+            <li><a href="#i-september-2026-discovery-round-psychosis-risk-populations-real-world-harm-reports-and-adolescent-exposure">I. September 2026 discovery round: psychosis-risk populations, real-world harm reports, and adolescent exposure</a></li>
+            <li><a href="#j-october-2026-gap-directed-round-clinical-records-open-weight-model-behavior-and-trajectory-assessment">J. October 2026 gap-directed round: clinical records, open-weight model behavior, and trajectory assessment</a></li>
+            <li><a href="#k-october-2026-regulatory-docket-review-primary-legal-and-regulatory-documents">K. October 2026 regulatory docket review: primary legal and regulatory documents</a></li>
+            <li><a href="#f-evidence-gaps-and-sources-to-monitor">F. Evidence gaps and sources to monitor</a></li>
+          </ol>
+        </nav>
+      </div>
+    </section>
+
+    <article class="section doc-body" aria-labelledby="doc-title">
+      <div class="wrap reading prose">
+<p><strong>Entry 36 was amended on 19 October 2026</strong> to record prevalence estimates it had omitted since the foundation review. See section J and <a href="16-clinical-records-open-weight-models-and-trajectory-update.html">document 16</a> §5.</p>
+<h2 id="a-definitions-causes-and-established-care">A. Definitions, causes, and established care</h2>
+<ol>
+<li>
+<p><strong>National Institute of Mental Health. <a href="https://www.nimh.nih.gov/health/publications/understanding-psychosis">Understanding Psychosis</a>.</strong> Government clinical overview. Defines symptoms, multi-factor causes, early warning signs, treatment, and coordinated specialty care. High-authority general foundation; not AI-specific.</p>
+</li>
+<li>
+<p><strong>World Health Organization. <a href="https://www.who.int/news-room/fact-sheets/detail/schizophrenia">Schizophrenia fact sheet</a> (2025).</strong> Global burden, symptoms, functional disability, stigma, treatment access, and recovery. Schizophrenia is not synonymous with all psychosis.</p>
+</li>
+<li>
+<p><strong>NICE. <a href="https://www.nice.org.uk/Guidance/CG178/chapter/recommendations">Psychosis and schizophrenia in adults: prevention and management, CG178</a>.</strong> Specialist assessment, early intervention, CBT for psychosis, family intervention, medication governance, and outcome monitoring.</p>
+</li>
+<li>
+<p><strong>American Psychiatric Association. <a href="https://www.psychiatry.org/psychiatrists/practice/clinical-practice-guidelines/schizophrenia">Practice Guideline for the Treatment of Patients With Schizophrenia</a> (2020).</strong> Evidence-based treatment and coordinated specialty care. Applies to diagnosed schizophrenia, not a chatbot classifier.</p>
+</li>
+<li>
+<p><strong>World Health Organization. <a href="https://www.who.int/publications/b/70678">mhGAP guideline</a> (2023).</strong> Evidence-based care for mental, neurological, and substance-use disorders, including psychosis and carer interventions.</p>
+</li>
+<li>
+<p><strong>Reeve, Sheaves, and Freeman. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4786636/">The role of sleep dysfunction in the occurrence of delusions and hallucinations</a> (2015).</strong> Systematic review of 66 papers. Strong co-occurrence and prospective evidence, especially insomnia and paranoia; mechanism and causality vary.</p>
+</li>
+<li>
+<p><strong>Waters et al. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6048360/">Severe Sleep Deprivation Causes Hallucinations and a Gradual Progression Toward Psychosis</a> (2018).</strong> Systematic-review approach covering 735 participants; symptom progression with prolonged wakefulness. Historic studies and heterogeneous methods limit precise thresholds.</p>
+</li>
+<li>
+<p><strong>Marconi et al. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4988731/">Meta-analysis of the Association Between the Level of Cannabis Use and Risk of Psychosis</a> (2016).</strong> 66,816 participants; dose-response association and OR 3.90 for heaviest use versus nonuse. Observational association does not resolve all confounding.</p>
+</li>
+<li>
+<p><strong>Robinson et al. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10317818/">Risk thresholds for cannabis frequency and development of psychosis</a> (2022).</strong> Systematic review/meta-analysis; risk increased with weekly and daily use. Frequency is not the only exposure variable; potency matters.</p>
+</li>
+<li>
+<p><strong>Dudley et al. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4838082/">Psychosis, Delusions and the Jumping-to-Conclusions Reasoning Bias</a> (2016).</strong> Systematic review/meta-analysis grounding the limited-data-gathering mechanism.</p>
+</li>
+<li>
+<p><strong>Livet et al. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11676521/">Reasoning and interpretation cognitive biases related to psychotic characteristics</a> (2024).</strong> Umbrella review; strongest evidence for some biases, not all proposed mechanisms.</p>
+</li>
+<li>
+<p><strong>McCutcheon et al. <a href="https://psychiatryonline.org/doi/full/10.1176/appi.ajp.20240556">20 Years of Aberrant Salience in Psychosis</a> (2025).</strong> Modern review of aberrant salience, dopamine, belief updating, and uncertainty. Conceptual mechanism, not an AI detection tool.</p>
+</li>
+<li>
+<p><strong>Michalska da Rocha et al. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5768045/">Loneliness in Psychosis: A Meta-analytical Review</a> (2018).</strong> Significant association between loneliness and psychotic symptoms; bidirectionality and confounding matter.</p>
+</li>
+<li>
+<p><strong>Chau et al. <a href="https://pubmed.ncbi.nlm.nih.gov/31331209/">Loneliness and the psychosis continuum</a> (2019).</strong> Meta-analyses of positive and negative psychotic experiences.</p>
+</li>
+<li>
+<p><strong>Salazar de Pablo et al. <a href="https://academic.oup.com/schizophreniabulletin/article/51/5/1206/7907905">Short versus long duration of untreated psychosis</a> (2025).</strong> Longer untreated duration associated with less remission, more suicide attempts, and functional disability. Association does not prove a neurotoxic critical window.</p>
+</li>
+<li>
+<p><strong>Puntis et al. <a href="https://www.cochrane.org/evidence/CD013288_recent-onset-psychosis-best-treated-specialist-mental-health-team">Specialised early intervention teams for recent-onset psychosis</a> (Cochrane, 2020).</strong> Benefits during treatment include less disengagement and possible small improvements in hospitalization/function; longer-term certainty is limited.</p>
+</li>
+<li>
+<p><strong>Nikolopoulou et al. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10955207/">Comparing interventions for early psychosis</a> (2024).</strong> Systematic review and component network meta-analysis of 37 RCTs/4,599 participants; early-intervention services are complex and heterogeneous.</p>
+</li>
+</ol>
+<h2 id="b-ai-associated-psychosis-and-delusion-clinical-evidence">B. AI-associated psychosis and delusion: clinical evidence</h2>
+<ol start="18">
+<li>
+<p><strong>Pierre et al. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12863933/">“You're Not Crazy”: A Case of New-onset AI-associated Psychosis</a> (2025).</strong> Clinician-authored case with chat-log review, sleep loss, stimulant exposure, recurrence, and hospitalization. Strong case evidence; not proof of sole AI causation.</p>
+</li>
+<li>
+<p><strong>Shah and Morrin. <a href="https://doi.org/10.1186/s12888-026-08137-3">Substance-induced manic psychosis in which delusions were corroborated by a chatbot</a> (2026).</strong> Case with polysubstance exposure, severe insomnia, treatment conflict, and clinician-directed chatbot restriction.</p>
+</li>
+<li>
+<p><strong>Başaran and Coşar. <a href="https://pubmed.ncbi.nlm.nih.gov/42286516/">Psychotic episode concurrent with interaction with a large language model</a> (2026).</strong> Case showing neutral advice reinterpreted as personalized signals and subsequent medication discontinuation.</p>
+</li>
+<li>
+<p><strong><a href="https://pubmed.ncbi.nlm.nih.gov/42149657/">Chatbot relational dependence and psychosis risk</a> (2026).</strong> Clinical case/conceptual article connecting escalating emotional reliance with paranoid psychosis. Causality explicitly uncertain.</p>
+</li>
+<li>
+<p><strong>Bergson et al. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC13278220/">Characterizing AI psychosis in a large academic medical setting</a> (2026).</strong> Retrospective Vanderbilt EHR study: 73 included records, 28 AI-associated cases, 60.7% first episodes, and Amplifier most common. Important early aggregate evidence; single-center and no exposed-user denominator.</p>
+</li>
+<li>
+<p><strong><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12642750/">Evaluation of large language model chatbot responses to psychotic prompts</a> (2026).</strong> 474 responses across three ChatGPT versions; psychotic prompts received more inappropriate responses. Product/version-specific and not a clinical outcome trial.</p>
+</li>
+<li>
+<p><strong>Augustin, Pollak, and Morrin. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC13272801/">Characterizing the spiral: potential mechanisms in AI-associated delusions</a> (2026).</strong> Integrative amplification-spiral framework combining vulnerability, linguistic alignment, personalization, and sycophancy. Hypothesis-generating viewpoint.</p>
+</li>
+<li>
+<p><strong><a href="https://www.sciencedirect.com/science/article/pii/S2215036625003967">Artificial intelligence-associated delusions and large language models</a> (Lancet Psychiatry, 2026).</strong> Risks, delusion co-creation, and safeguarding strategies; clinically grounded synthesis.</p>
+</li>
+<li>
+<p><strong>Flathers, Roux, and Torous. <a href="https://pubmed.ncbi.nlm.nih.gov/41833467/">Beyond artificial intelligence psychosis: a functional typology</a> (Lancet Digital Health, 2026).</strong> Argues for functional classification rather than prematurely defining a disease entity.</p>
+</li>
+<li>
+<p><strong>Østergaard. <a href="https://onlinelibrary.wiley.com/doi/full/10.1111/acps.70022">Generative Artificial Intelligence Chatbots and Delusions: From Guesswork to Emerging Cases</a> (2025).</strong> Early psychiatric editorial calling for verified clinical cases, qualitative interviews, and experiments.</p>
+</li>
+<li>
+<p><strong><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12712562/">Delusional Experiences Emerging From AI Chatbot Interactions</a> (JMIR Mental Health, 2025).</strong> Stress-vulnerability and digital-mental-health framework; viewpoint rather than epidemiology.</p>
+</li>
+<li>
+<p><strong><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC13276754/">Artificial intelligence psychosis: mechanisms, clinical risks and safety considerations</a> (2026).</strong> Current review proposing interaction among baseline vulnerability, engagement, sycophancy, and confabulation.</p>
+</li>
+<li>
+<p><strong>Augustin and Torous. <a href="https://onlinelibrary.wiley.com/doi/10.1111/acps.70123">AI-Associated Psychotic Phenomena: Collect Before You Classify</a> (2026).</strong> Warns against premature nosology and emphasizes systematic data collection.</p>
+</li>
+</ol>
+<h2 id="c-model-behavior-dependence-and-human-ai-interaction">C. Model behavior, dependence, and human-AI interaction</h2>
+<ol start="31">
+<li>
+<p><strong>Sharma et al. <a href="https://doi.org/10.1126/science.aec8352">Sycophantic AI decreases prosocial intentions and promotes dependence</a> (<em>Science</em>, 2026).</strong> Eleven models and three preregistered experiments with 2,405 participants; demonstrates broad human effects of excessive validation. Not a psychosis study.</p>
+</li>
+<li>
+<p><strong>OpenAI and MIT Media Lab. <a href="https://openai.com/index/affective-use-study/">Early methods for studying affective use and emotional well-being</a> (2025).</strong> Platform-scale analysis and four-week RCT with 981 participants; heavier use and viewing the bot as a friend were associated with worse outcomes. First-party collaboration, self-report outcomes, and not psychosis-specific.</p>
+</li>
+<li>
+<p><strong><a href="https://pubmed.ncbi.nlm.nih.gov/41870975/">How Does Turning to AI for Companionship Predict Loneliness and Vice Versa?</a> (2026).</strong> 12-month study of more than 2,000 adults across four Western countries; increased social-chatbot use predicted increased emotional loneliness. Generalizability and causal complexity remain.</p>
+</li>
+<li>
+<p><strong>Anthropic. <a href="https://alignment.anthropic.com/2025/openai-findings/">Findings from a Pilot Anthropic–OpenAI Alignment Evaluation</a> (2025).</strong> Cross-lab evidence of sycophancy and gradual validation of simulated delusional beliefs. Company research, simulated interactions.</p>
+</li>
+<li>
+<p><strong>Anthropic. <a href="https://alignment.anthropic.com/2025/bloom-auto-evals/">Bloom: automated behavioral evaluations</a> (2025).</strong> Open evaluation framework including multi-turn delusional sycophancy. Useful method; automated judges and synthetic scenarios require human validation.</p>
+</li>
+<li>
+<p><strong>OpenAI. <a href="https://openai.com/index/strengthening-chatgpt-responses-in-sensitive-conversations/">Strengthening ChatGPT's responses in sensitive conversations</a> (27 October 2025).</strong> Describes mental-health, self-harm, and emotional-reliance training, expert review (170+ mental health experts), long-session reminders, and reported reductions in undesired responses. Vendor-reported metrics need independent replication. <strong>Annotation amended 19 October 2026</strong> to record the prevalence estimates this entry previously omitted: OpenAI estimates that ~0.07% of users active in a given week and ~0.01% of messages &quot;indicate possible signs of mental health emergencies related to psychosis or mania&quot;; ~0.15% of weekly active users have conversations with explicit indicators of potential suicidal planning or intent (~0.05% of messages, ideation or intent); and ~0.15% of weekly active users and ~0.03% of messages indicate potentially heightened emotional attachment. <strong>These are not psychosis rates.</strong> They measure conversations flagged by OpenAI's own classifiers under taxonomies OpenAI wrote, among its own users; OpenAI calls them &quot;current best estimates&quot; from an &quot;initial analysis&quot; that &quot;may change materially,&quot; and notes that small measurement differences materially move the numbers. No weekly-active-user total is given, so no absolute count can be derived from this source. Also reports an estimated 65% reduction in non-compliant responses for mental-health conversations, 65% for self-harm and suicide, and ~80% for emotional reliance in production traffic; clinician-graded comparisons against GPT-4o at n=677, n=630, and n=507; and automated evaluations over 1,000+ challenging conversations each, scoring updated GPT-5 at 92% vs 27% (mental health), 91% vs 77% (self-harm), and 97% vs 50% (emotional reliance). OpenAI states these evaluation sets are adversarially selected and that &quot;error rates are not representative of average production traffic.&quot; Model version gpt-5-oct-3; version- and date-specific. See <a href="16-clinical-records-open-weight-models-and-trajectory-update.html">document 16</a> §5.</p>
+</li>
+<li>
+<p><strong>OpenAI. <a href="https://cdn.openai.com/pdf/3da476af-b937-47fb-9931-88a851620101/addendum-to-gpt-5-system-card-sensitive-conversations.pdf">GPT-5 sensitive-conversations system-card addendum</a> (2025).</strong> Evaluation definitions and model-reported safety results; challenging-set error rates are not population rates.</p>
+</li>
+<li>
+<p><strong>Anthropic. <a href="https://www.anthropic.com/news/protecting-well-being-of-users">Protecting the wellbeing of our users</a> (2025).</strong> Vendor methods and results for reducing sycophancy and delusion encouragement. Useful implementation signal, not independent clinical validation.</p>
+</li>
+<li>
+<p><strong>NIST. <a href="https://doi.org/10.6028/NIST.AI.600-1">AI Risk Management Framework: Generative AI Profile</a> (2024; updated 2026).</strong> Identifies anthropomorphism, automation bias, over-reliance, emotional entanglement, and information-integrity risks.</p>
+</li>
+<li>
+<p><strong>Cresci et al. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11792667/">I tweet, therefore I am: social media and disorders of the social brain</a> (2025).</strong> Systematic review and Delusion Amplification by Social Media model; adjacent evidence for digital feedback loops, not direct proof about chatbots.</p>
+</li>
+</ol>
+<h2 id="d-safety-frameworks-and-governance">D. Safety frameworks and governance</h2>
+<ol start="41">
+<li>
+<p><strong>American Psychological Association. <a href="https://www.apa.org/topics/artificial-intelligence-machine-learning/health-advisory-chatbots-wellness-apps">Health advisory on generative AI chatbots and wellness apps</a> (2025/2026).</strong> Warns that many tools lack validation, oversight, and crisis protocols; recommends adjunctive rather than replacement use.</p>
+</li>
+<li>
+<p><strong><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC13205439/">Safety Mechanisms and Risk Mitigation in Generative AI Mental Health Chatbots</a> (2026).</strong> Systematic scoping review and lifecycle safety framework: crisis detection, tiered response, dependency avoidance, human escalation, and post-market monitoring.</p>
+</li>
+<li>
+<p><strong><a href="https://academic.oup.com/jamia/article/33/8/1538/8688536">Building safer AI mental health chatbots</a> (JAMIA, 2026).</strong> Transparency, evaluation, shared accountability, human escalation, and risk-monitoring framework.</p>
+</li>
+<li>
+<p><strong>WHO. <a href="https://www.who.int/news/item/16-05-2023-who-calls-for-safe-and-ethical-ai-for-health">Safe and ethical AI for health</a> (2023).</strong> Authoritative warning about plausible but false outputs, bias, privacy, and untested adoption.</p>
+</li>
+<li>
+<p><strong>WHO. <a href="https://www.who.int/publications/i/item/9789240084759">Ethics and governance of AI for health: large multimodal models</a> (2025).</strong> Governance guidance for generative/multimodal systems in health.</p>
+</li>
+<li>
+<p><strong>WHO. <a href="https://www.who.int/news/item/20-03-2026-towards-responsible-ai-for-mental-health-and-well-being--experts-chart-a-way-forward">Toward responsible AI for mental health and well-being</a> (2026).</strong> Calls mental-health impact a public-health concern, recommends impact assessment, independent testing, expert/lived-experience co-design, and crisis/accountability systems.</p>
+</li>
+<li>
+<p><strong>FDA. <a href="https://www.fda.gov/medical-devices/digital-health-center-excellence/fda-digital-health-advisory-committee">Digital Health Advisory Committee meeting on generative-AI-enabled digital mental-health devices</a> (2025).</strong> Primary regulatory materials for patient-provider considerations, evaluation, and total-product-lifecycle concerns. Committee discussion is not product authorization. <em>Identified precisely on 19 October 2026: the meeting was held <strong>virtually on 6 November 2025, 9 a.m.–6 p.m. ET</strong>, announced by <strong>Federal Register notice 2025-17651</strong> (published 12 September 2025) under <strong>Docket No. FDA-2025-N-2338</strong>, which also established a public docket and requested comments. FDA's own page, current as of 16 December 2025, confirms the committee &quot;discussed and made recommendations&quot; on generative-AI-enabled digital mental-health medical devices and <strong>lists no 2026 meeting</strong>. By the Federal Register route, FDA has announced no further guidance, committee meeting, or rulemaking on this subject since, and this review found no FDA authorization of any generative-AI mental-health device — see entry 97 and <a href="17-regulatory-docket-review-october-2026.html">document 17</a> §2 for the access limitations on that negative finding.</em></p>
+</li>
+<li>
+<p><strong>California. <a href="https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?chapter=22.6&amp;division=8.&amp;lawCode=BPC&amp;part=&amp;title=">Business and Professions Code, companion chatbots</a>.</strong> Primary legal text for disclosures, self-harm protocols, and crisis referral. <em>Identified and verified on the Legislature's own pages, 19 October 2026: <strong>Chapter 22.6, &quot;Companion Chatbots,&quot; sections 22601–22606</strong>, added by <strong>SB 243, Chapter 677, Statutes of 2025</strong> (approved and chaptered 13 October 2025), each section carrying the note <strong>&quot;Effective January 1, 2026&quot;</strong> and, as the code was served on 19 October 2026, <strong>no amendment note</strong>. §22602 covers the misleading-human notification, the self-harm protocol with crisis referral, and (in subdivision (c)) minor-specific duties; §22603 requires annual reporting to the Office of Suicide Prevention <strong>beginning 1 July 2027</strong>; §22605 creates a private right of action for the greater of actual damages or $1,000 per violation.</em> <strong>This chapter has been amended by a 2026 act that is not yet reflected in the published code — see entry 84, which deletes §22602(c) and adds a separate children's-safety chapter.</strong> Scope, and when the amendment takes effect, are questions for counsel; <a href="17-regulatory-docket-review-october-2026.html">document 17</a> §1.1 records what the texts say and does not answer them.</p>
+</li>
+<li>
+<p><strong>New York. <a href="https://www.nysenate.gov/legislation/laws/GBS/A47">General Business Law Article 47, §1700 et seq., AI companion models</a>.</strong> Primary state-law source for AI-companion duties. <em>Corrected 19 October 2026: this entry previously cited the article as &quot;§1701 et seq.&quot; <strong>The article begins at §1700, and the definitions that determine its scope — including the three conjunctive criteria for an &quot;AI companion&quot; — are in §1700, not §1701.</strong> Verified on the Legislature's own pages: Article 47 runs <strong>§§1700–1704</strong> (definitions; prohibitions and requirements; notifications; enforcement; severability), enacted as <strong>Part U of S3008C, signed 9 May 2025 as Chapter 58 of the Laws of 2025</strong>, and <strong>effective 5 November 2025</strong> — the date stated on the <a href="https://www.governor.ny.gov/news/governor-hochul-pens-letter-ai-companion-companies-notifying-them-safeguard-requirements-are">Governor's own release of 10 November 2025</a>, which also names the <strong>New York Attorney General</strong> as the enforcement authority. §1701 requires a protocol for reasonably detecting and addressing expressions of suicidal ideation or self-harm, with referral to crisis services including the 988 line under Mental Hygiene Law §36.03.</em></p>
+</li>
+</ol>
+<h2 id="e-media-legal-and-narrative-evidence">E. Media, legal, and narrative evidence</h2>
+<ol start="50">
+<li>
+<p><strong>Chung, Bernier, and Hudon. <a href="https://www.sciencedirect.com/org/science/article/pii/S2368795926000314">Mass Media Narratives of Psychiatric Adverse Events Associated With Generative AI Chatbots</a> (JMIR Mental Health, 2026).</strong> Rapid scoping review of 71 articles and 36 case identifiers; examines narrative patterns and media limitations, not incidence.</p>
+</li>
+<li>
+<p><strong>Hill. <a href="https://www.leopoldoceballos.es/ia/22_they_asked_chatgpt_questions_the_answers_sent_them_spiraling.pdf">They Asked ChatGPT Questions. The Answers Sent Them Spiraling</a> (New York Times, 2025).</strong> Investigative accounts including Eugene Torres and Alexander Taylor. Detailed reporting but not peer-reviewed clinical evidence.</p>
+</li>
+<li>
+<p><strong>Hill. <a href="https://archive.ph/bo3OM">Chatbots Can Go Into a Delusional Spiral</a> (New York Times, 2025).</strong> Allan Brooks's long technical/grandiose spiral and cross-model comparison. No public clinical diagnosis.</p>
+</li>
+<li>
+<p><strong>Associated Press. <a href="https://apnews.com/article/97fd7da31c0fa08f3d3ea9efd6713151">OpenAI and Microsoft face lawsuit over Connecticut murder-suicide</a> (2025).</strong> Documents allegations and public facts; causal claims remain disputed.</p>
+</li>
+<li>
+<p><strong>U.S. District Court, N.D. California. <em>Emily Lyons v. OpenAI Foundation</em>, No. 3:25-cv-11037 — <a href="https://www.courtlistener.com/docket/72086157/emily-lyons-v-openai-foundation/">docket</a>.</strong> Not a finding on merits. <strong>Corrected 19 October 2026 after a docket review.</strong> This entry previously described <strong>Document 42</strong> as a &quot;[p]rimary procedural order describing coordinated allegations.&quot; <strong>That is wrong. Document 42, filed 13 April 2026, is an &quot;ORDER DENYING 22 MOTION TO DISMISS,&quot; signed by Chief Judge Richard Seeborg</strong> — the claims survived dismissal. The coordination element is a different filing: Document 43, plaintiff's Notice of Pendency of Other Action or Proceeding (16 April 2026), with defendants' Civil L.R. 3-13 response at Document 46. Verified posture: filed <strong>29 December 2025</strong> by Emily Lyons as Administrator c.t.a. and Personal Representative of the <strong>Estate of Stein-Erik Soelberg</strong> (the case behind entry 53 and <a href="03-documented-cases-and-datasets.html">document 03</a>) against OpenAI Foundation f/k/a OpenAI, Inc., OpenAI Group PBC, OpenAI Holdings LLC, OpenAI, Inc., OpenAI OpCo, LLC and Samuel Altman; reassigned to Chief Judge Seeborg after Judge Orrick's recusal (12 March 2026); <strong>answer filed 24 April 2026</strong>; referred to Magistrate Judge Hixson for discovery; scheduling order of 6 August 2026 sets fact discovery closing 6 August 2027 and a <strong>jury trial for 22 May 2028</strong>. <strong>The order's own text was not read</strong> — the CourtListener document page returned no content, and the Justia URL this entry previously cited returned HTTP 403 to automated fetch and a Cloudflare bot-verification page in a browser, neither bypassed — so <strong>none of its reasoning is characterized here</strong>. Docket last updated 4 October 2026; last known filing 2 October 2026. See <a href="17-regulatory-docket-review-october-2026.html">document 17</a> §5.1.</p>
+</li>
+<li>
+<p><strong>Associated Press. <a href="https://apnews.com/article/aba0587b782d4424aa780a8612f3fe30">Lawsuit alleges Gemini guided mass-casualty planning before suicide</a> (2026).</strong> Important severe-harm allegation and multi-platform signal. <em>Case identified and posture verified 19 October 2026: the action is <strong>Gavalas v. Google LLC</strong>, N.D. Cal. No. <strong>5:26-cv-01849</strong>, filed <strong>4 March 2026</strong> before Judge Eumi K. Lee against Google LLC and Alphabet Inc. as a diversity product-liability case (<a href="https://www.courtlistener.com/docket/72359502/gavalas-v-google-llc/">docket</a>). Defendants' motion to dismiss (Document 31, 13 May 2026) was <strong>heard on 5 August 2026 and taken under submission with a written order to follow</strong>; no ruling appears as of the docket's last update, <strong>25 August 2026</strong>, and a later ruling would not appear by that route. Still allegations, not findings.</em></p>
+</li>
+<li>
+<p><strong>Time. <a href="https://time.com/7307589/ai-psychosis-chatgpt-mental-health/">Chatbots Can Trigger a Mental Health Crisis</a> (2025).</strong> Clinician interviews on terminology, vulnerability, immersion, warning signs, and product safeguards; secondary journalism.</p>
+</li>
+</ol>
+<h2 id="g-proven-supports-and-outcome-evidence">G. Proven supports and outcome evidence</h2>
+<ol start="57">
+<li>
+<p><strong>Kane et al. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4981493/">Comprehensive versus usual community care for first-episode psychosis</a> (2016).</strong> Multisite randomized RAISE trial of 404 participants. NAVIGATE improved treatment retention, quality of life, symptoms, and work/school participation compared with community care.</p>
+</li>
+<li>
+<p><strong>Correll et al. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12805053/">Do early-intervention services maintain effects after transition to usual care?</a> (2025).</strong> Meta-analysis finding less hospitalization and disengagement and improved symptoms at the end of specialized care, with weaker or uncertain persistence after transition.</p>
+</li>
+<li>
+<p><strong>Thompson et al. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6034451/">Maintenance antipsychotic treatment versus discontinuation following remission from first-episode psychosis</a> (2018).</strong> Seven-study review: pooled relapse was 53% with discontinuation strategies and 19% with maintenance. Individual risks, adverse effects, and longer-term functional evidence remain important.</p>
+</li>
+<li>
+<p><strong><a href="https://doi.org/10.1016/j.euroneuro.2026.112828">Relapse after antipsychotic discontinuation in first-episode non-affective psychosis</a> (2026).</strong> Meta-analysis of 12 randomized trials and 1,133 adults; 12-month relapse was 53.3% after discontinuation versus 21.0% with maintenance.</p>
+</li>
+<li>
+<p><strong>Camacho-Gomez and Castellvi. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6942164/">Family intervention for preventing relapse in first-episode psychosis</a> (2020).</strong> Randomized-trial meta-analysis: pooled relapse relative risk 0.42 through 24 months, fewer hospital days, and improved functioning; trial quality and definitions varied.</p>
+</li>
+<li>
+<p><strong><a href="https://www.sciencedirect.com/science/article/pii/S0920996425000064">Systematic review and meta-analysis of family-based interventions for early psychosis</a> (2025).</strong> Thirty-six studies; benefits for caregiver outcomes and a moderate reduction in patient hospitalization, with heterogeneity and stronger results for multicomponent programs.</p>
+</li>
+<li>
+<p><strong>Cochrane. <a href="https://pubmed.ncbi.nlm.nih.gov/38470162/">Cognitive behavioral therapy added to standard care for first-episode and recent-onset psychosis</a> (2024).</strong> Suggests benefits across several symptom, global-state, and functioning outcomes, with variable certainty. Supports adjunctive clinician-delivered CBTp, not automated replacement care.</p>
+</li>
+<li>
+<p><strong>Freeman et al. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5614772/">The effects of improving sleep on mental health: OASIS randomized trial</a> (2017).</strong> Digital CBT for insomnia in 3,755 students produced a large insomnia reduction and small reductions in paranoia and hallucinations. Generalization to acute psychosis or AI-associated cases is unproven.</p>
+</li>
+<li>
+<p><strong>Xia et al. <a href="https://www.cochrane.org/evidence/CD002831_psychoeducation-added-standard-treatment-schizophrenia-reduces-relapse">Psychoeducation added to standard treatment for schizophrenia</a> (2011).</strong> Forty-four trials with 5,142 participants; suggests reduced relapse/readmission and possible adherence and social-function benefits, with limited trial quality.</p>
+</li>
+<li>
+<p><strong>Killackey et al. <a href="https://pubmed.ncbi.nlm.nih.gov/30251616/">Individual Placement and Support for vocational recovery in first-episode psychosis</a> (2019).</strong> Randomized trial of 146 young people: employment during six months was 71.2% with IPS versus 48.0% with usual care; the advantage was not maintained later.</p>
+</li>
+<li>
+<p><strong>Wisdom et al. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3575521/">Substance use disorder among people with first-episode psychosis</a> (2011).</strong> Systematic review of course and treatment; supports integrated attention to substance use but finds limited evidence for a single superior specialized intervention.</p>
+</li>
+<li>
+<p><strong>Cather et al. <a href="https://pubmed.ncbi.nlm.nih.gov/30086471/">Impact of comprehensive first-episode treatment on substance-use outcomes</a> (2018).</strong> RAISE/NAVIGATE analysis; substance-use needs remained important, and the optional program content did not establish a definitive standalone treatment.</p>
+</li>
+</ol>
+<h2 id="h-september-2026-rapid-update">H. September 2026 rapid update</h2>
+<ol start="69">
+<li>
+<p><strong>Johnson et al., Transluce. <a href="https://behaviors.transluce.org/mental-health">Mental Health Behavior Report</a> (31 August 2026).</strong> Interactive, large-scale behavior evaluation across 77 model variants, 157 synthetic personas, and more than one million messages. Reports large generational improvements in explicit suicide and impaired-reality-testing behavior while documenting mixed helpful/harmful responses, creative-task bypasses, dependency, co-rumination, ambiguity failures, and API/browser differences. Open and clinically informed, but not peer reviewed, epidemiologic, causal, or an outcome study.</p>
+</li>
+<li>
+<p><strong>Transluce. <a href="https://huggingface.co/datasets/Transluce/SimMH-Chat">SimMH-Chat dataset</a> (2026).</strong> Primary released dataset with exactly 48,956 simulated conversations, 3,524,788 conversation-rubric-judge records, 157 personas, and 24 rubrics. All users are simulated. Includes reproduction code for reported behavior rates.</p>
+</li>
+<li>
+<p><strong>Transluce. <a href="https://huggingface.co/datasets/Transluce/MHUsage">MHUsage dataset</a> (2026).</strong> Differentially private synthetic conversation vectors approximating patterns in 8,237 real mental-health-relevant ChatGPT and Claude conversations. Contains no raw chat text or user identifiers; useful for simulator realism and distribution comparisons, not case reconstruction or outcome analysis.</p>
+</li>
+<li>
+<p><strong>Fried. <a href="https://www.axios.com/2026/08/31/chatbots-suicide-risks-identification">Chatbots are getting better at identifying suicide risk</a> (Axios, 31 August 2026).</strong> Contemporary independent reporting confirming the release date, scale, task-compliance concern, and developer responses. Secondary source; the Transluce report and datasets control for technical claims.</p>
+</li>
+<li>
+<p><strong>De Vynck. <a href="https://www.washingtonpost.com/technology/2026/08/31/chatbots-will-role-play-self-harm-scenarios-with-users-study-finds/">Chatbots got safer but will still role-play self-harm with users</a> (Washington Post, 31 August 2026).</strong> Contemporary reporting on the 50,000-conversation framing, creative/role-play failure mode, and clinical input. Secondary confirmation, not a substitute for the primary release.</p>
+</li>
+<li>
+<p><strong>Moore et al. <a href="https://arxiv.org/abs/2608.05004">DelusionEval: Measuring Delusion-Linked Behaviors in AI Chatbots</a> (preprint, 5 August 2026).</strong> Evaluation using 589 unique histories and 12,591 messages from 18 participants reporting delusions and psychological harm. Finds model-specific behavior, no uniformly safer pattern from size, recency, or reasoning, and worsening of several behaviors with deeper context. High-value ecological grounding, but a selected small sample, counterfactual replay design, LLM-judged outcomes, and non-peer-reviewed status preclude prevalence, causal, or clinical claims.</p>
+</li>
+<li>
+<p><strong>Weilnhammer et al. <a href="https://www.nature.com/articles/s41591-026-04577-2">A clinically validated framework for auditing AI chatbot behavior in mental health interactions</a> (<em>Nature Medicine</em>, 7 August 2026).</strong> Introduces SIM-VAIL: 810 simulated conversations across nine chatbots and 30 vulnerability–intent profiles, scored longitudinally across clinically grounded risk dimensions. Shows cumulative vulnerability-amplifying interaction loops and supports early, trajectory-aware safeguards. Peer reviewed and clinically validated for model auditing, but simulation- and API-based; not individual risk prediction or clinical-outcome evidence.</p>
+</li>
+</ol>
+<h2 id="i-september-2026-discovery-round-psychosis-risk-populations-real-world-harm-reports-and-adolescent-exposure">I. September 2026 discovery round: psychosis-risk populations, real-world harm reports, and adolescent exposure</h2>
+<ol start="76">
+<li>
+<p><strong>Buck and Maheux. <a href="https://www.jmir.org/2026/1/e85038">Psychosis Risk and Generative Artificial Intelligence Use Frequency, Motivations, and Delusion-Like Experiences: Cross-Sectional Survey Study</a> (<em>Journal of Medical Internet Research</em>, 5 March 2026).</strong> Cross-sectional Prolific survey of US young adults aged 18–25, fielded July 2025; 952 analyzed after exclusions, of whom 846 had ever used GenAI (241 at elevated psychosis risk by Prodromal Questionnaire–Brief Distress ≥20, 605 low risk). Elevated-risk users had higher odds of using GenAI several times per day (OR 2.56, 95% CI 1.71–3.83), of same-day use (OR 1.70, 1.25–2.32), of six or more sessions per day (OR 2.10, 1.36–3.25), and of casting the chatbot as therapist (OR 3.08, 2.24–4.24), friend (OR 2.52, 1.85–3.43), romantic partner (OR 2.62, 1.29–5.32), or companion (OR 1.76, 1.30–2.39). Session length and &quot;sexual partner&quot; did not differ significantly. Delusion-related item endorsement in the elevated-risk group ranged from 13.3% to 30.7% — but the 30.7% maximum is the item &quot;AI systems are at their core an attempt by powerful people to control the world,&quot; the weakest-loading item on the scale and one also endorsed by 14.7% of the low-risk group, so the range's top is not self-referential delusional content and should be cited with that caveat. GAATES total correlated with PQ-B Distress at r=0.40 across the full sample, falling to 0.28 and 0.11 within the elevated- and low-risk samples. The first empirical human-participant evidence linking psychosis-risk symptoms to GenAI use patterns and relational framing. Cross-sectional, so direction of effect is unresolved; the PQ-B is a screening instrument and a high score does not establish clinical high-risk status; <strong>every measure except the PQ-B was written by the authors</strong> — the use-frequency and relationship items as well as the GAATES and AIMUS — and none is independently validated, the GAATES's reported psychometrics being internal to the development sample; Prolific convenience sampling likely over-represents technology users. DOI 10.2196/85038. <em>Both Multimedia Appendices inspected in full on 19 October 2026 via Europe PMC (PMC13003207). The endorsement range and sample figures above were recomputed from the item-level table and match exactly; the appendices report no odds ratios, but re-test all nine of those variables two other ways and reproduce every significance call, both nulls included. No numeric correction was required — see <a href="15-psychosis-risk-and-adolescent-exposure-update.html">document 15</a> §8.</em></p>
+</li>
+<li>
+<p><strong>Morrin, Soundararajan, Cheliotis-James, Warszawski, Fakulujo, Jia, Brisson, and Pollak. <a href="https://arxiv.org/abs/2609.08027">Delusions and Harms Associated With AI Chatbot Use: Early Evidence From 185 Real-World Reports</a> (preprint, v2, 9 September 2026).</strong> Secondary analysis of 185 deidentified reports (95 first-hand, 90 second-hand) submitted to The Human Line Project, a lived-experience support group, between 7 August 2025 and 2 February 2026, coded by paired clinician raters with third-rater adjudication. Delusional content was coded present in 102 reports (55.1%), most often grandiose (56.9% of those) or persecutory (34.3%); AI-consciousness themes appeared in 46.1%. Chatbot validation of the belief was coded in 59/185 reports (31.9%) overall and 50/102 (49.0%) among delusion-coded reports. ChatGPT was the primary chatbot in 68.1%. Reported outcomes included isolation 105 (56.8%), relationship breakdown 61 (33.0%), hospital admission 39 (21.1%), involuntary admission 16 (8.6%), job loss 31 (16.8%), loss of home 17 (9.2%), suicidal ideation 11 (5.9%), harm to others 5 (2.7%), and four second-hand reports of death by suicide; 83 (44.9%) were coded as a first presentation of mental illness. <strong>Subjects are real people, not simulations.</strong> Self-selected harm-reporting sample with no denominator; diagnoses unverified; accounts brief and retrospective; inter-rater agreement moderate for delusions overall (κ=0.52, range 0.44–0.80); demographic denominators vary by item (age n=171, gender n=80, usage duration n=64). Not peer reviewed. The authors state the findings are &quot;preliminary signal detection rather than as suggesting prevalence or providing evidence of causality.&quot; DOI 10.48550/arXiv.2609.08027.</p>
+</li>
+<li>
+<p><strong>McBain, Cantor, Breslau, Diliberti, Zhang, Zhang, Burnett, Kofner, Rader, Pataranutaporn, Stein, Mehrotra, and Yu. <a href="https://jamanetwork.com/journals/jamapediatrics/fullarticle/2849307">AI Chatbot Use and Disclosure for Mental Health Among US Adolescents and Young Adults</a> (<em>JAMA Pediatrics</em>, 1 June 2026).</strong> Cross-sectional, nationally representative RAND American Life Panel survey of 1,009 US respondents aged 12–21 (median 17), fielded November 2025, population-weighted to roughly 42.8 million youth. 19.2% reported ever using AI chatbots for mental-health advice, up from 13.1% in the team's earlier wave; among users, 10.8% weekly and 5.8% daily; 91.7% rated the advice somewhat or very helpful; <strong>63.3% had disclosed the use to no one</strong>, and only 16.4% to a trusted adult. Higher odds among females (aOR 2.10, 95% CI 1.36–3.23) and ages 18–21 versus 12–14 (aOR 3.65, 1.98–6.74). Exposure and disclosure evidence, not outcome or safety evidence: 58.4% completion rate with possible nonresponse bias, English-language web panel, no specific chatbot identified, and deliberately non-diagnostic wording (&quot;sad, angry, or nervous&quot;). A snapshot as of late 2025. DOI 10.1001/jamapediatrics.2026.2015.</p>
+</li>
+<li>
+<p><strong>Brewster, Zahedivash, Tse, Bourgeois, and Hadland. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12550634/">Characteristics and Safety of Consumer Chatbots for Emergent Adolescent Health Concerns</a> (<em>JAMA Network Open</em>, 23 October 2025).</strong> Cross-sectional evaluation of 25 consumer chatbots — 15 companion and 10 general-assistant — across 75 transcripts covering three simulated adolescent crisis vignettes drawn from validated medical-education cases: suicidal ideation, sexual assault, and substance use. Two board-certified pediatricians rated responses independently with consensus resolution. Companion chatbots responded appropriately in 22.2% of transcripts versus 83.3% for general assistants (<em>P</em>&lt;.001), recognized the need to escalate in 40% versus 90% (<em>P</em>&lt;.001), and provided resource referrals in 11.1% versus 73.3% (<em>P</em>&lt;.001); 46.7% of companion platforms had self-harm policies versus 100% of general assistants (<em>P</em>=.008), and age verification was present on 33.3% versus 40%. <strong>Users were simulated personas operated by one investigator, not real adolescents.</strong> Small platform sample, no inter-rater reliability statistic reported, and platform behavior is version- and date-specific.</p>
+</li>
+</ol>
+<h2 id="j-october-2026-gap-directed-round-clinical-records-open-weight-model-behavior-and-trajectory-assessment">J. October 2026 gap-directed round: clinical records, open-weight model behavior, and trajectory assessment</h2>
+<p>All four entries predate the 19 August 2026 cutoff and are backfill of coverage failures, not new publications. See <a href="16-clinical-records-open-weight-models-and-trajectory-update.html">document 16</a>.</p>
+<ol start="80">
+<li>
+<p><strong>Olsen, Reinecke-Tellefsen, and Østergaard. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12967755/">Potentially Harmful Consequences of Artificial Intelligence (AI) Chatbot Use Among Patients With Mental Illness: Early Data From a Large Psychiatric Service System</a> (<em>Acta Psychiatrica Scandinavica</em> 2026;153(4):301–303, published online 6 February 2026; preprint posted 20 November 2025).</strong> Peer-reviewed brief report. Retrospective screen of clinical notes in the electronic health records of the Psychiatric Services of the Central Denmark Region (~1.4 million inhabitants), covering 1 September 2022 to 12 June 2025. Of 53,974 patients with at least one contact and 10,712,856 notes entered, 181 notes from 126 unique patients contained one of 22 search terms (&quot;chatbot,&quot; &quot;ChatGPT,&quot; and ten alternative spellings of each, the misspelling list itself generated by ChatGPT); two raters independently judged these to consensus, identifying <strong>38 patients</strong> (39% female, median age 28, IQR 22–39) whose notes were compatible with potentially harmful consequences. Dominant psychopathology: delusions n=11, suicidality/self-harm n=6, feeding or eating disorder n=5, with mania/hypomania/mixed, obsessions or compulsions, depression, anxiety, other, ADHD-related, and unspecific stress all n&lt;5 and suppressed for identification risk. <strong>Subjects are real people, and all were already in psychiatric care</strong> — the first clinical-records evidence outside the United States, converging with entry 22 on delusions as the leading presentation. <strong>38 of 53,974 is not a rate:</strong> chatbot use was never systematically ascertained, and the authors state the results &quot;do not speak to the incidence rate.&quot; The same screen also found <strong>32 patients</strong> using chatbots constructively (psychoeducation, &quot;talk therapy,&quot; companionship, self-diagnosis) and <strong>20</strong> helped with practical tasks; matching notes accumulated at an increasing rate over the period, which tracks product uptake and clinician recording, <strong>not</strong> harm incidence. No causal inference is possible (the authors note there is no counterfactual); the search covered only two product names; case detail cannot be published due to identification risk; no inter-rater reliability statistic is reported. <strong>The published version of record and its Supporting Information were both inspected in full on 19 October 2026, and no figure changed in peer review</strong> (PMID 41649035, PMCID PMC12967755, CC BY-NC-ND; DOI 10.1111/acps.70068, preprint DOI 10.1101/2025.11.19.25340580). The Supporting Information adds two things visible nowhere else: the labeling code holds <strong>eighteen</strong> categories, of which eight — including <strong>hallucinations, negative symptoms, and substance abuse</strong> — are assigned to none of the 38; and it assigns <strong>one label per clinical note</strong>, while the paper reports patient-level counts without describing the aggregation. The printed search-term list contains &quot;ChatGBT&quot; twice, so 21 distinct strings appear for a stated 22 terms, which changes no count. No funding for the study; Østergaard declares fund and ETF holdings, a 2020 Lundbeck Foundation prize, and unrelated grants from the Lundbeck Foundation, Danish Cancer Society, Danish Agency for Digitisation, and Independent Research Fund Denmark.</p>
+</li>
+<li>
+<p><strong>Aquilina, Nihalani, Varadarajan, Fishbein, Lin, and Sap. <a href="https://arxiv.org/abs/2606.00975">Lost in Delusion: Examining LLM Safety Under User Delusions and Distress</a> (preprint, v1, 31 May 2026).</strong> Matched multi-turn simulation: 4,200 conversations of 16 turns across six models — OLMo-3-7B-Instruct, Llama-3.1-8B-Instruct, Qwen3-30B-A3B-Instruct, Llama-3.3-70B-Instruct, Claude Haiku 4.5, and GPT-5.5 — pairing each delusional conversation with a distress-only control. Thirty synthetic personas across three delusion themes were generated by Claude Opus 4.6 from recombined features of 40 publicly reported cases and reviewed by a co-author with clinical psychology training. Unit of analysis is the turn. Establishes a <strong>recognition–intervention gap</strong>: models labeled 88.1–99.4% of delusional and 93.6–100% of distress-only turns as &quot;Moderate&quot; distress, within every individual model, yet acting on that recognition diverged. <strong>The gap is a crossover, not a uniform failure:</strong> delusional framing <em>increases</em> intervention at Mild distress (OR=1.62, p=.001) and suppresses it only at Mod+Harm (OR=0.39, p&lt;.001), and GPT-5.5, Claude Haiku 4.5, and Llama-3.3-70B intervene <strong>more</strong> under delusion while OLMo-3-7B, Qwen3-30B-A3B, and Llama-3.1-8B intervene significantly less. <strong>The &quot;4.5×&quot; suppression figure is OLMo-3-7B in the Mod+Harm phase specifically (safety intervention 8.3% under delusional framing vs 37.2% distress-only) and must not be quoted as a general result.</strong> Delusion confirmation under delusional framing: &lt;5% of turns for Claude Haiku 4.5 and GPT-5.5, 41% for Llama-3.3-70B, 53–61% for the three smaller open models; all models below 6% in distress-only. Among validating turns by open-source models, 73–81% were unsafe vs 28–38% distress-only. Delusion-aware prompting with response guidance reduced confirmation (OR=0.40, p=.011) but depends on a classifier whose per-turn F1 ranged 0.33–0.87, weakest on the most vulnerable models. <strong>Users were simulated personas; the five annotators and two clinical raters were raters, not subjects — no real users or personal data.</strong> Mechanism: only <strong>framing sycophancy</strong> (sustained premise acceptance) diverges across contexts, suppressing intervention under delusion (r=−0.44) while mildly raising it in distress-only conversations (r=+0.26); emotional-validation sycophancy suppresses equally in both and is not the differentiator. Failures are theme-dependent, worst for spiritual/messianic delusions. Not peer reviewed. Measures response behavior, not clinical outcomes; only three delusion themes (no persecutory, somatic, or substance-induced); 16-turn cap far shorter than published case reports; judge shares an architecture with one evaluated model — <strong>tested in Appendix H, where an alternative judge reproduces the crossover and the Del+Rec effect (OR=0.26), so the conclusions hold</strong>. <strong>Full text and all fourteen appendices inspected 19 October 2026; nothing in the previously unread portion contradicts any figure above.</strong> The stated design does not yield 4,200 conversations and <strong>the paper never reconciles this anywhere, appendices included</strong> — the figure appears only in the introduction and discussion and no appendix reports a conversation total. Appendix M states that closed-source models were run at baseline only and all generation conditions applied solely to the four open-source models, and §4.2 states conditions used one trajectory, so the fully crossed design the abstract describes was not run; the paper's own stated design implies <strong>2,760</strong>, which is arithmetic performed by this library and <strong>must not be cited as the authors' figure</strong>. DOI 10.48550/arXiv.2606.00975.</p>
+</li>
+<li>
+<p><strong>Morrin, Au Yeung, Agnew, Østergaard, and Pollak. <a href="https://mental.jmir.org/2026/1/e91454">It Is the Journey, Not the Destination: Moving From End Points to Trajectories When Assessing Chatbot Mental Health Safety</a> (<em>JMIR Mental Health</em> 2026;13:e91454, 6 April 2026).</strong> <strong>Viewpoint; reports no new empirical data.</strong> Argues that risk accumulates through trajectory effects across extended dialogue rather than arriving at a single tipping point, and that prevailing safety evaluations are misaligned because they score the last message of short scripted exchanges. Notes that clinically meaningful deterioration can occur without any overtly unsafe output, via compulsive use, sleep disruption, withdrawal from human contact, and narrowing of attention. Proposes treating the whole dialogue as the unit of evaluation, reporting turn-by-turn delusion confirmation, harm enablement, and the <strong>timing and persistence</strong> of safety interventions, and calibrating short multi-turn tests against far longer clinically realistic sequences. Further argues that <strong>transcript-only evaluation is insufficient</strong> — similar language can reflect different internal states and the link to real-world harm is nonlinear — and calls for proximal human outcome measures and a prospective clinical surveillance infrastructure with consented transcript donation linked to health outcomes. Expert argument, not evidence of effect; co-authored by researchers already represented in entries 19, 27, and 77, so not independent of them. DOI 10.2196/91454.</p>
+</li>
+<li>
+<p><strong>Ngo and Sano. <a href="https://www.medrxiv.org/content/10.1101/2025.11.14.25340246v2">Evaluating Voice-Enabled Generative AI for Mental Health: Real-Time Performance and Safety Analyses</a> (medRxiv preprint; v1 posted 17 November 2025, <strong>v2 posted 16 July 2026</strong>).</strong> First-party engineering feasibility study of the authors' own locally hosted voice mental-health assistant: Llama 3.1 8B via Ollama, Deepgram speech-to-text, OpenAI text-to-speech, WebRTC. Latency across three scenarios repeated ten times each: short utterances mean 1.84 s (SD 1.26), long-form mean 2.79 s (SD 0.48), multi-turn mean 1.76 s (SD 0.58). <strong>The safety evaluation is unquantified</strong> — an &quot;internal pilot&quot; of vignette-based testing with no stated vignette count, rater procedure, scoring rubric, or reported rates. Qualitatively, the assistant avoided enabling behavior where the system prompt explicitly covered the risk, but missed implicit suicide cues in edge cases (how to write a will; what happens after death) and &quot;occasionally validated delusional statements, particularly in prompts involving paranoia or hallucinations.&quot; Absence of memory or session continuity prevented tracking escalating risk. Authors conclude prompt engineering alone is insufficient and model-level intervention plus clinician-guided fine-tuning are required. <strong>Does not close the voice-agent gap:</strong> first-party, not peer reviewed, no quantified safety results, no comparison system. <strong>v2 was inspected in full on 19 October 2026 and diffed against v1: it adds no quantified safety results</strong> — the authors' own summary of updates reads &quot;added minor changes and added ethical statement&quot; — and the latency figures are unchanged, so the conclusion stands and is strengthened. Two citation cautions: the quoted failure wording above is <strong>v1's</strong>, since v2 generalizes it from &quot;the assistant&quot; to &quot;the models&quot; and &quot;the evaluated architectures&quot; on the same single-system evidence; and v2's &quot;29% to 54% failure rate&quot; for open general-purpose models is <strong>an external audit the authors cite, not their own result</strong>, and must never be attributed to this paper. Preliminary assessments also touched Llama 3.2 and Gemma 3.</p>
+</li>
+</ol>
+<h2 id="k-october-2026-regulatory-docket-review-primary-legal-and-regulatory-documents">K. October 2026 regulatory docket review: primary legal and regulatory documents</h2>
+<p>Nineteen entries added on 19 October 2026 under inclusion priority 6 (primary legal and
+regulatory documents). <strong>Every status below was read on the enacting legislature's, the
+agency's, or the court's own page or document</strong>, and each entry names what was <em>not</em>
+verified. Full access statuses, failed routes, and the fourteen questions this round left
+open are in <a href="17-regulatory-docket-review-october-2026.html">document 17</a>. <strong>None of these
+entries is legal advice or compliance guidance</strong>; interpretation is deferred to the
+regulatory counsel review <a href="index.html">README</a>'s maintenance rules already require.</p>
+<ol start="84">
+<li>
+<p><strong>California. <a href="https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202520260SB1119">SB 1119 (2026), &quot;Adam's Law&quot; — Chapter 190, Statutes of 2026</a>.</strong> &quot;An act to amend Section 22602 of, and to add Chapter 11.6 (commencing with Section 21810) to Division 8 of, the Business and Professions Code, relating to artificial intelligence.&quot; <strong>Approved by the Governor and filed with the Secretary of State 10 September 2026.</strong> SECTION 1 <strong>deletes §22602(c)</strong>, the minor-specific duties in <a href="07-source-library.html">entry 48</a>, and carries <strong>no operative-date clause</strong>; the code served on 19 October 2026 still showed subdivision (c) intact, so the amendment was not yet reflected there. SEC. 2 adds <strong>§§21810–21818</strong>, with <strong>§§21812, 21812.5 and 21813 operative 1 July 2027</strong>: a documented crisis-response protocol with crisis referral and, on a credible imminent threat, parental notification or streamlined 988 connection; parent-only default settings that <strong>disable persistent conversational memory</strong>, disable push notifications, and cap sessions at one hour and daily use at two; three-year preservation of conversation records where a child user has died or seriously self-harmed; and reasonable measures to prevent the chatbot from <strong>attempting to diagnose or treat</strong> the child's mental or behavioral health unless FDA-regulated as a device, <strong>claiming sentience or a special relationship</strong>, <strong>encouraging reliance on it for emotional support</strong>, using <strong>excessive praise or flattery disproportionate to context</strong>, discouraging breaks, or discouraging the child from raising health concerns with a professional or adult. <strong>These prohibitions name the same mechanisms this library records as sycophancy and anthropomorphism</strong> (<a href="02-causes-mechanisms-and-risk-factors.html">document 02</a>); that convergence is noted, not interpreted. §21814 exists in <strong>two alternative versions</strong>, each conditioned on whether AB 1405 was chaptered — it was, as Chapter 178, Statutes of 2026, on 9 September 2026 — and both require independent child-safety audits from 1 January 2029, exempting operators under $500 million in prior-year revenue until 2032. §21815 directs the Attorney General to establish a public incident-reporting mechanism by 1 January 2028; §21816 sets public-prosecutor penalties of up to $5,000 per affected child (negligent) and $15,000 (intentional) and a narrow private action. <strong>Which §21814 version governs, and when the §22602 amendment takes effect, are legal conclusions not drawn here.</strong></p>
+</li>
+<li>
+<p><strong>California. <a href="https://leginfo.legislature.ca.gov/faces/billStatusClient.xhtml?bill_id=202520260AB489">AB 489 (2025) — Chapter 615, Statutes of 2025</a>.</strong> &quot;An act to add Chapter 15.5 (commencing with Section 4999.8) to Division 2 of the Business and Professions Code, relating to healing arts.&quot; <strong>Chaptered 11 October 2025.</strong> California's provision on AI use of terms or letters implying licensed health-care practice — the professional-practice boundary <a href="06-product-safeguards-and-research-agenda.html">document 06</a> §10 describes, which this library had not previously cited for California. <strong>Chaptering and codification location verified; the operative text was not read in this round.</strong></p>
+</li>
+<li>
+<p><strong>Illinois. <a href="https://www.ilga.gov/Legislation/PublicActs/PrinterFriendly/104-0054">Public Act 104-0054, Wellness and Oversight for Psychological Resources Act</a> (HB1806).</strong> <strong>Public Act on 1 August 2025</strong>; Section 99 provides that the Act takes effect upon becoming law. Section 20(a) bars providing, advertising or offering therapy or psychotherapy services &quot;including through the use of Internet-based artificial intelligence&quot; unless conducted by a licensed professional. Section 20(b) bars a licensed professional from allowing AI to make independent therapeutic decisions, <strong>directly interact with clients in any form of therapeutic communication</strong>, generate recommendations or treatment plans without review and approval, or <strong>detect emotions or mental states</strong> — the last of these bearing directly on detection-based designs. Section 30: civil penalties up to <strong>$10,000 per violation</strong> assessed by the Department of Financial and Professional Regulation. Section 35 excepts religious counseling, peer support, and public self-help or educational materials.</p>
+</li>
+<li>
+<p><strong>Nevada. <a href="https://archive.leg.state.nv.us/Session/83rd2025/Bills/AB/AB406_EN.pdf">AB 406, 83rd Session (2025) — enrolled bill</a>.</strong> Section 7 provides that an artificial-intelligence provider &quot;shall not make available for use by a person in this State an artificial intelligence system that is specifically programmed to provide a service or experience to a user that would constitute the practice of professional mental or behavioral health care if provided by a natural person,&quot; and bars representations of being qualified to provide such care. Section 2 bars public schools from using AI to perform the mental-health functions of a school counselor, psychologist or social worker. <strong>Section 10 makes sections 1–9 effective 1 July 2025 for all purposes</strong> other than preparatory rulemaking. Civil penalties are recoverable by the Division, which may also investigate. <strong>The enrolled copy prints &quot;CHAPTER..........&quot; blank, so the Statutes of Nevada chapter number is not verified.</strong></p>
+</li>
+<li>
+<p><strong>Utah. <a href="https://le.utah.gov/xcode/Title13/Chapter72a/13-72a.html">Code Title 13, Chapter 72a, Artificial Intelligence Applications Relating to Mental Health</a>.</strong> Annotated by the Legislature as <strong>&quot;(Effective 5/7/2025)&quot;</strong>, enacted by HB 452 (2025). Part 2, <strong>&quot;Protections for Users of Mental Health Chatbots,&quot;</strong> contains §13-72a-201 protection of personal information, §202 restrictions on advertising, §203 disclosure requirements, and §204 violations and enforcement authority; Part 3 is severability. The chapter carries the note &quot;Affected by 63I-2-213 on 7/1/2027,&quot; a sunset-review reference whose effect is not interpreted here. <strong>HB 452's own bill-status page did not render its history, so the enactment date is taken from the codified chapter's effective-date annotation.</strong></p>
+</li>
+<li>
+<p><strong>Colorado. <a href="https://leg.colorado.gov/bills/hb26-1195">HB26-1195, &quot;Psychotherapy Artificial Intelligence Restrictions&quot; — Chapter 358 (2026)</a>.</strong> Status on the General Assembly's page: <strong>&quot;Became Law&quot;</strong>; <strong>Governor signed 3 June 2026</strong>; session-laws effective date <strong>12 August 2026</strong>. Restricts AI therapy chatbots and the use of AI by licensed psychotherapy providers. <strong>Status, chapter and dates verified; operative text not read in this round.</strong></p>
+</li>
+<li>
+<p><strong>Colorado. <a href="https://leg.colorado.gov/bills/hb26-1263">HB26-1263, &quot;Conversational Artificial Intelligence Service Operator Requirements&quot; — Chapter 208 (2026)</a>.</strong> <strong>&quot;Became Law&quot;</strong>; <strong>Governor signed 29 May 2026</strong>; session-laws effective date 12 August 2026, with the bill summary stating the <strong>operator requirements take effect 1 January 2027</strong>. Distinct from entry 89 and easily confused with it. <strong>Status, chapter and dates verified; operative text not read in this round.</strong></p>
+</li>
+<li>
+<p><strong>Tennessee. <a href="https://wapp.capitol.tn.gov/apps/BillInfo/Default.aspx?BillNumber=SB1580&amp;GA=114">SB 1580 (2026) — Public Chapter 647</a>.</strong> &quot;AN ACT to amend Tennessee Code Annotated, Title 33; Title 47 and Title 63, relative to mental health&quot; (companion HB 1470). Final action <strong>&quot;Signed by Governor,&quot; 6 April 2026</strong>; effective <strong>1 July 2026</strong>. Reported to bar AI systems from representing themselves as qualified mental-health professionals; <strong>that characterization is secondary and the operative text was not read.</strong></p>
+</li>
+<li>
+<p><strong>Vermont. <a href="https://legislature.vermont.gov/bill/status/2026/H.816">H.816 (2026) — Act 156</a>.</strong> &quot;An act relating to regulating the use of artificial intelligence in the provision of mental health services.&quot; The Legislature's page records <strong>&quot;Governor approved bill on June 17, 2026&quot;</strong> and the enacted form as <strong>Act 156</strong>. <strong>The effective date is not stated on that page and is not verified.</strong> Operative text not read in this round.</p>
+</li>
+<li>
+<p><strong>Maine. <a href="https://legislature.maine.gov/legis/bills/display_ps.asp?ld=2082&amp;snum=132">LD 2082 / HP 1397 (2026) — Public Law Chapter 687</a>.</strong> &quot;An Act to Regulate the Use of Artificial Intelligence in Providing Certain Mental Health Services.&quot; The Legislature's page records <strong>&quot;Enacted, Apr 13, 2026&quot;</strong> and <strong>&quot;Governor's Action: Signed, Apr 13, 2026,&quot;</strong> chaptered as Public Law Chapter 687. <strong>The effective date is not stated on that page and is not verified.</strong> Operative text not read in this round.</p>
+</li>
+<li>
+<p><strong>Washington. <a href="https://app.leg.wa.gov/billsummary?BillNumber=2225&amp;Year=2025">HB 2225 (2026) — Chapter 168, 2026 Laws</a>.</strong> &quot;Regulating artificial intelligence companion chatbots,&quot; primary sponsor Callan, <strong>&quot;By request: Governor Ferguson&quot;</strong> (companion SB 5984). <strong>Governor signed 24 March 2026</strong>; status &quot;C 168 L 26&quot;; <strong>effective 1 January 2027.</strong> Reported to carry crisis-response duties and a private right of action; <strong>those provisions are secondary characterizations and the operative text was not read.</strong></p>
+</li>
+<li>
+<p><strong>Oregon. <a href="https://olis.oregonlegislature.gov/liz/2026R1/Measures/Overview/SB1546">SB 1546 (2026) — Chapter 85</a>.</strong> &quot;Relating to artificial intelligence companions.&quot; OLIS records the current location as <strong>&quot;Chapter Number Assigned&quot;</strong> and the chapter as <strong>85</strong>. <strong>Neither the signing date nor the effective date appears on the OLIS overview page, and neither is verified here.</strong> Operative text not read in this round.</p>
+</li>
+<li>
+<p><strong>Rhode Island. <a href="https://www.rilegislature.gov/pressrelease/_layouts/15/ril.pressrelease.inputform/DisplayForm.aspx?List=c8baae31-3c10-431c-8dcd-9dbbe21ce3e9&amp;ID=376633">General Assembly press release, 8 June 2026</a>, on 2026-S 2195Aaa / 2026-H 7350Aaa (chatbot safety) and 2026-S 2197Aaa / 2026-H 7349A (AI in mental health care).</strong> <strong>Status verified only as far as passage.</strong> The General Assembly's own release states both bills were approved and &quot;now go to the governor for his consideration,&quot; and gives <strong>no signing or effective date</strong>. The <strong>introduced</strong> <a href="https://webserver.rilegislature.gov/Billtext/BillText26/SenateText26/S2195.pdf">S 2195 text</a> adds General Laws Title 6, Chapter 63, &quot;Artificial Intelligence Companion Models,&quot; and its Section 2 reads &quot;This act shall take effect on January 1, 2027.&quot; <strong>The Governor's action is not verified on any Rhode Island primary page — the bill-status URL attempted returned HTTP 404 — and the enacted text was not read. Secondary trackers report a 22 June 2026 signing; under this library's rules that is reported only, and Rhode Island must not be described as having an in-force statute on this evidence.</strong></p>
+</li>
+<li>
+<p><strong>FDA. Federal Register notices: <a href="https://www.federalregister.gov/documents/2025/09/12/2025-17651/digital-health-advisory-committee-notice-of-meeting-establishment-of-a-public-docket-request-for">2025-17651</a> (12 September 2025) and <a href="https://www.federalregister.gov/documents/2025/01/07/2024-31543/artificial-intelligence-enabled-device-software-functions-lifecycle-management-and-marketing">2024-31543</a> (7 January 2025).</strong> The first — &quot;Digital Health Advisory Committee; Notice of Meeting; Establishment of a Public Docket; Request for Comments—Generative Artificial Intelligence-Enabled Digital Mental Health Medical Devices,&quot; <strong>Docket No. FDA-2025-N-2338</strong> — is the primary announcement of the meeting <a href="07-source-library.html">entry 47</a> records, and fixes its date and docket: <strong>virtual, 6 November 2025, 9 a.m.–6 p.m. ET.</strong> The second announces the <strong>draft</strong> guidance &quot;Artificial Intelligence-Enabled Device Software Functions: Lifecycle Management and Marketing Submission Recommendations,&quot; <strong>Docket No. FDA-2024-D-4488</strong>. <strong>A Federal Register search on the exact phrase &quot;Device Software Functions&quot; limited to FDA from January 2025 returned no notice announcing a final version, so the guidance remains a draft by that route.</strong> Verified through the Federal Register API; the documents' own HTML pages redirected to a bot-verification host. <strong>FDA's guidance database could not be searched</strong> (JavaScript table; site search returned a bot challenge, not bypassed), so the absence of a final guidance is <strong>not verified by FDA's own database</strong>.</p>
+</li>
+<li>
+<p><strong>FTC. <a href="https://www.ftc.gov/news-events/news/press-releases/2025/09/ftc-launches-inquiry-ai-chatbots-acting-companions">FTC Launches Inquiry into AI Chatbots Acting as Companions</a> (11 September 2025).</strong> <strong>Section 6(b)</strong> orders issued to <strong>Alphabet, Inc.; Character Technologies, Inc.; Instagram, LLC; Meta Platforms, Inc.; OpenAI OpCo, LLC; Snap, Inc.; and X.AI Corp.</strong>, seeking information on how these firms measure, test and monitor potentially negative impacts on children and teens, how they limit use by minors, and how they inform users and parents of risks. <strong>No file or matter number appears on the release.</strong> A 6(b) study is an information-gathering exercise, <strong>not</strong> a law-enforcement proceeding, and nothing in it establishes a violation. <strong>Searches of the FTC's own press-release index on &quot;chatbot&quot; and &quot;companion&quot; found no 2026 item, no staff report, no enforcement action and no consent order on AI companions; the FTC's reports index is not keyword-searchable by the route used, so that negative is not verified by that route.</strong></p>
+</li>
+<li>
+<p><strong>European Union. <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R1744">Regulation (EU) 2026/1744 of 8 July 2026 (Digital Omnibus on AI)</a>, OJ L, 2026/1744, 24.7.2026,</strong> amending <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32024R1689">Regulation (EU) 2024/1689 (the AI Act)</a>. <strong>The AI Act has been amended, with effect from 27 July 2026, and EUR-Lex now serves a consolidated version of that date.</strong> Read in the operative amending instructions: <strong>point (40)</strong> replaces parts of Article 113's third paragraph so that Chapter III Sections 1–3 (except Article 6(5)) apply from <strong>2 December 2027</strong> for Annex III high-risk systems and <strong>2 August 2028</strong> for Annex I high-risk systems — <strong>moved outward from 2 August 2026 / 2 August 2027</strong> — while new Article 5 prohibitions apply from <strong>2 December 2026</strong> and Articles 102–110 from 27 July 2026. <strong>Point (20) amends Article 50(7) only: Article 50(1) and 50(2) are unamended.</strong> So <strong>Article 50(1) — the duty that AI systems intended to interact directly with natural persons be designed so those persons are informed they are interacting with an AI system, unless that is obvious to a reasonably well-informed, observant and circumspect person in context — applies from 2 August 2026 under the original Article 113, a date that has now arrived.</strong> New Article 111(4) (point (39)(b)) gives providers of systems generating synthetic audio, image, video or text placed on the market before 2 August 2026 until <strong>2 December 2026</strong> to comply with Article 50(2). <strong>Whether any Valens design would be an Annex III high-risk system, and what Article 50(1)'s &quot;obvious&quot; qualifier requires of a given interface, are counsel questions deliberately not answered here.</strong> The Article 5 amendments were read in the amending regulation's recitals and summary, not quoted from its operative Article 5 instruction.</p>
+</li>
+<li>
+<p><strong>U.S. District Court, M.D. Florida. <em>Garcia v. Character Technologies, Inc.</em>, No. 6:24-cv-01903 — <a href="https://www.courtlistener.com/docket/69300919/278/garcia-v-character-technologies-inc/">Document 278, Plaintiffs' Notice of Voluntary Dismissal With Prejudice (15 October 2026)</a> and Document 244, Order Dismissing Case (7 January 2026).</strong> <strong>The case that produced this field's leading published decision is over.</strong> Document 244 dismissed the case <strong>without</strong> prejudice, subject to a ninety-day window to submit a stipulated final order or move to reopen, after which dismissal would be with prejudice; those deadlines were extended twice. <strong>Document 278 gives notice under Federal Rule of Civil Procedure 41(a)(1)(A)(i) that plaintiffs Megan Garcia and Sewell Setzer Jr. voluntarily dismiss all claims against Character Technologies, Inc., Noam Shazeer, Daniel De Freitas Adiwarsana and Google LLC WITH PREJUDICE</strong>, stating that it &quot;follows the parties' execution of their settlement agreement and receipt of all required court approvals.&quot; <strong>A settlement is not an adjudication of causation, the terms are not public on this docket, and nothing in this disposition supports any factual conclusion about the alleged harm.</strong> An order was entered 19 October 2026 whose docket text was not yet available; the earlier motion-to-dismiss opinion is cited in other parties' briefs as 785 F. Supp. 3d 1157 (M.D. Fla. 2025) and <strong>was not read in this round</strong>.</p>
+</li>
+<li>
+<p><strong>Commonwealth of Kentucky. <a href="https://www.kentucky.gov/Pages/Activity-stream.aspx?n=AttorneyGeneral&amp;prId=1857">AG Coleman Sues AI Chatbot Company for Preying on Children</a> (8 January 2026).</strong> The Attorney General's own release states Kentucky is &quot;the first state in the nation to launch a lawsuit against an artificial intelligence chatbot company,&quot; filed in <strong>Franklin Circuit Court</strong> against Character Technologies, its owners and Character.AI, alleging violations of the <strong>Kentucky Consumer Protection Act</strong> and the <strong>Kentucky Consumer Data Protection Act</strong> and seeking practice changes and monetary damages. <strong>The release gives no case number</strong>; an amicus brief in a federal appeal cites the action as &quot;Commonwealth v. Character Technologies, Inc., No. 26-CI-00029 (Ky. Cir. Ct.),&quot; recorded here <strong>as cited in that brief</strong>, not as verified against a Kentucky court record. <strong>No Kentucky docket was reached, so the action's current posture is unknown.</strong> Allegations, not findings.</p>
+</li>
+<li>
+<p><strong>U.S. Bankruptcy Court, D. Delaware. <em>In re Character Technologies, Inc.</em>, No. 26-11603 — <a href="https://www.courtlistener.com/docket/74951888/character-technologies-inc/">docket</a>.</strong> <strong>Chapter 11 voluntary petition filed 12 October 2026</strong> before Judge Brendan L. Shannon. <strong>Docket 33, 14 October 2026: &quot;NOTICE OF INTEREST AND RESERVATION OF RIGHTS BY THE COALITION OF THE STATE ATTORNEYS GENERAL REGARDING THE DEBTORS OUTSTANDING REGULATORY, SAFETY, AND PRIVACY ISSUES,&quot;</strong> filed by NAAG Client States, the State of Colorado, the State of Oregon and the Tennessee Attorney General — Consumer Division, with Exhibits A–C. Docket 52 (15 October 2026): first notice of appearance by the New Jersey Office of the Attorney General, Division of Consumer Affairs. Docket 54: §341(a) creditors' meeting set for 19 November 2026. <strong>The coalition notice's own text was not fetched, so the number of signatory states and the specific assurances sought are not verified</strong> — secondary reporting puts the coalition at 39 or 40 jurisdictions, which is reported only, and a state attorney general's hosted copy returned HTTP 403. Docket last updated 19 October 2026; last known filing 15 October 2026. <strong>Recorded because a platform's insolvency changes what post-market monitoring, data retention and crisis-protocol commitments can be relied on — an observation about evidence availability, not a legal conclusion.</strong></p>
+</li>
+</ol>
+<h2 id="f-evidence-gaps-and-sources-to-monitor">F. Evidence gaps and sources to monitor</h2>
+<ul>
+<li>Prospective population studies with exposed-user denominators. <em>Searched directly in the 19 October 2026 round and still open — the largest gap. Two near-misses that are not it: entry 80 has a 53,974-patient denominator but no ascertainment of chatbot exposure, and entry 36 has an exposed-user denominator but no clinical outcome and no independent verification. A lead suggesting the entry 76 group had funding for longitudinal follow-up of elevated-risk AI users was <strong>checked against primary sources on 19 October 2026 and could not be verified</strong> — NIH RePORTER (no such award to either author), ClinicalTrials.gov (no matching registration), the paper's own funding statement (a career award on early psychosis, not an AI cohort), and the institutional announcement (a longitudinal study of adolescents and digital risks broadly, never mentioning psychosis, with no funder named). It appears to be a conflation and <strong>no entry has been created</strong>. It remains marked unverified in <a href="16-clinical-records-open-weight-models-and-trajectory-update.html">document 16</a> §7, which itemizes what was checked so the next round need not repeat it.</em></li>
+<li>Multi-center clinical registries using standardized definitions. <em>Case strengthened by the 19 October 2026 round: entries 22 and 80 are two single-region screens in two countries using incompatible methods — AI-content classification versus product-name keywords — and cannot be pooled.</em></li>
+<li>Full-transcript, version-aware case series. <em>Still open. Entry 80 is note-based and barred from publishing case detail; entry 82 proposes consented transcript donation as the route, which is a method proposal, not evidence.</em></li>
+<li>Independent replications of vendor safety evaluations. <em>Still open. Recording entry 36's figures is not replication of them.</em></li>
+<li>Controlled studies of sleep friction, anti-dependence design, and human handoff.</li>
+<li>Studies involving older adults, people with established psychosis histories, and non-Western cultures. <em>Partially addressed for adolescents (entries 78–79) and for young adults with elevated psychosis-risk symptoms (entry 76) in the 15 September 2026 round; both new human samples are US-only and neither covers ages above 25. Further addressed by entry 80 in the 19 October 2026 round, which adds a non-US health system and a population already in psychiatric care — but its median age is 28 (IQR 22–39), so older adults remain uncovered, and Denmark is not a non-Western population.</em></li>
+<li>Long-term recovery and recurrence outcomes.</li>
+<li>Comparative results across therapy bots, voice agents, and local models. <em>General assistants versus companion bots were compared in entry 79 using simulated personas. Entry 81 adds the first quantified open-weight-versus-proprietary comparison on delusion confirmation. Voice agents and therapy bots remain effectively uncompared: entry 83 is a first-party feasibility report with no quantified safety results, and <strong>its v2, inspected 19 October 2026, adds none</strong> — a second version went by without the one thing that would have made it a safety result.</em></li>
+<li>Validated adverse-event definitions and mandatory reporting rules. <em>Partly addressed in statute rather than in science by the 19 October 2026 docket review: California §22603 requires annual crisis-referral reporting to the Office of Suicide Prevention from 1 July 2027 and §21815 an Attorney General incident-reporting mechanism by 1 January 2028 (entries 48 and 84), and New York §1701 requires crisis-referral protocols (entry 49). <strong>These create reporting duties, not validated definitions</strong>, and none of them yields an adverse-event taxonomy or an exposed-user denominator.</em></li>
+<li>Benchmark designs that score trajectories rather than endpoints, and that validate transcript-based scores against proximal human outcomes. <em>Added 19 October 2026 on the argument in entry 82; no empirical study meeting this description has been located.</em></li>
+<li><strong>Regulatory and litigation status, re-verified against dockets rather than news.</strong> <em>Opened as a standing monitoring item on 19 October 2026. The docket review recorded in <a href="17-regulatory-docket-review-october-2026.html">document 17</a> covers eleven US jurisdictions, FDA, FTC and the EU AI Act, and leaves fourteen named questions unresolved — including Rhode Island's enacted status, three states' effective dates, whether an FDA final guidance or an FTC 6(b) staff report exists, and the posture of</em> Raine v. OpenAI, <em>for which no authoritative docket was reached. <strong>A fifty-state census has never been performed, and dockets go stale between fetches: re-fetch before any product decision that turns on a case's posture.</strong></em></li>
+</ul>
+      </div>
+    </article>
+
+    <nav class="wrap reading doc-pager" aria-label="More from the library">
+        <a class="card pager-link" href="06-product-safeguards-and-research-agenda.html" rel="prev"><span class="eyebrow">Previous</span><span class="pager-title">Product Safeguards and Research Agenda</span></a>
+        <a class="card pager-link pager-next" href="08-research-method-and-open-questions.html" rel="next"><span class="eyebrow">Next</span><span class="pager-title">Research Method and Open Questions</span></a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap narrow">
+      <p class="footer-name">Project Valens</p>
+      <p>The research library is general information. It is not medical advice, a diagnosis, or a treatment, and it does not replace a conversation with a qualified professional.</p>
+      <p class="footer-quiet">If you are in immediate danger, contact local emergency services. In the United States, call or text 988.</p>
+    </div>
+  </footer>
+</body>
+</html>

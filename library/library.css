@@ -1,0 +1,267 @@
+/* Research library pages. Builds on ../styles.css and its tokens. */
+
+.doc-head {
+  padding: 1.5rem 0 0;
+}
+
+.doc-head h1 {
+  font-size: clamp(2.1rem, 5vw, 3.3rem);
+}
+
+.doc-kicker {
+  margin-bottom: 0;
+  font-weight: 600;
+  color: var(--sage-900);
+}
+
+.doc-meta {
+  margin: 1.5rem 0 1.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.doc-meta div {
+  display: grid;
+  grid-template-columns: minmax(8rem, 13rem) minmax(0, 1fr);
+  gap: 0.2rem 1rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.doc-meta dt {
+  padding-top: 0.2rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sage-700);
+}
+
+.doc-meta dd {
+  margin: 0;
+  font-size: 1rem;
+  overflow-wrap: break-word;
+}
+
+.doc-note {
+  color: var(--ink-soft);
+  font-size: 1rem;
+}
+
+.doc-toc {
+  margin-top: 1.75rem;
+  padding: clamp(1.1rem, 3vw, 1.5rem);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 1.4rem;
+  box-shadow: var(--shadow);
+}
+
+.doc-toc ol {
+  margin: 0;
+  padding-left: 1.3rem;
+  font-size: 1rem;
+}
+
+.doc-toc li {
+  margin-bottom: 0.3rem;
+}
+
+.doc-body {
+  padding-top: clamp(2rem, 5vw, 3rem);
+}
+
+.prose h2 {
+  margin-top: 2.75rem;
+  font-size: clamp(1.6rem, 3.4vw, 2.1rem);
+}
+
+.prose h3 {
+  margin-top: 2rem;
+  font-size: 1.3rem;
+}
+
+.prose h4,
+.prose h5,
+.prose h6 {
+  margin: 1.75rem 0 0.5rem;
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.prose > :first-child {
+  margin-top: 0;
+}
+
+.prose h2,
+.prose h3,
+.prose h4 {
+  scroll-margin-top: 1rem;
+}
+
+.prose ul,
+.prose ol {
+  margin: 0 0 1rem;
+  padding-left: 1.4rem;
+}
+
+.prose li {
+  margin-bottom: 0.4rem;
+}
+
+.prose li > ul,
+.prose li > ol {
+  margin: 0.4rem 0 0;
+}
+
+.prose p,
+.prose li {
+  overflow-wrap: break-word;
+}
+
+.prose a {
+  overflow-wrap: anywhere;
+}
+
+.prose blockquote {
+  margin: 1.25rem 0;
+  padding: 0.9rem 1.2rem;
+  background: var(--card);
+  border-left: 4px solid var(--sage-700);
+  border-radius: 0 1rem 1rem 0;
+}
+
+.prose code {
+  padding: 0.1em 0.35em;
+  border-radius: 0.35em;
+  background: var(--sage-100);
+  font-family: ui-monospace, "Cascadia Code", Consolas, Menlo, monospace;
+  font-size: 0.86em;
+  overflow-wrap: anywhere;
+}
+
+.prose pre {
+  overflow-x: auto;
+  margin: 1.25rem 0;
+  padding: 1rem 1.2rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.prose pre code {
+  padding: 0;
+  background: none;
+  font-size: inherit;
+  overflow-wrap: normal;
+}
+
+.prose hr {
+  margin: 2.5rem 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin: 1.25rem 0 1.5rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.prose th,
+.prose td {
+  min-width: 8rem;
+  padding: 0.65rem 0.8rem;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose th {
+  background: var(--sage-100);
+  font-weight: 600;
+}
+
+.prose tr:last-child td {
+  border-bottom: 0;
+}
+
+.doc-pager {
+  display: grid;
+  gap: 1rem;
+  padding-bottom: clamp(3rem, 8vw, 5rem);
+}
+
+.pager-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.pager-link .eyebrow {
+  margin: 0;
+}
+
+.pager-title {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--sage-900);
+}
+
+.pager-link:hover .pager-title {
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+}
+
+@media (min-width: 700px) {
+  .doc-pager {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pager-next {
+    grid-column: 2;
+    text-align: right;
+  }
+}
+
+@media (max-width: 599px) {
+  .doc-meta div {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (forced-colors: active) {
+  .doc-toc,
+  .table-wrap,
+  .pager-link {
+    border: 1px solid ButtonText;
+    box-shadow: none;
+  }
+}
+
+@media print {
+  .doc-pager,
+  .doc-toc {
+    display: none;
+  }
+
+  .table-wrap {
+    overflow: visible;
+  }
+}
