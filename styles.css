@@ -771,8 +771,19 @@ legend {
   );
 }
 
+.bench-track .bench-bar:first-child:not(:only-child) {
+  border-radius: 999px 0 0 999px;
+}
+
 .bench-bar-range {
-  background: var(--sage-900);
+  border-radius: 0 999px 999px 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    #8fb9a4,
+    #8fb9a4 3px,
+    #d5ebe0 3px,
+    #d5ebe0 6px
+  );
 }
 
 .bench-bar-zero {
