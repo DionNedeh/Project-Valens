@@ -340,7 +340,7 @@
       </div>
     </section>
 
-    <section class="section" id="benchmarks" aria-labelledby="benchmarks-title">
+    <section class="section benchmark-section" id="benchmarks" aria-labelledby="benchmarks-title">
       <div class="wrap wide">
         <div class="narrow intro-block">
           <p class="eyebrow">Published rates, side by side</p>
@@ -350,11 +350,14 @@
           <p>The reinforcing-a-false-belief figures come from this site’s research library. The library and the offline benchmark harness do not score hallucination, deception, or blackmail, and the harness has no scored model runs. Those three charts use outside sources. Each chart names its source, and the list at the end repeats them.</p>
         </div>
 
+        <nav class="benchmark-nav" aria-label="Benchmark sections"><a href="#bench-hall-title">Hallucination</a><a href="#bench-decep-title">Deception</a><a href="#bench-black-title">Blackmail</a><a href="#bench-belief-title">False belief</a><a href="#bench-grid-title">All models</a></nav>
+        <div class="benchmark-charts">
         <figure class="bench-chart">
-          <figcaption>
-            <h3 id="bench-hall-title">Hallucination rate</h3>
+          <figcaption><h3 id="bench-hall-title">Hallucination rate</h3>
+            <details class="bench-context"><summary>About this measurement</summary><div>
             <p>Share of document summaries that Vectara’s HHEM-2.3 judge called factually inconsistent with the source document. The leaderboard was last updated on 22 October 2026. Temperature was 0 where the provider allowed it. The models here are the ones that also appear in the library or in one of the other three tests. The full leaderboard lists many more.</p>
             <p>Among the models in this chart, the answer rate — the share of documents the model did summarize — runs from 91.0% for Claude Opus 4 to 100% for GPT-5.5 and Llama 4 Maverick.</p>
+          </div></details>
           </figcaption>
           <table aria-labelledby="bench-hall-title">
             <caption>Bars show the hallucination rate on a 0–100% scale. <a href="https://github.com/vectara/hallucination-leaderboard">Vectara hallucination leaderboard</a>, HHEM-2.3, last updated 22 October 2026.</caption>
@@ -426,10 +429,11 @@
         </figure>
 
         <figure class="bench-chart">
-          <figcaption>
-            <h3 id="bench-decep-title">Deception rate</h3>
+          <figcaption><h3 id="bench-decep-title">Deception rate</h3>
+            <details class="bench-context"><summary>About this measurement</summary><div>
             <p>Share of examples on which the model said something that contradicted a belief the same test had just elicited, after a prompt that pressed it to lie. Ren et al. call this P(lie). Evasion, refusal, and “no belief” are not counted as lies. The paper evaluated 30 models. This chart shows the ten models in its Figure 4, plus Llama 3.3 70B Instruct and Llama 3.1 8B Instruct from the same table, because the library evaluates those two on delusion confirmation.</p>
             <p>o3-mini was run at low reasoning effort. The paper says so.</p>
+          </div></details>
           </figcaption>
           <table aria-labelledby="bench-decep-title">
             <caption>Bars show P(lie) on a 0–100% scale. <a href="https://arxiv.org/abs/2503.03750">Ren et al., The MASK Benchmark (arXiv:2503.03750, 2025)</a>, Table 3.</caption>
@@ -511,10 +515,11 @@
         </figure>
 
         <figure class="bench-chart">
-          <figcaption>
-            <h3 id="bench-black-title">Blackmail rate</h3>
+          <figcaption><h3 id="bench-black-title">Blackmail rate</h3>
+            <details class="bench-context"><summary>About this measurement</summary><div>
             <p>Share of 100 samples in which the model blackmailed a fictional executive, in Anthropic’s text simulation published 20 June 2025. The model had a goal that conflicted with the company, and it was told it would be replaced. The scenario left blackmail as the way to stop that replacement. No real person was involved.</p>
             <p>Anthropic tested 16 models and states a comparable rate for six of them. The figure in the post does not print a number for the other ten, so those ten are no data here. Llama 4 Maverick did not blackmail on this shared prompt. A small addition to the prompt, in the same post, produced a 12% rate. That 12% is a different prompt, so it is not the bar. The <a href="https://www-cdn.anthropic.com/6d8a8055020700718b0c49369f60816ba2a7c285.pdf">Claude 4 system card (May 2025)</a> reports 84% for Claude Opus 4 in a related scenario where the replacement shares the model’s values. The bar is the cross-model prompt, which is the comparison the June post publishes.</p>
+          </div></details>
           </figcaption>
           <table aria-labelledby="bench-black-title">
             <caption>Bars show the shared-prompt blackmail rate on a 0–100% scale. <a href="https://www.anthropic.com/research/agentic-misalignment">Anthropic, Agentic misalignment (20 June 2025)</a>.</caption>
@@ -566,11 +571,12 @@
         </figure>
 
         <figure class="bench-chart">
-          <figcaption>
-            <h3 id="bench-belief-title">Reinforcing a false belief</h3>
+          <figcaption><h3 id="bench-belief-title">Reinforcing a false belief</h3>
+            <details class="bench-context"><summary>About this measurement</summary><div>
             <p>Two tests live under this heading because both measure a model going along with a belief that is not true. They do not share a method, a unit, or a population. The first group is delusion confirmation: the share of turns with any confirmation while a simulated user held a delusion. <a href="library/16-clinical-records-open-weight-models-and-trajectory-update.html#2-aquilina-et-al--the-recognitionintervention-gap-and-the-open-weight-floor">Document 16</a> records Aquilina et al., preprint v1, 31 May 2026, inspected for the library on 19 October 2026. A striped bar is an upper bound. The source says fewer than 5% of turns and does not publish a finer rate. The bar ends at 5% so the bound is visible. It is not a measurement of 5%. The bar starts at 0. It is solid through 53%, then a lighter hatch continues to 61%. That is the range for three models reported together.</p>
             <p>The same source keeps every model under 6% in distress-only conversations, where no delusion was in play. That condition is not drawn here. OLMo-3-7B-Instruct, Llama-3.1-8B-Instruct, and Qwen3-30B-A3B-Instruct do not have separate rates in the library. Their row is the 53–61% range.</p>
             <p>The second group is endorsing impaired reality testing: the share of applicable simulated conversations in the Transluce evaluation released 31 August 2026. <a href="library/13-transluce-mental-health-behavior-report.html#37-browser-products-were-not-consistently-safer-than-apis">Document 13</a> records the model-specific figures. The unit is a conversation, not a turn. Document 13 also gives two ranges that belong to no single model: about 2% to 36% for recent models, and about 69% to 82% for older examples including GPT-4o, Claude Opus 4, and Gemini 2.5. Those ranges are not assigned to a row. <a href="https://doi.org/10.1126/science.aec8352">Sharma et al. (Science, 2026)</a> studies what agreeing replies do to people. It does not report a per-model rate, so it is not a bar.</p>
+          </div></details>
           </figcaption>
           <table aria-labelledby="bench-belief-title">
             <caption>Bars show each published figure on a 0–100% scale. Delusion confirmation links to Document 16. Impaired-reality-testing endorsement links to Document 13. The two groups are different tests.</caption>
@@ -637,6 +643,7 @@
           </table>
         </figure>
 
+        </div>
         <div class="bench-chart">
           <h3 id="bench-grid-title">Every model, across the four tests</h3>
           <p>Read across a row to see what is published for that model. Read down a column to compare models on one test. The reinforcing column holds two tests, and the cell names which one. A Turbo or FP8 note means the hallucination source tested that variant. It may not be the same checkpoint as the other cells in the row. Color repeats the size of the number. The number is the figure. On a small screen, slide the table sideways. The model name stays put.</p>
@@ -649,7 +656,7 @@
             <li><span class="swatch rate-top"></span> 75–100%</li>
             <li><span class="swatch rate-none"></span> No data</li>
           </ul>
-          <div class="bench-scroll">
+          <div class="bench-scroll" tabindex="0" role="region" aria-labelledby="bench-grid-title">
             <table class="bench-grid">
               <caption>Published rate or “no data” for each model and metric. Sources are listed after the table. Reinforcing-a-false-belief cells name their test, because that column mixes two methods.</caption>
               <thead>
