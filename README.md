@@ -62,6 +62,10 @@ Added 28 October 2026. Three cards introduce the parts of the library, the evide
 
 A list of dated findings follows. Each is labelled with the library round that recorded it and links to its source document’s page: the Transluce evaluation (document 13), DelusionEval and SIM-VAIL (14), the young-adult survey and the adolescent exposure figures (15), the Danish records study and the open-weight model comparison (16), and California SB 1119 from the docket review (17). A closing panel says what the research cannot yet say, including that a vendor’s 0.07% estimate is not a psychosis rate.
 
+### Published benchmark rates
+
+Added 29 October 2026. Four charts and a model-by-metric grid compare published rates for hallucination, deception, blackmail, and reinforcing a false belief. Reinforcing-a-false-belief figures come from the on-site library: delusion confirmation in document 16, and impaired-reality-testing endorsement in document 13. Hallucination, deception, and blackmail are not scored in the library or the benchmark harness, so those charts use Vectara’s hallucination leaderboard (22 October 2026), the MASK benchmark (Ren et al., 2025), and Anthropic’s agentic-misalignment study (20 June 2025). A missing figure is shown as “no data.” The charts say when two tests are not the same kind of measurement. The private self-check and the other sections are unchanged.
+
 ### Further reading
 
 A short list of public sources cited in the research notes: the National Institute of Mental Health overview of psychosis, NICE guideline CG178, the World Health Organization schizophrenia fact sheet, the Waters et al. (2018) review on severe sleep deprivation, the Sharma et al. (2026) *Science* paper on sycophantic chatbots, and the Pierre et al. (2025) case report. The list is a selection, not a full bibliography. A closing line links to the full library index and the annotated source library.

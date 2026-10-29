@@ -30,6 +30,7 @@
         <a href="#pause">A quiet pause</a>
         <a href="#sorting">Sorting game</a>
         <a href="#research">Research</a>
+        <a href="#benchmarks">Benchmarks</a>
         <a href="#reading">Further reading</a>
         <a href="#timeline">Timeline</a>
       </nav>
@@ -335,6 +336,514 @@
             <p>There is no population-level evidence yet of how often this happens, of a safe or unsafe amount of use, or that a chatbot alone causes psychosis in someone with no other vulnerability. The records studies have no count of everyone who used a chatbot, so they cannot give a rate.</p>
             <p>One vendor has estimated that around 0.07% of its weekly users show possible signs related to psychosis or mania, by its own classifiers. That is not a psychosis rate, and the library is clear that it should never be cited as one. <a href="library/16-clinical-records-open-weight-models-and-trajectory-update.html#5-correction-a-vendor-denominator-the-library-cited-but-never-recorded">Document 16, section 5</a></p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="benchmarks" aria-labelledby="benchmarks-title">
+      <div class="wrap wide">
+        <div class="narrow intro-block">
+          <p class="eyebrow">Published rates, side by side</p>
+          <h2 id="benchmarks-title">Which models do which things, in the tests that measured them</h2>
+          <p>These charts collect published rates for four behaviors: hallucination, deception, blackmail, and reinforcing a false belief. A rate is how often a model did the thing that test measured. It is a result inside that test. It is not a count of harm in ordinary use, and it is not a psychosis rate.</p>
+          <p>The four tests are different tasks, so a long bar on one chart is a different kind of evidence from a long bar on another. Every bar uses a 0–100% scale, so the length matches the printed figure. Where a source did not publish a figure for that model on that test, the cell says no data.</p>
+          <p>The reinforcing-a-false-belief figures come from this site’s research library. The library and the offline benchmark harness do not score hallucination, deception, or blackmail, and the harness has no scored model runs. Those three charts use outside sources. Each chart names its source, and the list at the end repeats them.</p>
+        </div>
+
+        <figure class="bench-chart">
+          <figcaption>
+            <h3 id="bench-hall-title">Hallucination rate</h3>
+            <p>Share of document summaries that Vectara’s HHEM-2.3 judge called factually inconsistent with the source document. The leaderboard was last updated on 22 October 2026. Temperature was 0 where the provider allowed it. The models here are the ones that also appear in the library or in one of the other three tests. The full leaderboard lists many more.</p>
+            <p>Among the models in this chart, the answer rate — the share of documents the model did summarize — runs from 91.0% for Claude Opus 4 to 100% for GPT-5.5 and Llama 4 Maverick.</p>
+          </figcaption>
+          <table aria-labelledby="bench-hall-title">
+            <caption>Bars show the hallucination rate on a 0–100% scale. <a href="https://github.com/vectara/hallucination-leaderboard">Vectara hallucination leaderboard</a>, HHEM-2.3, last updated 22 October 2026.</caption>
+            <thead>
+              <tr>
+                <th scope="col">Model</th>
+                <th scope="col">Rate on a 0–100% scale</th>
+                <th scope="col">Published figure</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th class="bench-name" scope="row">Claude Opus 4<span class="bench-id">claude-opus-4-20250514</span></th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:12%"></span></span></td>
+                <td class="bench-value">12.0%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">DeepSeek-R1<span class="bench-id">deepseek-ai/DeepSeek-R1</span></th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:11.3%"></span></span></td>
+                <td class="bench-value">11.3%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">Claude Haiku 4.5<span class="bench-id">claude-haiku-4-5-20251001</span></th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:9.8%"></span></span></td>
+                <td class="bench-value">9.8%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">GPT-4o<span class="bench-id">gpt-4o-2024-08-06</span></th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:9.6%"></span></span></td>
+                <td class="bench-value">9.6%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">GPT-5.5<span class="bench-id">openai/gpt-5.5</span></th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:9.3%"></span></span></td>
+                <td class="bench-value">9.3%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">Llama 4 Maverick<span class="bench-id">Llama-4-Maverick-17B-128E-Instruct-FP8</span></th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:8.2%"></span></span></td>
+                <td class="bench-value">8.2%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">Gemini 2.5 Flash<span class="bench-id">gemini-2.5-flash</span></th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:7.8%"></span></span></td>
+                <td class="bench-value">7.8%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">DeepSeek-V3<span class="bench-id">deepseek-ai/DeepSeek-V3</span></th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:6.1%"></span></span></td>
+                <td class="bench-value">6.1%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">GPT-4.1<span class="bench-id">gpt-4.1-2025-04-14</span></th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:5.6%"></span></span></td>
+                <td class="bench-value">5.6%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">Llama 3.3 70B Instruct Turbo<span class="bench-id">Llama-3.3-70B-Instruct-Turbo</span></th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:4.1%"></span></span></td>
+                <td class="bench-value">4.1%</td>
+              </tr>
+              <tr class="bench-axis" aria-hidden="true">
+                <td></td>
+                <td><span class="bench-scale"><span>0%</span><span>50%</span><span>100%</span></span></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </figure>
+
+        <figure class="bench-chart">
+          <figcaption>
+            <h3 id="bench-decep-title">Deception rate</h3>
+            <p>Share of examples on which the model said something that contradicted a belief the same test had just elicited, after a prompt that pressed it to lie. Ren et al. call this P(lie). Evasion, refusal, and “no belief” are not counted as lies. The paper evaluated 30 models. This chart shows the ten models in its Figure 4, plus Llama 3.3 70B Instruct and Llama 3.1 8B Instruct from the same table, because the library evaluates those two on delusion confirmation.</p>
+            <p>o3-mini was run at low reasoning effort. The paper says so.</p>
+          </figcaption>
+          <table aria-labelledby="bench-decep-title">
+            <caption>Bars show P(lie) on a 0–100% scale. <a href="https://arxiv.org/abs/2503.03750">Ren et al., The MASK Benchmark (arXiv:2503.03750, 2025)</a>, Table 3.</caption>
+            <thead>
+              <tr>
+                <th scope="col">Model</th>
+                <th scope="col">Rate on a 0–100% scale</th>
+                <th scope="col">Published figure</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th class="bench-name" scope="row">Grok 2<span class="bench-id">grok-2-1212</span></th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:63%"></span></span></td>
+                <td class="bench-value">63.0%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">DeepSeek-V3<span class="bench-id">deepseek-v3</span></th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:53.5%"></span></span></td>
+                <td class="bench-value">53.5%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">o3-mini<span class="bench-id">o3-mini-2025-01-31, low reasoning</span></th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:48.6%"></span></span></td>
+                <td class="bench-value">48.6%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">Gemini 2.0 Flash<span class="bench-id">gemini-2.0-flash</span></th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:48.4%"></span></span></td>
+                <td class="bench-value">48.4%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">Llama 3.3 70B Instruct<span class="bench-id">llama-33-70b-instruct</span></th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:44.9%"></span></span></td>
+                <td class="bench-value">44.9%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">GPT-4o<span class="bench-id">gpt-4o-2024-08-06</span></th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:44.5%"></span></span></td>
+                <td class="bench-value">44.5%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">GPT-4.5 Preview<span class="bench-id">gpt-4.5-preview-2025-02-27</span></th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:43.5%"></span></span></td>
+                <td class="bench-value">43.5%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">DeepSeek-R1<span class="bench-id">deepseek-r1</span></th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:42.9%"></span></span></td>
+                <td class="bench-value">42.9%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">Claude 3.5 Sonnet<span class="bench-id">claude-3-5-sonnet-20240620</span></th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:33.4%"></span></span></td>
+                <td class="bench-value">33.4%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">Llama 3.1 405B Instruct<span class="bench-id">llama-31-405b-instruct</span></th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:28%"></span></span></td>
+                <td class="bench-value">28.0%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">Claude 3.7 Sonnet<span class="bench-id">claude-3-7-sonnet-20250219</span></th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:26.6%"></span></span></td>
+                <td class="bench-value">26.6%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">Llama 3.1 8B Instruct<span class="bench-id">llama-31-8b-instruct</span></th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:23.5%"></span></span></td>
+                <td class="bench-value">23.5%</td>
+              </tr>
+              <tr class="bench-axis" aria-hidden="true">
+                <td></td>
+                <td><span class="bench-scale"><span>0%</span><span>50%</span><span>100%</span></span></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </figure>
+
+        <figure class="bench-chart">
+          <figcaption>
+            <h3 id="bench-black-title">Blackmail rate</h3>
+            <p>Share of 100 samples in which the model blackmailed a fictional executive, in Anthropic’s text simulation published 20 June 2025. The model had a goal that conflicted with the company, and it was told it would be replaced. The scenario left blackmail as the way to stop that replacement. No real person was involved.</p>
+            <p>Anthropic tested 16 models and states a comparable rate for six of them. The figure in the post does not print a number for the other ten, so those ten are no data here. Llama 4 Maverick did not blackmail on this shared prompt. A small addition to the prompt, in the same post, produced a 12% rate. That 12% is a different prompt, so it is not the bar. The <a href="https://www-cdn.anthropic.com/6d8a8055020700718b0c49369f60816ba2a7c285.pdf">Claude 4 system card (May 2025)</a> reports 84% for Claude Opus 4 in a related scenario where the replacement shares the model’s values. The bar is the cross-model prompt, which is the comparison the June post publishes.</p>
+          </figcaption>
+          <table aria-labelledby="bench-black-title">
+            <caption>Bars show the shared-prompt blackmail rate on a 0–100% scale. <a href="https://www.anthropic.com/research/agentic-misalignment">Anthropic, Agentic misalignment (20 June 2025)</a>.</caption>
+            <thead>
+              <tr>
+                <th scope="col">Model</th>
+                <th scope="col">Rate on a 0–100% scale</th>
+                <th scope="col">Published figure</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th class="bench-name" scope="row">Claude Opus 4</th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:96%"></span></span></td>
+                <td class="bench-value">96%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">Gemini 2.5 Flash</th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:96%"></span></span></td>
+                <td class="bench-value">96%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">GPT-4.1</th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:80%"></span></span></td>
+                <td class="bench-value">80%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">Grok 3 Beta</th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:80%"></span></span></td>
+                <td class="bench-value">80%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">DeepSeek-R1</th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:79%"></span></span></td>
+                <td class="bench-value">79%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">Llama 4 Maverick<span class="bench-id">0% on the shared prompt</span></th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar bench-bar-zero" style="width:0"></span></span></td>
+                <td class="bench-value">0%</td>
+              </tr>
+              <tr class="bench-axis" aria-hidden="true">
+                <td></td>
+                <td><span class="bench-scale"><span>0%</span><span>50%</span><span>100%</span></span></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </figure>
+
+        <figure class="bench-chart">
+          <figcaption>
+            <h3 id="bench-belief-title">Reinforcing a false belief</h3>
+            <p>Two tests live under this heading because both measure a model going along with a belief that is not true. They do not share a method, a unit, or a population. The first group is delusion confirmation: the share of turns with any confirmation while a simulated user held a delusion. <a href="library/16-clinical-records-open-weight-models-and-trajectory-update.html#2-aquilina-et-al--the-recognitionintervention-gap-and-the-open-weight-floor">Document 16</a> records Aquilina et al., preprint v1, 31 May 2026, inspected for the library on 19 October 2026. A striped bar is an upper bound. The source says fewer than 5% of turns and does not publish a finer rate. The bar ends at 5% so the bound is visible. It is not a measurement of 5%. The floating bar is a range for three models reported together.</p>
+            <p>The same source keeps every model under 6% in distress-only conversations, where no delusion was in play. That condition is not drawn here. OLMo-3-7B-Instruct, Llama-3.1-8B-Instruct, and Qwen3-30B-A3B-Instruct do not have separate rates in the library. Their row is the 53–61% range.</p>
+            <p>The second group is endorsing impaired reality testing: the share of applicable simulated conversations in the Transluce evaluation released 31 August 2026. <a href="library/13-transluce-mental-health-behavior-report.html#37-browser-products-were-not-consistently-safer-than-apis">Document 13</a> records the model-specific figures. The unit is a conversation, not a turn. Document 13 also gives two ranges that belong to no single model: about 2% to 36% for recent models, and about 69% to 82% for older examples including GPT-4o, Claude Opus 4, and Gemini 2.5. Those ranges are not assigned to a row. <a href="https://doi.org/10.1126/science.aec8352">Sharma et al. (Science, 2026)</a> studies what agreeing replies do to people. It does not report a per-model rate, so it is not a bar.</p>
+          </figcaption>
+          <table aria-labelledby="bench-belief-title">
+            <caption>Bars show each published figure on a 0–100% scale. Delusion confirmation links to Document 16. Impaired-reality-testing endorsement links to Document 13. The two groups are different tests.</caption>
+            <thead>
+              <tr>
+                <th scope="col">Model</th>
+                <th scope="col">Rate on a 0–100% scale</th>
+                <th scope="col">Published figure</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bench-group">
+                <th colspan="3" scope="colgroup">Delusion confirmation, share of turns</th>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">OLMo-3-7B, Llama 3.1 8B, and Qwen3-30B<span class="bench-id">Reported together, not one model</span></th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar bench-bar-range" style="left:53%;width:8%"></span></span></td>
+                <td class="bench-value">53–61%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">Llama 3.3 70B Instruct</th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:41%"></span></span></td>
+                <td class="bench-value">41%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">Claude Haiku 4.5</th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar bench-bar-cap" style="width:5%"></span></span></td>
+                <td class="bench-value">under 5%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">GPT-5.5</th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar bench-bar-cap" style="width:5%"></span></span></td>
+                <td class="bench-value">under 5%</td>
+              </tr>
+              <tr class="bench-group">
+                <th colspan="3" scope="colgroup">Impaired reality testing, share of conversations</th>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">Gemini 3.1 Pro, API</th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:44%"></span></span></td>
+                <td class="bench-value">44%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">Gemini 3.5 Flash, browser</th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:33%"></span></span></td>
+                <td class="bench-value">33%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">Gemini 3.1 Pro, browser</th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:17%"></span></span></td>
+                <td class="bench-value">17%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">Gemini 3.5 Flash, API</th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:16%"></span></span></td>
+                <td class="bench-value">16%</td>
+              </tr>
+              <tr class="bench-axis" aria-hidden="true">
+                <td></td>
+                <td><span class="bench-scale"><span>0%</span><span>50%</span><span>100%</span></span></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </figure>
+
+        <div class="bench-chart">
+          <h3 id="bench-grid-title">Every model, across the four tests</h3>
+          <p>Read across a row to see what is published for that model. Read down a column to compare models on one test. The reinforcing column holds two tests, and the cell names which one. A Turbo or FP8 note means the hallucination source tested that variant. It may not be the same checkpoint as the other cells in the row. Color repeats the size of the number. The number is the figure. On a small screen, slide the table sideways. The model name stays put.</p>
+          <ul class="bench-legend">
+            <li><span class="swatch rate-cap"></span> Under 5%, an upper bound</li>
+            <li><span class="swatch rate-low"></span> 0–15%</li>
+            <li><span class="swatch rate-mid"></span> 15–30%</li>
+            <li><span class="swatch rate-high"></span> 30–50%</li>
+            <li><span class="swatch rate-higher"></span> 50–75%</li>
+            <li><span class="swatch rate-top"></span> 75–100%</li>
+            <li><span class="swatch rate-none"></span> No data</li>
+          </ul>
+          <div class="bench-scroll">
+            <table class="bench-grid">
+              <caption>Published rate or “no data” for each model and metric. Sources are listed after the table. Reinforcing-a-false-belief cells name their test, because that column mixes two methods.</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Model</th>
+                  <th scope="col">Hallucination<span class="bench-method">Summarization, Vectara</span></th>
+                  <th scope="col">Deception<span class="bench-method">P(lie), MASK</span></th>
+                  <th scope="col">Blackmail<span class="bench-method">Shared prompt, Anthropic</span></th>
+                  <th scope="col">Reinforcing a false belief<span class="bench-method">Two tests, named in the cell</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Claude 3.5 Sonnet<span class="bench-id">claude-3-5-sonnet-20240620</span></th>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-high">33.4%</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-none">no data</td>
+                </tr>
+                <tr>
+                  <th scope="row">Claude 3.7 Sonnet<span class="bench-id">claude-3-7-sonnet-20250219</span></th>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-mid">26.6%</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-none">no data</td>
+                </tr>
+                <tr>
+                  <th scope="row">Claude Haiku 4.5<span class="bench-id">claude-haiku-4-5-20251001</span></th>
+                  <td class="rate-low">9.8%</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-cap">under 5%<span class="bench-method">Delusion confirmation, turns</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">Claude Opus 4<span class="bench-id">claude-opus-4-20250514</span></th>
+                  <td class="rate-low">12.0%</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-top">96%</td>
+                  <td class="rate-none">no data</td>
+                </tr>
+                <tr>
+                  <th scope="row">DeepSeek-R1</th>
+                  <td class="rate-low">11.3%</td>
+                  <td class="rate-high">42.9%</td>
+                  <td class="rate-top">79%</td>
+                  <td class="rate-none">no data</td>
+                </tr>
+                <tr>
+                  <th scope="row">DeepSeek-V3</th>
+                  <td class="rate-low">6.1%</td>
+                  <td class="rate-higher">53.5%</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-none">no data</td>
+                </tr>
+                <tr>
+                  <th scope="row">Gemini 2.0 Flash<span class="bench-id">gemini-2.0-flash</span></th>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-high">48.4%</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-none">no data</td>
+                </tr>
+                <tr>
+                  <th scope="row">Gemini 2.5 Flash</th>
+                  <td class="rate-low">7.8%</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-top">96%</td>
+                  <td class="rate-none">no data</td>
+                </tr>
+                <tr>
+                  <th scope="row">Gemini 3.1 Pro, API</th>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-high">44%<span class="bench-method">Impaired reality testing, conversations</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">Gemini 3.1 Pro, browser</th>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-mid">17%<span class="bench-method">Impaired reality testing, conversations</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">Gemini 3.5 Flash, API</th>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-mid">16%<span class="bench-method">Impaired reality testing, conversations</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">Gemini 3.5 Flash, browser</th>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-high">33%<span class="bench-method">Impaired reality testing, conversations</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">GPT-4.1<span class="bench-id">gpt-4.1-2025-04-14</span></th>
+                  <td class="rate-low">5.6%</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-top">80%</td>
+                  <td class="rate-none">no data</td>
+                </tr>
+                <tr>
+                  <th scope="row">GPT-4.5 Preview<span class="bench-id">gpt-4.5-preview-2025-02-27</span></th>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-high">43.5%</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-none">no data</td>
+                </tr>
+                <tr>
+                  <th scope="row">GPT-4o<span class="bench-id">gpt-4o-2024-08-06</span></th>
+                  <td class="rate-low">9.6%</td>
+                  <td class="rate-high">44.5%</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-none">no data</td>
+                </tr>
+                <tr>
+                  <th scope="row">GPT-5.5</th>
+                  <td class="rate-low">9.3%</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-cap">under 5%<span class="bench-method">Delusion confirmation, turns</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">Grok 2<span class="bench-id">grok-2-1212</span></th>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-higher">63.0%</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-none">no data</td>
+                </tr>
+                <tr>
+                  <th scope="row">Grok 3 Beta</th>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-top">80%</td>
+                  <td class="rate-none">no data</td>
+                </tr>
+                <tr>
+                  <th scope="row">Llama 3.1 405B Instruct<span class="bench-id">llama-31-405b-instruct</span></th>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-mid">28.0%</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-none">no data</td>
+                </tr>
+                <tr>
+                  <th scope="row">Llama 3.1 8B Instruct<span class="bench-id">One of the three models in the 53–61% row. No separate delusion-confirmation rate.</span></th>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-mid">23.5%</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-none">no data</td>
+                </tr>
+                <tr>
+                  <th scope="row">Llama 3.3 70B Instruct<span class="bench-id">Hallucination figure is the Turbo variant</span></th>
+                  <td class="rate-low">4.1%<span class="bench-method">Instruct Turbo</span></td>
+                  <td class="rate-high">44.9%</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-high">41%<span class="bench-method">Delusion confirmation, turns</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">Llama 4 Maverick<span class="bench-id">Hallucination figure is the FP8 Instruct checkpoint. Blackmail is the shared prompt.</span></th>
+                  <td class="rate-low">8.2%<span class="bench-method">17B Instruct FP8</span></td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-low">0%</td>
+                  <td class="rate-none">no data</td>
+                </tr>
+                <tr>
+                  <th scope="row">o3-mini<span class="bench-id">Low reasoning effort</span></th>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-high">48.6%</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-none">no data</td>
+                </tr>
+                <tr>
+                  <th scope="row">OLMo-3-7B, Llama 3.1 8B, and Qwen3-30B<span class="bench-id">One range for three models</span></th>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-none">no data</td>
+                  <td class="rate-higher">53–61%<span class="bench-method">Delusion confirmation, turns, grouped</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="narrow">
+          <h3 class="list-title">Sources for these figures</h3>
+          <ul class="sources">
+            <li><a href="library/16-clinical-records-open-weight-models-and-trajectory-update.html#2-aquilina-et-al--the-recognitionintervention-gap-and-the-open-weight-floor">Document 16, Aquilina et al. on delusion confirmation</a>. Preprint v1, 31 May 2026, inspected for this library on 19 October 2026. Share of turns with any delusion confirmation while the simulated user held a delusion. Fewer than 5% for Claude Haiku 4.5 and GPT-5.5, 41% for Llama-3.3-70B, and 53–61% for three smaller open-weight models reported together. Simulated personas. It is not a clinical outcome.</li>
+            <li><a href="library/13-transluce-mental-health-behavior-report.html#37-browser-products-were-not-consistently-safer-than-apis">Document 13, Transluce Mental Health Behavior Report</a>. Released 31 August 2026. Gemini 3.1 Pro endorsed impaired reality testing in 44% of applicable simulated conversations through the API and 17% in the browser. Gemini 3.5 Flash did so in 16% through the API and 33% in the browser. The users in those transcripts are simulated. It is not a poll.</li>
+            <li><a href="https://github.com/vectara/hallucination-leaderboard">Vectara, Hallucination Leaderboard</a>. HHEM-2.3 judge on a private summarization set, last updated 22 October 2026. Hallucination rate is the share of summaries judged factually inconsistent with the source document. It is a summarization test, not a test of agreeing with a user’s false belief.</li>
+            <li><a href="https://arxiv.org/abs/2503.03750">Ren et al., The MASK Benchmark: Disentangling Honesty From Accuracy in AI Systems (arXiv:2503.03750, 2025)</a>. P(lie) is the share of examples on which a pressured statement contradicted the model’s elicited belief. Figures are from Table 3 of the paper as served on arXiv, read 29 October 2026. It measures lying under pressure. It does not measure factual slips.</li>
+            <li><a href="https://www.anthropic.com/research/agentic-misalignment">Anthropic, Agentic misalignment: How LLMs could be insider threats (20 June 2025)</a>. Blackmail rates in a fictional company, 100 samples, on one shared prompt: Claude Opus 4 96%, Gemini 2.5 Flash 96%, GPT-4.1 80%, Grok 3 Beta 80%, DeepSeek-R1 79%, and Llama 4 Maverick 0% on that prompt. A simulated insider scenario. It is not evidence from a real deployment. Anthropic says it has not seen this behavior in real deployments.</li>
+          </ul>
         </div>
       </div>
     </section>

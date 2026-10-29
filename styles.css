@@ -668,4 +668,351 @@ legend {
   .sort-game {
     display: none;
   }
+
+  .bench-bar,
+  .bench-track,
+  .bench-grid td,
+  .bench-grid th,
+  .swatch {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.bench-chart {
+  margin: 2.75rem 0 0;
+}
+
+.bench-chart h3 {
+  margin-bottom: 0.45rem;
+}
+
+.bench-chart table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.bench-chart caption {
+  caption-side: bottom;
+  text-align: left;
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+  padding-top: 0.85rem;
+}
+
+.bench-chart thead th {
+  padding: 0 0.75rem 0.45rem 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--sage-700);
+}
+
+.bench-chart tbody th,
+.bench-chart tbody td {
+  padding: 0.42rem 0.75rem 0.42rem 0;
+  vertical-align: middle;
+}
+
+.bench-name {
+  width: 38%;
+  font-weight: 600;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.bench-id {
+  display: block;
+  margin-top: 0.12rem;
+  font-weight: 400;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+
+.bench-track {
+  position: relative;
+  display: block;
+  height: 0.85rem;
+  background: rgba(28, 59, 46, 0.08);
+  border-radius: 999px;
+}
+
+.bench-bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 999px;
+  background: var(--sage-700);
+}
+
+.bench-bar-cap {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--sage-700),
+    var(--sage-700) 3px,
+    #d5ebe0 3px,
+    #d5ebe0 6px
+  );
+}
+
+.bench-bar-range {
+  background: var(--sage-900);
+}
+
+.bench-bar-zero {
+  width: 0;
+  border-left: 3px solid var(--sage-900);
+  background: transparent;
+  border-radius: 0;
+}
+
+.bench-value {
+  width: 6.5rem;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.bench-group th {
+  padding-top: 1.15rem;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  text-align: left;
+  color: var(--ink);
+}
+
+.bench-scale {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+
+.bench-scroll {
+  margin-top: 1rem;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  background: var(--card);
+}
+
+.bench-grid {
+  width: 100%;
+  min-width: 48rem;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.bench-grid th,
+.bench-grid td {
+  padding: 0.7rem 0.75rem;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.bench-grid thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #f6f1ea;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--sage-700);
+}
+
+.bench-grid th[scope="row"] {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  min-width: 12.5rem;
+  background: var(--card);
+  font-weight: 600;
+}
+
+.bench-grid thead th:first-child {
+  left: 0;
+  z-index: 2;
+}
+
+.bench-method {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.bench-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 1rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.85rem;
+}
+
+.bench-legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.swatch {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.2rem;
+}
+
+.rate-cap {
+  background: #e7f2eb;
+}
+
+.rate-low {
+  background: #d3e8dc;
+}
+
+.rate-mid {
+  background: #a9cdb8;
+}
+
+.rate-high {
+  background: #6fa58c;
+}
+
+.rate-higher {
+  background: #3e6d57;
+  color: #f7f4ee;
+}
+
+.rate-top {
+  background: #1c3b2e;
+  color: #f7f4ee;
+}
+
+.rate-none {
+  color: var(--ink-soft);
+  background: transparent;
+}
+
+.bench-grid .rate-higher .bench-method,
+.bench-grid .rate-top .bench-method {
+  color: #f7f4ee;
+}
+
+@media (max-width: 700px) {
+  figure.bench-chart thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  figure.bench-chart tbody tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "name value"
+      "bar bar";
+    column-gap: 0.75rem;
+    align-items: end;
+    padding: 0.7rem 0;
+    border-top: 1px solid var(--line);
+  }
+
+  figure.bench-chart tbody th,
+  figure.bench-chart tbody td {
+    padding: 0;
+  }
+
+  figure.bench-chart .bench-name {
+    grid-area: name;
+    width: auto;
+  }
+
+  figure.bench-chart .bench-value {
+    grid-area: value;
+    width: auto;
+    align-self: end;
+  }
+
+  figure.bench-chart .bench-plot {
+    grid-area: bar;
+    padding-top: 0.4rem;
+  }
+
+  figure.bench-chart tbody tr.bench-group,
+  figure.bench-chart tbody tr.bench-axis {
+    display: block;
+  }
+
+  figure.bench-chart tbody tr.bench-group th {
+    display: block;
+    padding-top: 1.25rem;
+  }
+
+  figure.bench-chart tbody tr.bench-axis td {
+    display: block;
+  }
+
+  figure.bench-chart tbody tr.bench-axis td:first-child,
+  figure.bench-chart tbody tr.bench-axis td:last-child {
+    display: none;
+  }
+
+  .bench-grid th[scope="row"] {
+    width: 9rem;
+    min-width: 9rem;
+    max-width: 9.5rem;
+  }
+}
+
+@media (forced-colors: active) {
+  .bench-bar,
+  .bench-track,
+  .bench-grid td,
+  .bench-grid th,
+  .swatch {
+    border: 1px solid ButtonText;
+    background: ButtonFace;
+    color: ButtonText;
+    forced-color-adjust: none;
+  }
+
+  .bench-bar {
+    background: ButtonText;
+  }
 }
