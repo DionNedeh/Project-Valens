@@ -1157,3 +1157,12 @@ section[id], h3[id] { scroll-margin-top: 2rem; }
   .benchmark-section h2 { grid-column: 1; grid-row: 2 / 5; }
   .benchmark-section .intro-block > p:not(.eyebrow) { grid-column: 2; }
 }
+
+/* A second, matching project reference above the hero artwork. */
+.hero-side { min-width: 0; display: flex; flex-direction: column; gap: 2rem; align-self: stretch; }
+.hero-side .related-project { margin-top: 0; }
+.hero-side .hero-mark { width: 100%; flex-shrink: 0; margin-block: auto; }
+@media (min-width: 800px) {
+  .hero { padding-top: 1rem; }
+  .hero-copy { padding-top: calc(clamp(3rem, 7vw, 6rem) - 1rem); }
+}
