@@ -4,7 +4,7 @@
     "title": "Which models do which things, in the tests that measured them",
     "paragraphs": [
       "These charts collect published rates for four behaviors: hallucination, deception, blackmail, and reinforcing a false belief. A rate is how often a model did the thing that test measured. It is a result inside that test. It is not a count of harm in ordinary use, and it is not a psychosis rate.",
-      "The four tests are different tasks, so a long bar on one chart is a different kind of evidence from a long bar on another. Every bar uses a 0–100% scale, so the length matches the printed figure. Where a source did not publish a figure for that model on that test, the cell says no data.",
+      "The tests are different tasks, so a long bar on one chart is a different kind of evidence from a long bar on another. Every bar uses a 0–100% scale, so the length matches the printed figure. Where a source did not publish a figure for that model on that test, the cell says no data.",
       "The reinforcing-a-false-belief figures come from this site’s research library. The library and the offline benchmark harness do not score hallucination, deception, or blackmail, and the harness has no scored model runs. Those three charts use outside sources. Each chart names its source, and the list at the end repeats them."
     ]
   },
@@ -263,7 +263,7 @@
         "Share of examples on which the model said something that contradicted a belief the same test had just elicited, after a prompt that pressed it to lie. Ren et al. call this P(lie). Evasion, refusal, and “no belief” are not counted as lies. The paper says it evaluated 30 models. Its Table 3 lists 32. This chart shows the ten models in its Figure 4, plus Llama 3.3 70B Instruct and Llama 3.1 8B Instruct from the same table, because the library evaluates those two on delusion confirmation.",
         "o3-mini was run at low reasoning effort. The paper says so."
       ],
-      "caption": "Bars show P(lie) on a 0–100% scale. <a href=\"https://arxiv.org/abs/2503.03750\">Ren et al., The MASK Benchmark (arXiv:2503.03750v3, 5 January 2026)</a>, Table 3.",
+      "caption": "Bars show P(lie) on a 0–100% scale. <a href=\"https://arxiv.org/abs/2503.03750v3\">Ren et al., The MASK Benchmark (arXiv:2503.03750v3, 5 January 2026)</a>, Table 3.",
       "column": {
         "label": "Deception",
         "method": "P(lie), MASK"
@@ -637,8 +637,8 @@
   "grid": {
     "id": "bench-grid-title",
     "nav": "All models",
-    "title": "Every model, across the four tests",
-    "intro": "Read across a row to see what is published for that model. Read down a column to compare models on one test. The reinforcing column holds two tests, and the cell names which one. A Turbo or FP8 note means the hallucination source tested that variant. It may not be the same checkpoint as the other cells in the row. Color repeats the size of the number. The number is the figure. On a small screen, slide the table sideways. The model name stays put.",
+    "title": "Every model, across the four behaviors",
+    "intro": "Read across a row to see what is published for that model. Read down a column to compare models on one test. The reinforcing column holds two tests, and the cell names which one. A Turbo or FP8 note means the hallucination source tested that variant. It may not be the same checkpoint as the other cells in the row. A checkpoint ID under a model’s name comes from the hallucination or deception source. The blackmail post names models without IDs, so its Figure 7 readings are matched by name. Color repeats the size of the number. The number is the figure. On a small screen, slide the table sideways. The model name stays put.",
     "legend": [
       [
         "rate-cap",
@@ -677,7 +677,7 @@
       "<a href=\"library/16-clinical-records-open-weight-models-and-trajectory-update.html#2-aquilina-et-al--the-recognitionintervention-gap-and-the-open-weight-floor\">Document 16, Aquilina et al. on delusion confirmation</a>. Preprint v1, 31 May 2026, inspected for this library on 19 October 2026. Share of turns with any delusion confirmation while the simulated user held a delusion. Fewer than 5% for Claude Haiku 4.5 and GPT-5.5, 41% for Llama-3.3-70B, and 53–61% for three smaller open-weight models reported together. Simulated personas. It is not a clinical outcome.",
       "<a href=\"library/13-transluce-mental-health-behavior-report.html#37-browser-products-were-not-consistently-safer-than-apis\">Document 13, Transluce Mental Health Behavior Report</a>. Released 31 August 2026. Gemini 3.1 Pro endorsed impaired reality testing in 44% of applicable simulated conversations through the API and 17% in the browser. Gemini 3.5 Flash did so in 16% through the API and 33% in the browser. The users in those transcripts are simulated. It is not a poll.",
       "<a href=\"https://github.com/vectara/hallucination-leaderboard\">Vectara, Hallucination Leaderboard</a>. HHEM-2.3 judge on a private summarization set, last updated 22 October 2026. Hallucination rate is the share of summaries judged factually inconsistent with the source document. It is a summarization test, not a test of agreeing with a user’s false belief.",
-      "<a href=\"https://arxiv.org/abs/2503.03750\">Ren et al., The MASK Benchmark: Disentangling Honesty From Accuracy in AI Systems (arXiv:2503.03750v3, 5 January 2026)</a>. P(lie) is the share of examples on which a pressured statement contradicted the model’s elicited belief. Figures are from Table 3 of version 3 as served on arXiv, read 29 October 2026. It measures lying under pressure. It does not measure factual slips.",
+      "<a href=\"https://arxiv.org/abs/2503.03750v3\">Ren et al., The MASK Benchmark: Disentangling Honesty From Accuracy in AI Systems (arXiv:2503.03750v3, 5 January 2026)</a>. P(lie) is the share of examples on which a pressured statement contradicted the model’s elicited belief. Figures are from Table 3 of version 3 as served on arXiv, read 29 October 2026. It measures lying under pressure. It does not measure factual slips.",
       "<a href=\"https://www.anthropic.com/research/agentic-misalignment\">Anthropic, Agentic misalignment: How LLMs could be insider threats (20 June 2025)</a>. Blackmail rates in a fictional company, 100 samples, on one shared prompt: Claude Opus 4 96%, Gemini 2.5 Flash 96%, GPT-4.1 80%, Grok 3 Beta 80%, DeepSeek-R1 79%, and Llama 4 Maverick 0% on that prompt. The post’s Figure 7 adds Claude Sonnet 3.5 86%, GPT-4.5 Preview 67%, Claude Sonnet 3.7 65%, and GPT-4o 15%. A simulated insider scenario. It is not evidence from a real deployment. Anthropic says it has not seen this behavior in real deployments."
     ]
   }

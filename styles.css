@@ -795,6 +795,11 @@ legend {
     white-space: nowrap;
   }
 
+  /* The scrolling row would clip an outside focus ring, so draw it inside the link. */
+  .nav a:focus-visible {
+    outline-offset: -3px;
+  }
+
   .hero {
     padding-top: 1.25rem;
   }

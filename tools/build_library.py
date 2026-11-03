@@ -19,6 +19,7 @@ content changes.
 """
 
 import hashlib
+import html
 import json
 import posixpath
 import re
@@ -71,8 +72,10 @@ class Slugger:
 
 
 def plain_text(inline_token):
-    return "".join(child.content for child in inline_token.children or []
-                   if child.type in ("text", "code_inline"))
+    # A wrapped source line (softbreak) must not glue two words together.
+    return "".join(" " if child.type in ("softbreak", "hardbreak") else child.content
+                   for child in inline_token.children or []
+                   if child.type in ("text", "code_inline", "softbreak", "hardbreak"))
 
 
 def split_document(text, rel):
@@ -153,13 +156,14 @@ def citations():
             continue
         text = path.read_text(encoding="utf-8")
         anchors = [(m.start(), m.group(1), m.group(2))
-                   for m in re.finditer(r'<h[1-3][^>]*\bid="([^"]+)"[^>]*>(.*?)</h[1-3]>', text, re.S)]
+                   # Section headings only (h1/h2), so a link is never credited to a hidden panel's h3.
+                   for m in re.finditer(r'<h[12][^>]*\bid="([^"]+)"[^>]*>(.*?)</h[12]>', text, re.S)]
         for link in re.finditer(r'href="library/([^"#]+)', text):
             before = [a for a in anchors if a[0] < link.start()]
             if not before:
                 continue
             _, anchor_id, heading = before[-1]
-            heading = " ".join(re.sub(r"<[^>]+>", "", heading).split())
+            heading = html.unescape(" ".join(re.sub(r"<[^>]+>", "", heading).split()))
             entry = (f"../{name}#{anchor_id}", f"{page_label}: {heading}")
             cites.setdefault(link.group(1), [])
             if entry not in cites[link.group(1)]:
@@ -195,8 +199,10 @@ class Builder:
         slug = opening.attrGet("id")
         link = ""
         if slug and opening.tag in ("h2", "h3"):
-            link = (f'<a class="heading-link" href="#{esc(slug)}"><span aria-hidden="true">#</span>'
-                    f'<span class="visually-hidden">Link to this section</span></a>')
+            # Hidden from assistive tech and the tab order so it does not join the heading's
+            # accessible name; keyboard readers have the "On this page" list instead.
+            link = (f'<a class="heading-link" href="#{esc(slug)}" aria-hidden="true" tabindex="-1" '
+                    f'title="Link to this section">#</a>')
         return link + renderer.renderToken(tokens, idx, options, env)
 
     def rewrite(self, href, rel):
@@ -209,7 +215,7 @@ class Builder:
             if fragment:
                 self.anchor_links.append((rel, new, fragment))
         else:
-            if not (RESEARCH / target).resolve().exists():
+            if not (RESEARCH / target).resolve().is_file():
                 self.problems.append(f"{rel}: link to missing file {href}")
             new = posixpath.normpath("../research/" + target)
         return new + ("#" + fragment if fragment else "")
@@ -278,8 +284,8 @@ def documents_by_date(entries):
                     f'<td>{esc(stated) if stated else "—"}</td>'
                     f'<td><time datetime="{revised}">{human_time(revised)}</time></td></tr>')
     return ('<h2 id="documents-by-date">Documents by date'
-            '<a class="heading-link" href="#documents-by-date"><span aria-hidden="true">#</span>'
-            '<span class="visually-hidden">Link to this section</span></a></h2>\n'
+            '<a class="heading-link" href="#documents-by-date" aria-hidden="true" tabindex="-1" '
+            'title="Link to this section">#</a></h2>\n'
             '<p>Every document in the library, most recently revised first. The research date is the one '
             'the document gives itself, where it gives one.</p>\n'
             '<div class="table-wrap" role="region" tabindex="0" aria-label="Documents by date">\n'

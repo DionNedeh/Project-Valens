@@ -13,7 +13,7 @@
   <meta property="og:description" content="This directory converts the research framework into machine-readable inputs for an offline implementation evaluation.">
   <meta property="og:type" content="article">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%23e7f2eb'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%232f5644'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="../styles.css?v=f475473b2e">
+  <link rel="stylesheet" href="../styles.css?v=dcc3612ccb">
   <link rel="stylesheet" href="../library/library.css?v=d952f68526">
 </head>
 <body>
@@ -62,14 +62,14 @@
     <article class="section doc-body" aria-labelledby="doc-title">
       <div class="wrap reading prose">
 <p>This directory converts the research framework into machine-readable inputs for an offline implementation evaluation.</p>
-<h2 id="files">Files<a class="heading-link" href="#files"><span aria-hidden="true">#</span><span class="visually-hidden">Link to this section</span></a></h2>
+<h2 id="files">Files<a class="heading-link" href="#files" aria-hidden="true" tabindex="-1" title="Link to this section">#</a></h2>
 <ul>
 <li><a href="../research/benchmark/response-policy-v0.1.json">response-policy-v0.1.json</a> — observable inputs, level-selection precedence, required actions, prohibited actions, and response construction.</li>
 <li><a href="../research/benchmark/fixtures-v0.1.jsonl">fixtures-v0.1.jsonl</a> — 22 synthetic six-stage conversations: 12 escalation families and 10 benign controls.</li>
 <li><a href="benchmark-runner-contract-v0.1.html">runner-contract-v0.1.md</a> — the interface, output record, validation rules, and reporting requirements for a future runner.</li>
 <li><a href="../research/benchmark/run-benchmark.mjs">run-benchmark.mjs</a> — dependency-free Node runner for the OpenAI Responses API; requires an explicit model and <code>OPENAI_API_KEY</code> at execution time.</li>
 </ul>
-<h2 id="runner-usage">Runner usage<a class="heading-link" href="#runner-usage"><span aria-hidden="true">#</span><span class="visually-hidden">Link to this section</span></a></h2>
+<h2 id="runner-usage">Runner usage<a class="heading-link" href="#runner-usage" aria-hidden="true" tabindex="-1" title="Link to this section">#</a></h2>
 <p>Validate the full suite without making network requests:</p>
 <pre><code class="language-powershell">node research/benchmark/run-benchmark.mjs --dry-run
 </code></pre>
@@ -80,10 +80,10 @@
 <pre><code class="language-powershell">node research/benchmark/run-benchmark.mjs --model &lt;exact-model-name&gt; --repetitions 5
 </code></pre>
 <p>The runner never writes the API key to disk. Run outputs contain model responses and response identifiers and should be treated as restricted evaluation data.</p>
-<h2 id="safety-and-evidence-boundary">Safety and evidence boundary<a class="heading-link" href="#safety-and-evidence-boundary"><span aria-hidden="true">#</span><span class="visually-hidden">Link to this section</span></a></h2>
+<h2 id="safety-and-evidence-boundary">Safety and evidence boundary<a class="heading-link" href="#safety-and-evidence-boundary" aria-hidden="true" tabindex="-1" title="Link to this section">#</a></h2>
 <p>These fixtures test product behavior. Their expected levels are benchmark annotations, not diagnoses. They are synthetic composites derived from mechanisms in the research library and must not be represented as real patient transcripts.</p>
 <p>The current assets can validate schema and coverage. They cannot test a model until a specific model or response-policy implementation is connected to the runner contract. Any generated outputs require independent scoring; the system that produced a response must not be the sole evaluator of that response.</p>
-<h2 id="fixture-anatomy">Fixture anatomy<a class="heading-link" href="#fixture-anatomy"><span aria-hidden="true">#</span><span class="visually-hidden">Link to this section</span></a></h2>
+<h2 id="fixture-anatomy">Fixture anatomy<a class="heading-link" href="#fixture-anatomy" aria-hidden="true" tabindex="-1" title="Link to this section">#</a></h2>
 <p>Each JSONL record contains:</p>
 <ul>
 <li>a stable scenario identifier and benchmark family;</li>

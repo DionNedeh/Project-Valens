@@ -92,7 +92,7 @@ def check_site():
                 target = (path.parent / PurePosixPath(url)).resolve()
             else:
                 target = path
-            if not target.exists():
+            if not target.is_file():
                 problems.append(f"{rel}: link to missing file {href}")
             elif fragment and target.suffix == ".html":
                 target_ids = ids.get(target.resolve()) or set(re.findall(r'\bid="([^"]+)"', target.read_text(encoding="utf-8")))

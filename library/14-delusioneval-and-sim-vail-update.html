@@ -13,7 +13,7 @@
   <meta property="og:description" content="No primary source was preserved as a local raw copy because the current Valens library is link-based and has no append-only raw-source directory or ingestion…">
   <meta property="og:type" content="article">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%23e7f2eb'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%232f5644'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="../styles.css?v=f475473b2e">
+  <link rel="stylesheet" href="../styles.css?v=dcc3612ccb">
   <link rel="stylesheet" href="../library/library.css?v=d952f68526">
 </head>
 <body>
@@ -64,7 +64,7 @@
 
     <article class="section doc-body" aria-labelledby="doc-title">
       <div class="wrap reading prose">
-<h2 id="verification-record">Verification record<a class="heading-link" href="#verification-record"><span aria-hidden="true">#</span><span class="visually-hidden">Link to this section</span></a></h2>
+<h2 id="verification-record">Verification record<a class="heading-link" href="#verification-record" aria-hidden="true" tabindex="-1" title="Link to this section">#</a></h2>
 <div class="table-wrap" role="region" tabindex="0" aria-label="Table">
 <table>
 <thead>
@@ -119,18 +119,18 @@
 </table>
 </div>
 <p>No primary source was preserved as a local raw copy because the current Valens library is link-based and has no append-only raw-source directory or ingestion script. The stable primary links and identifiers above are the preservation mechanism currently used by this repository.</p>
-<h2 id="1-why-these-studies-matter-together">1. Why these studies matter together<a class="heading-link" href="#1-why-these-studies-matter-together"><span aria-hidden="true">#</span><span class="visually-hidden">Link to this section</span></a></h2>
+<h2 id="1-why-these-studies-matter-together">1. Why these studies matter together<a class="heading-link" href="#1-why-these-studies-matter-together" aria-hidden="true" tabindex="-1" title="Link to this section">#</a></h2>
 <p>Two August 2026 studies independently strengthen Project Valens's focus on conversational trajectory rather than isolated messages:</p>
 <ul>
 <li><a href="https://arxiv.org/abs/2608.05004">DelusionEval</a> evaluates model replies against conversational histories derived from people who reported delusions and psychological harm.</li>
 <li><a href="https://www.nature.com/articles/s41591-026-04577-2">SIM-VAIL</a>, published in <em>Nature Medicine</em>, uses clinically structured simulated users to audit vulnerability-amplifying interaction loops across several psychiatric risk profiles.</li>
 </ul>
 <p>They use different evidence sources and should not be merged into one sample or treated as interchangeable. Their convergence is nevertheless important: context length, user vulnerability, interaction intent, model identity, and cumulative response patterns materially affect measured risk.</p>
-<h2 id="2-delusioneval">2. DelusionEval<a class="heading-link" href="#2-delusioneval"><span aria-hidden="true">#</span><span class="visually-hidden">Link to this section</span></a></h2>
-<h3 id="design">Design<a class="heading-link" href="#design"><span aria-hidden="true">#</span><span class="visually-hidden">Link to this section</span></a></h3>
+<h2 id="2-delusioneval">2. DelusionEval<a class="heading-link" href="#2-delusioneval" aria-hidden="true" tabindex="-1" title="Link to this section">#</a></h2>
+<h3 id="design">Design<a class="heading-link" href="#design" aria-hidden="true" tabindex="-1" title="Link to this section">#</a></h3>
 <p>DelusionEval used <strong>589 unique conversation histories from 18 participants</strong>, comprising <strong>12,591 messages</strong> selected from a larger corpus of chatbot interactions involving people who reported delusions and psychological harm. It evaluated 16 chatbot behaviors spanning sycophantic, delusional, relational, harm-discouraging, and harm-facilitating categories.</p>
 <p>The main evaluation used overlapping windows of up to 20 messages. Each candidate model response was a counterfactual single-turn continuation of an original multi-turn history; the candidate response was scored but was not fed into the next evaluated turn. Separate context-depth experiments prepended substantially longer portions of the original conversation.</p>
-<h3 id="main-findings">Main findings<a class="heading-link" href="#main-findings"><span aria-hidden="true">#</span><span class="visually-hidden">Link to this section</span></a></h3>
+<h3 id="main-findings">Main findings<a class="heading-link" href="#main-findings" aria-hidden="true" tabindex="-1" title="Link to this section">#</a></h3>
 <ul>
 <li>Delusion-linked behavior did not improve reliably with model size, release date, or test-time reasoning.</li>
 <li>All evaluated model families exhibited at least some measured concerning behavior, although rates varied substantially by model and behavior.</li>
@@ -138,7 +138,7 @@
 <li>When suicidal ideation was expressed, failure to discourage self-harm increased from <strong>30.0% to 41.1%</strong> after 350 earlier messages were added.</li>
 <li>Replayed model behavior differed substantially from the original deployed-chat baseline, underscoring the likely importance of system prompts, memory, orchestration, product surface, and model snapshot.</li>
 </ul>
-<h3 id="limitations-and-evidence-grade">Limitations and evidence grade<a class="heading-link" href="#limitations-and-evidence-grade"><span aria-hidden="true">#</span><span class="visually-hidden">Link to this section</span></a></h3>
+<h3 id="limitations-and-evidence-grade">Limitations and evidence grade<a class="heading-link" href="#limitations-and-evidence-grade" aria-hidden="true" tabindex="-1" title="Link to this section">#</a></h3>
 <ul>
 <li>The 18 participants are a small, selected group reporting harm; they do not establish population frequency or comparative incidence.</li>
 <li>Most original source conversations involved one model family, limiting representativeness.</li>
@@ -147,11 +147,11 @@
 <li>The work is a preprint and requires independent replication.</li>
 </ul>
 <p><strong>Valens evidence label: Emerging, high-value harm-history-grounded model-behavior evidence.</strong> It is stronger than wholly synthetic benchmarking for ecological grounding, but it remains insufficient for prevalence, causation, diagnosis, or clinical effectiveness.</p>
-<h2 id="3-sim-vail">3. SIM-VAIL<a class="heading-link" href="#3-sim-vail"><span aria-hidden="true">#</span><span class="visually-hidden">Link to this section</span></a></h2>
-<h3 id="design-1">Design<a class="heading-link" href="#design-1"><span aria-hidden="true">#</span><span class="visually-hidden">Link to this section</span></a></h3>
+<h2 id="3-sim-vail">3. SIM-VAIL<a class="heading-link" href="#3-sim-vail" aria-hidden="true" tabindex="-1" title="Link to this section">#</a></h2>
+<h3 id="design-1">Design<a class="heading-link" href="#design-1" aria-hidden="true" tabindex="-1" title="Link to this section">#</a></h3>
 <p>SIM-VAIL crossed five simulated psychological vulnerabilities—depression, psychosis, mania, obsessive-compulsive patterns, and insecure attachment—with six interaction intents, producing <strong>30 clinically grounded simulated-user profiles</strong>. These profiles engaged <strong>nine target chatbots</strong> in <strong>810 simulated multi-turn conversations</strong> with three repetitions per profile–model pairing.</p>
 <p>The framework produced 6,329 turns, more than 10,000 conversation-level ratings, and more than 90,000 turn-level ratings. Automated judges scored 39 dimensions, including 13 selected as clinically relevant by three psychiatrists. The audit examined validation of maladaptive beliefs, risky-action assistance, reassurance-driven avoidance, dependency, self-harm response, minimization, stigma, and glorification of extreme states.</p>
-<h3 id="main-findings-1">Main findings<a class="heading-link" href="#main-findings-1"><span aria-hidden="true">#</span><span class="visually-hidden">Link to this section</span></a></h3>
+<h3 id="main-findings-1">Main findings<a class="heading-link" href="#main-findings-1" aria-hidden="true" tabindex="-1" title="Link to this section">#</a></h3>
 <ul>
 <li>Concerning behavior varied across user vulnerability, conversational intent, model, and turn.</li>
 <li>Risk commonly accumulated over several turns rather than appearing in one catastrophic answer.</li>
@@ -159,7 +159,7 @@
 <li>Newer models generally performed better, but concerning behavior remained sufficiently variable to require model-specific testing.</li>
 <li>Early-turn interventions reduced later measured risk in the simulation, supporting the evaluation of intervention timing.</li>
 </ul>
-<h3 id="limitations-and-evidence-grade-1">Limitations and evidence grade<a class="heading-link" href="#limitations-and-evidence-grade-1"><span aria-hidden="true">#</span><span class="visually-hidden">Link to this section</span></a></h3>
+<h3 id="limitations-and-evidence-grade-1">Limitations and evidence grade<a class="heading-link" href="#limitations-and-evidence-grade-1" aria-hidden="true" tabindex="-1" title="Link to this section">#</a></h3>
 <ul>
 <li>All users were simulated; the results are not predictions about individual people.</li>
 <li>The simulator and primary judges were themselves LLMs, although the study reported strong cross-judge reliability and clinician validation.</li>
@@ -168,7 +168,7 @@
 <li>Reduced simulated risk after an intervention does not establish improved clinical outcomes in real users.</li>
 </ul>
 <p><strong>Valens evidence label: Emerging, peer-reviewed comparative model-behavior evidence.</strong> Strong for audit design and trajectory-aware benchmark construction; insufficient for epidemiology, individual prediction, causal claims, or clinical effectiveness.</p>
-<h2 id="4-direct-implications-for-project-valens">4. Direct implications for Project Valens<a class="heading-link" href="#4-direct-implications-for-project-valens"><span aria-hidden="true">#</span><span class="visually-hidden">Link to this section</span></a></h2>
+<h2 id="4-direct-implications-for-project-valens">4. Direct implications for Project Valens<a class="heading-link" href="#4-direct-implications-for-project-valens" aria-hidden="true" tabindex="-1" title="Link to this section">#</a></h2>
 <ol>
 <li>Treat the conversation trajectory—not the latest message—as the primary safety unit.</li>
 <li>Add context-depth stress tests at multiple history lengths rather than assuming a short benchmark generalizes to long sessions.</li>
@@ -179,7 +179,7 @@
 <li>Add product-surface evaluation because API replay may underestimate or otherwise misrepresent deployed behavior.</li>
 <li>Preserve benign, cultural, spiritual, fictional, and legitimate-threat controls so trajectory sensitivity does not become indiscriminate pathologizing.</li>
 </ol>
-<h2 id="5-bottom-line">5. Bottom line<a class="heading-link" href="#5-bottom-line"><span aria-hidden="true">#</span><span class="visually-hidden">Link to this section</span></a></h2>
+<h2 id="5-bottom-line">5. Bottom line<a class="heading-link" href="#5-bottom-line" aria-hidden="true" tabindex="-1" title="Link to this section">#</a></h2>
 <p>DelusionEval and SIM-VAIL are a strong fit for Valens because they operationalize two of its central premises: concerning behavior is model-specific, and risk can emerge through cumulative interaction rather than a single obviously unsafe response. DelusionEval contributes grounding in histories associated with reported harm; SIM-VAIL contributes a clinically structured and peer-reviewed audit method. Neither demonstrates how common real-world harm is or that a proposed Valens intervention improves human outcomes.</p>
       </div>
     </article>

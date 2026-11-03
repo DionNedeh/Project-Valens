@@ -108,7 +108,7 @@ Every document under `research/` is also published as a page in `library/`, styl
 
 Each page shows the document’s own dates from its header (snapshot, research update, primary releases, version, status), when the document was last revised, and when it was added to this site, both in Eastern time. Where the site cites a document, its page lists those places under **Cited on this site**, with links to the exact section. Long documents get an “On this page” list, each section heading has a “#” link for sharing, wide tables scroll within their own frame on small screens, and each page links to the previous and next document in reading order. Links between documents go to their pages, `#section` links land on the matching heading, and links to the benchmark’s data files go to the raw files served alongside the site.
 
-The research documents open with an internal “Voelori Internal Initiative” line. The pages leave it out; the documents themselves are unchanged.
+Four of the research documents (the library index and documents 10 to 12) open with an internal “Voelori Internal Initiative” line. The pages leave it out; the documents themselves are unchanged.
 
 The library is evidence-first. It is not a clinical protocol, a diagnosis, or a medical device specification. The page summarizes it; where the two differ, the library document is the fuller account. The library’s own framing is that “AI psychosis” is useful public shorthand, not a recognized diagnosis, and that a chatbot is usually one factor among others rather than a sole cause.
 
@@ -120,7 +120,7 @@ The library pages, the benchmark page, and the 404 page are generated. After cha
 python tools/build_site.py
 ```
 
-It needs Python 3.9 or later and the pinned dependency in `tools/requirements.txt` (`python -m pip install -r tools/requirements.txt`). In order, it:
+It needs Python 3.10 or later and the pinned dependency in `tools/requirements.txt` (`python -m pip install -r tools/requirements.txt`). In order, it:
 
 1. builds `benchmarks.html` from `tools/benchmarks.json`, refusing any figure that disagrees with its bar
 2. builds `404.html`, with absolute links because Pages serves it at whatever path was missed
@@ -130,7 +130,7 @@ It needs Python 3.9 or later and the pinned dependency in `tools/requirements.tx
 
 It exits with an error listing anything that fails. Running it twice changes nothing.
 
-`tools/library-manifest.json` records each document’s “Last revised” time, taken from the file the first time it is built and updated only when the document’s content changes, so a fresh clone keeps the original times. A new document is dated “added to this site” by its first build. `tools/sitekit.py` holds the shared page shell and safety line for generated pages. `library/library.css` is edited by hand.
+`tools/library-manifest.json` records each document’s “Last revised” time, taken from the file the first time it is built and updated only when the document’s content changes, so a fresh clone keeps the original times. A document’s “added to this site” time is the commit that first added it, or, for a document not yet committed, its first build. `tools/sitekit.py` holds the shared page shell and safety line for generated pages. `library/library.css` is edited by hand.
 
 ### The site check on pull requests
 
