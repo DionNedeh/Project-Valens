@@ -586,15 +586,16 @@ legend {
   justify-content: center;
 }
 
-/* Sorting game */
+/* Sorting game. Scoped to .sort-game so the general .panel p rule cannot flatten it. */
 
-.sort-progress {
+.sort-game .sort-progress {
   margin-bottom: 0.4rem;
   font-size: 0.95rem;
+  line-height: 1.65;
   color: var(--ink-soft);
 }
 
-.sort-line {
+.sort-game .sort-line {
   min-height: 4.5rem;
   margin-bottom: 1.25rem;
   font-family: var(--serif);
