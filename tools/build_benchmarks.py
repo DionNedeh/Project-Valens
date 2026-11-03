@@ -187,7 +187,7 @@ def render_section(data):
         </div>
 
         <div class="narrow">
-          <{sub} class="list-title">{data["sources"]["title"]}</{sub}>
+          <{sub} class="list-title" id="bench-sources-title">{data["sources"]["title"]}</{sub}>
           <ul class="sources">
 {sources}
           </ul>
