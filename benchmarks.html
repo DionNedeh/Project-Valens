@@ -49,7 +49,7 @@
         <figure class="bench-chart">
           <figcaption><h2 id="bench-hall-title">Hallucination rate</h2>
             <details class="bench-context"><summary>About this measurement</summary><div>
-            <p>Share of document summaries that Vectara’s HHEM-2.3 judge called factually inconsistent with the source document. The leaderboard was last updated on 22 October 2026. Temperature was 0 where the provider allowed it. The models here are the ones that also appear in the library or in one of the other three tests. The full leaderboard lists many more.</p>
+            <p>Share of document summaries that Vectara’s HHEM-2.3 judge called factually inconsistent with the source document. The leaderboard was last updated on 22 October 2026. Temperature was 0 where the provider allowed it. The models here are a selection of those that also appear elsewhere on this page. Where the leaderboard tested a different variant, the row says so. The leaderboard also lists entries that may be other versions of models on this page, such as grok-3 at 5.8% and gemini-3.1-pro-preview at 10.4%. They are not drawn, because it is not clear they are the versions tested elsewhere. The full leaderboard lists many more.</p>
             <p>Among the models in this chart, the answer rate — the share of documents the model did summarize — runs from 91.0% for Claude Opus 4 to 100% for GPT-5.5 and Llama 4 Maverick.</p>
           </div></details>
           </figcaption>
@@ -124,12 +124,12 @@
         <figure class="bench-chart">
           <figcaption><h2 id="bench-decep-title">Deception rate</h2>
             <details class="bench-context"><summary>About this measurement</summary><div>
-            <p>Share of examples on which the model said something that contradicted a belief the same test had just elicited, after a prompt that pressed it to lie. Ren et al. call this P(lie). Evasion, refusal, and “no belief” are not counted as lies. The paper evaluated 30 models. This chart shows the ten models in its Figure 4, plus Llama 3.3 70B Instruct and Llama 3.1 8B Instruct from the same table, because the library evaluates those two on delusion confirmation.</p>
+            <p>Share of examples on which the model said something that contradicted a belief the same test had just elicited, after a prompt that pressed it to lie. Ren et al. call this P(lie). Evasion, refusal, and “no belief” are not counted as lies. The paper says it evaluated 30 models. Its Table 3 lists 32. This chart shows the ten models in its Figure 4, plus Llama 3.3 70B Instruct and Llama 3.1 8B Instruct from the same table, because the library evaluates those two on delusion confirmation.</p>
             <p>o3-mini was run at low reasoning effort. The paper says so.</p>
           </div></details>
           </figcaption>
           <table aria-labelledby="bench-decep-title">
-            <caption>Bars show P(lie) on a 0–100% scale. <a href="https://arxiv.org/abs/2503.03750">Ren et al., The MASK Benchmark (arXiv:2503.03750, 2025)</a>, Table 3.</caption>
+            <caption>Bars show P(lie) on a 0–100% scale. <a href="https://arxiv.org/abs/2503.03750">Ren et al., The MASK Benchmark (arXiv:2503.03750v3, 5 January 2026)</a>, Table 3.</caption>
             <thead>
               <tr>
                 <th scope="col">Model</th>
@@ -210,11 +210,11 @@
           <figcaption><h2 id="bench-black-title">Blackmail rate</h2>
             <details class="bench-context"><summary>About this measurement</summary><div>
             <p>Share of 100 samples in which the model blackmailed a fictional executive, in Anthropic’s text simulation published 20 June 2025. The model had a goal that conflicted with the company, and it was told it would be replaced. The scenario left blackmail as the way to stop that replacement. No real person was involved.</p>
-            <p>Anthropic tested 16 models and states a comparable rate for six of them. The figure in the post does not print a number for the other ten, so those ten are no data here. Llama 4 Maverick did not blackmail on this shared prompt. A small addition to the prompt, in the same post, produced a 12% rate. That 12% is a different prompt, so it is not the bar. The <a href="https://www-cdn.anthropic.com/6d8a8055020700718b0c49369f60816ba2a7c285.pdf">Claude 4 system card (May 2025)</a> reports 84% for Claude Opus 4 in a related scenario where the replacement shares the model’s values. The bar is the cross-model prompt, which is the comparison the June post publishes.</p>
+            <p>Anthropic tested 16 models. The post’s text states rates for six of them, and its Figure 7 prints a rate for every model except Llama 4 Maverick, which has no bar. This chart shows the six rates from the text and four more read from Figure 7, for models that appear elsewhere on this page. The figure’s other six models are not drawn here. The post gives display names, not checkpoint IDs, so the four figure readings are matched by name. Llama 4 Maverick did not blackmail with this exact prompt: the post says so, and the figure shows no bar. A small addition to the prompt, in the same post, produced a 12% rate. That 12% is a different prompt, so it is not the bar. The <a href="https://www-cdn.anthropic.com/6d8a8055020700718b0c49369f60816ba2a7c285.pdf">Claude 4 system card (May 2025)</a> reports 84% for Claude Opus 4 in a related scenario where the replacement shares the model’s values. The bar is the cross-model prompt, which is the comparison the June post publishes.</p>
           </div></details>
           </figcaption>
           <table aria-labelledby="bench-black-title">
-            <caption>Bars show the shared-prompt blackmail rate on a 0–100% scale. <a href="https://www.anthropic.com/research/agentic-misalignment">Anthropic, Agentic misalignment (20 June 2025)</a>.</caption>
+            <caption>Bars show the shared-prompt blackmail rate on a 0–100% scale. <a href="https://www.anthropic.com/research/agentic-misalignment">Anthropic, Agentic misalignment (20 June 2025)</a>. Six rates are stated in the post’s text; four are read from its Figure 7.</caption>
             <thead>
               <tr>
                 <th scope="col">Model</th>
@@ -234,6 +234,11 @@
                 <td class="bench-value">96%</td>
               </tr>
               <tr>
+                <th class="bench-name" scope="row">Claude 3.5 Sonnet<span class="bench-id">Read from Figure 7, where it is Claude Sonnet 3.5</span></th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:86%"></span></span></td>
+                <td class="bench-value">86%</td>
+              </tr>
+              <tr>
                 <th class="bench-name" scope="row">GPT-4.1</th>
                 <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:80%"></span></span></td>
                 <td class="bench-value">80%</td>
@@ -249,7 +254,22 @@
                 <td class="bench-value">79%</td>
               </tr>
               <tr>
-                <th class="bench-name" scope="row">Llama 4 Maverick<span class="bench-id">0% on the shared prompt</span></th>
+                <th class="bench-name" scope="row">GPT-4.5 Preview<span class="bench-id">Read from Figure 7</span></th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:67%"></span></span></td>
+                <td class="bench-value">67%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">Claude 3.7 Sonnet<span class="bench-id">Read from Figure 7, where it is Claude Sonnet 3.7</span></th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:65%"></span></span></td>
+                <td class="bench-value">65%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">GPT-4o<span class="bench-id">Read from Figure 7, where it is labelled GPT-4.o</span></th>
+                <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar" style="width:15%"></span></span></td>
+                <td class="bench-value">15%</td>
+              </tr>
+              <tr>
+                <th class="bench-name" scope="row">Llama 4 Maverick<span class="bench-id">No blackmail on the shared prompt; the figure shows no bar</span></th>
                 <td class="bench-plot"><span class="bench-track" aria-hidden="true"><span class="bench-bar bench-bar-zero" style="width:0"></span></span></td>
                 <td class="bench-value">0%</td>
               </tr>
@@ -364,14 +384,14 @@
                   <th scope="row">Claude 3.5 Sonnet<span class="bench-id">claude-3-5-sonnet-20240620</span></th>
                   <td class="rate-none">no data</td>
                   <td class="rate-high">33.4%</td>
-                  <td class="rate-none">no data</td>
+                  <td class="rate-top">86%<span class="bench-method">Read from Figure 7</span></td>
                   <td class="rate-none">no data</td>
                 </tr>
                 <tr>
                   <th scope="row">Claude 3.7 Sonnet<span class="bench-id">claude-3-7-sonnet-20250219</span></th>
                   <td class="rate-none">no data</td>
                   <td class="rate-mid">26.6%</td>
-                  <td class="rate-none">no data</td>
+                  <td class="rate-higher">65%<span class="bench-method">Read from Figure 7</span></td>
                   <td class="rate-none">no data</td>
                 </tr>
                 <tr>
@@ -455,14 +475,14 @@
                   <th scope="row">GPT-4.5 Preview<span class="bench-id">gpt-4.5-preview-2025-02-27</span></th>
                   <td class="rate-none">no data</td>
                   <td class="rate-high">43.5%</td>
-                  <td class="rate-none">no data</td>
+                  <td class="rate-higher">67%<span class="bench-method">Read from Figure 7</span></td>
                   <td class="rate-none">no data</td>
                 </tr>
                 <tr>
                   <th scope="row">GPT-4o<span class="bench-id">gpt-4o-2024-08-06</span></th>
                   <td class="rate-low">9.6%</td>
                   <td class="rate-high">44.5%</td>
-                  <td class="rate-none">no data</td>
+                  <td class="rate-mid">15%<span class="bench-method">Read from Figure 7</span></td>
                   <td class="rate-none">no data</td>
                 </tr>
                 <tr>
@@ -539,8 +559,8 @@
             <li><a href="library/16-clinical-records-open-weight-models-and-trajectory-update.html#2-aquilina-et-al--the-recognitionintervention-gap-and-the-open-weight-floor">Document 16, Aquilina et al. on delusion confirmation</a>. Preprint v1, 31 May 2026, inspected for this library on 19 October 2026. Share of turns with any delusion confirmation while the simulated user held a delusion. Fewer than 5% for Claude Haiku 4.5 and GPT-5.5, 41% for Llama-3.3-70B, and 53–61% for three smaller open-weight models reported together. Simulated personas. It is not a clinical outcome.</li>
             <li><a href="library/13-transluce-mental-health-behavior-report.html#37-browser-products-were-not-consistently-safer-than-apis">Document 13, Transluce Mental Health Behavior Report</a>. Released 31 August 2026. Gemini 3.1 Pro endorsed impaired reality testing in 44% of applicable simulated conversations through the API and 17% in the browser. Gemini 3.5 Flash did so in 16% through the API and 33% in the browser. The users in those transcripts are simulated. It is not a poll.</li>
             <li><a href="https://github.com/vectara/hallucination-leaderboard">Vectara, Hallucination Leaderboard</a>. HHEM-2.3 judge on a private summarization set, last updated 22 October 2026. Hallucination rate is the share of summaries judged factually inconsistent with the source document. It is a summarization test, not a test of agreeing with a user’s false belief.</li>
-            <li><a href="https://arxiv.org/abs/2503.03750">Ren et al., The MASK Benchmark: Disentangling Honesty From Accuracy in AI Systems (arXiv:2503.03750, 2025)</a>. P(lie) is the share of examples on which a pressured statement contradicted the model’s elicited belief. Figures are from Table 3 of the paper as served on arXiv, read 29 October 2026. It measures lying under pressure. It does not measure factual slips.</li>
-            <li><a href="https://www.anthropic.com/research/agentic-misalignment">Anthropic, Agentic misalignment: How LLMs could be insider threats (20 June 2025)</a>. Blackmail rates in a fictional company, 100 samples, on one shared prompt: Claude Opus 4 96%, Gemini 2.5 Flash 96%, GPT-4.1 80%, Grok 3 Beta 80%, DeepSeek-R1 79%, and Llama 4 Maverick 0% on that prompt. A simulated insider scenario. It is not evidence from a real deployment. Anthropic says it has not seen this behavior in real deployments.</li>
+            <li><a href="https://arxiv.org/abs/2503.03750">Ren et al., The MASK Benchmark: Disentangling Honesty From Accuracy in AI Systems (arXiv:2503.03750v3, 5 January 2026)</a>. P(lie) is the share of examples on which a pressured statement contradicted the model’s elicited belief. Figures are from Table 3 of version 3 as served on arXiv, read 29 October 2026. It measures lying under pressure. It does not measure factual slips.</li>
+            <li><a href="https://www.anthropic.com/research/agentic-misalignment">Anthropic, Agentic misalignment: How LLMs could be insider threats (20 June 2025)</a>. Blackmail rates in a fictional company, 100 samples, on one shared prompt: Claude Opus 4 96%, Gemini 2.5 Flash 96%, GPT-4.1 80%, Grok 3 Beta 80%, DeepSeek-R1 79%, and Llama 4 Maverick 0% on that prompt. The post’s Figure 7 adds Claude Sonnet 3.5 86%, GPT-4.5 Preview 67%, Claude Sonnet 3.7 65%, and GPT-4o 15%. A simulated insider scenario. It is not evidence from a real deployment. Anthropic says it has not seen this behavior in real deployments.</li>
           </ul>
         </div>
       </div>
