@@ -1,0 +1,971 @@
+/* The same week, twice: the story played on the support page (story-game.js).
+   Loaded after styles.css, which supplies the tokens, type, and buttons. */
+
+.story {
+  --story-frame: #1f2d27;
+  --story-scene: #14201b;
+  --story-light: #f3eee6;
+  --story-warm: #a9583b;
+  --story-warm-soft: #f7e3d9;
+  --story-mono: ui-monospace, "SFMono-Regular", "Cascadia Mono", Menlo, Consolas, monospace;
+  --story-bar-height: 4.25rem;
+  margin-top: 1.75rem;
+  padding: 0 0.6rem 0.6rem;
+  border-radius: 1.4rem;
+  background: var(--story-frame);
+  box-shadow: var(--shadow);
+  color: var(--ink);
+}
+
+.story::backdrop {
+  background: #1f2d27;
+}
+
+/* Until the script runs (or if it never does), only the short summary in the panel shows. */
+.story:not(.is-ready) .story-view,
+.story:not(.is-ready) .story-bar-actions,
+.story:not(.is-ready) .story-actions {
+  display: none;
+}
+
+.story:not(.is-ready) .story-stage {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.story:not(.is-ready) .story-panel {
+  min-height: 0;
+}
+
+/* The bar above the scene. On the page it stays at the top of the screen while the
+   story is in view, so "Stop here" and "Full screen" are always within reach. */
+
+.story-bar {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  padding: 0.6rem 0.2rem 0.6rem 0.55rem;
+  border-radius: 0.8rem;
+  background: var(--story-frame);
+  color: var(--story-light);
+}
+
+.story-bar-title {
+  margin: 0;
+  font-family: var(--story-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.story-bar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.story-bar-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  padding: 0.35rem 0.9rem;
+  border: 2px solid rgba(243, 238, 230, 0.8);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--story-light);
+  font: inherit;
+  font-size: 0.9rem;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.story-bar-button:hover {
+  background: rgba(243, 238, 230, 0.12);
+}
+
+.story-full-icon {
+  width: 0.95rem;
+  height: 0.95rem;
+  flex: none;
+}
+
+/* On the dark frame, a dark focus ring would vanish. */
+.story-bar :focus-visible,
+.story-actions :focus-visible,
+.story-spot:focus-visible {
+  outline-color: var(--story-light);
+}
+
+/* Scene and panel */
+
+.story-stage {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.story-view {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.story-scene {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 0.8rem;
+  background: var(--story-scene);
+  container-type: inline-size;
+}
+
+.story-art {
+  display: block;
+  width: 100%;
+  height: 100%;
+  forced-color-adjust: none;
+}
+
+/* A ring around the thing to look at, so the thing itself stays visible. It scales with
+   the scene, and goes once the thing has been looked at. */
+.story-spot {
+  position: absolute;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  transform: translate(-50%, -50%);
+  border: 3px solid #fbf8f3;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 0 2px #1c3b2e, inset 0 0 0 1px #1c3b2e;
+  cursor: pointer;
+}
+
+.story-spot.is-seen {
+  display: none;
+}
+
+/* What you noticed, under the scene */
+
+.story-journal {
+  padding: 0.65rem 0.85rem 0.75rem;
+  border-radius: 0.8rem;
+  background: #2b3b34;
+  color: var(--story-light);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.story-journal p {
+  margin: 0;
+}
+
+.story-journal .story-journal-title,
+.story-journal .story-journal-week,
+.story-recap-title {
+  margin-bottom: 0.4rem;
+  font-family: var(--story-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.story-journal .story-journal-title,
+.story-journal .story-journal-week {
+  color: #cfe0d6;
+}
+
+.story-journal .story-journal-week {
+  margin-top: 0.5rem;
+}
+
+.story-journal-hint {
+  color: #d9e6de;
+}
+
+.story-journal-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.story-journal-list li {
+  padding: 0.12rem 0.55rem;
+  border: 1px solid rgba(243, 238, 230, 0.4);
+  border-radius: 0.4rem;
+  background: rgba(243, 238, 230, 0.08);
+}
+
+/* The same list inside the panel at the close, for screens where the one under the scene
+   is left out for room (see the full-screen rules below). */
+.story-recap {
+  display: none;
+  margin-bottom: 0.9rem;
+  padding: 0.7rem 0.9rem 0.8rem;
+  border-radius: 0.7rem;
+  background: #f1f6f2;
+}
+
+.story-panel .story-recap-title,
+.story-panel .story-recap .story-journal-week {
+  margin: 0 0 0.35rem;
+  color: var(--ink-soft);
+}
+
+.story-panel .story-recap .story-journal-week {
+  margin-top: 0.5rem;
+}
+
+.story-recap .story-journal-list li {
+  border-color: var(--line);
+  background: #ffffff;
+  font-size: 0.92rem;
+}
+
+.story-side {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+/* The panel is the containing block for the visually hidden text inside it, so that text
+   can never stretch the story when it fills the screen. It is also the container the
+   comparison table measures itself against. */
+.story-panel {
+  position: relative;
+  container-type: inline-size;
+  min-height: 16rem;
+  padding: 1.1rem 1.15rem 1.25rem;
+  border-radius: 0.8rem;
+  background: var(--card);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.story-panel p {
+  margin-bottom: 0.75rem;
+}
+
+.story-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.story-next {
+  border-color: var(--story-light);
+  background: var(--story-light);
+  color: var(--sage-900);
+  font-weight: 600;
+}
+
+.story-next:hover {
+  background: #ffffff;
+}
+
+/* Headings, speech, and narration */
+
+.story-head {
+  margin-bottom: 0.9rem;
+}
+
+.story-kicker {
+  margin: 0 0 0.25rem;
+  font-family: var(--story-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sage-700);
+}
+
+/* Room for the sticky bar when a heading, answer, or focused control is scrolled into view.
+   (The shared h3[id] rule in styles.css would otherwise win for the heading.) The script
+   keeps --story-bar-height equal to the bar's real height. */
+.story .story-title,
+.story .story-feedback,
+.story .story-look-text,
+.story-stage :focus {
+  scroll-margin-top: calc(var(--story-bar-height) + 0.5rem);
+}
+
+.story-title {
+  margin: 0;
+  font-size: 1.45rem;
+}
+
+.story-title:focus {
+  outline: none;
+}
+
+.story-title:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.story-small {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+.story-narration {
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.story-say {
+  display: grid;
+  grid-template-columns: 2.6rem minmax(0, 1fr);
+  gap: 0.6rem;
+}
+
+.story-who {
+  padding-top: 0.2rem;
+  font-family: var(--story-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sage-700);
+}
+
+.story-say--you .story-who {
+  color: var(--story-warm);
+}
+
+/* The times strip */
+
+.story-times {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.35rem;
+  margin: 0 0 0.85rem;
+  padding: 0;
+  list-style: none;
+}
+
+.story-time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.25rem 0.2rem;
+  border: 1px solid var(--line);
+  border-radius: 0.45rem;
+  background: #eef3ef;
+  font-family: var(--story-mono);
+  font-size: 0.76rem;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.story-time-day {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 700;
+}
+
+.story-time.is-late {
+  border-color: #2b3550;
+  background: #2b3550;
+  color: var(--story-light);
+}
+
+.story-time.is-late .story-time-day::before {
+  content: "";
+  width: 0.6rem;
+  height: 0.6rem;
+  flex: none;
+  border-radius: 50%;
+  box-shadow: inset 0.2rem -0.06rem 0 0 #ffe9a8;
+}
+
+.story-time.is-empty {
+  border-style: dashed;
+  background: transparent;
+}
+
+.story-time[aria-current="step"] {
+  outline: 2px solid var(--sage-900);
+  outline-offset: 1px;
+}
+
+/* The chat window */
+
+.story-chat {
+  overflow: hidden;
+  margin-bottom: 0.85rem;
+  border: 2px solid #2a2630;
+  border-radius: 0.75rem;
+  background: #ffffff;
+}
+
+.story-panel .story-chat-bar {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0;
+  padding: 0.3rem 0.7rem;
+  border-bottom: 2px solid #2a2630;
+  background: #e7efe9;
+  font-family: var(--story-mono);
+  font-size: 0.75rem;
+}
+
+.story-msg {
+  margin: 0.65rem;
+  padding: 0.6rem 0.75rem 0.7rem;
+}
+
+.story-msg--rae {
+  max-width: 88%;
+  margin-left: auto;
+  border-radius: 0.9rem 0.9rem 0.2rem 0.9rem;
+  background: var(--sage-100);
+}
+
+.story-msg--ai {
+  max-width: 94%;
+  border-radius: 0.9rem 0.9rem 0.9rem 0.2rem;
+  background: #f3eee6;
+}
+
+.story-panel .story-msg p {
+  margin-bottom: 0.4rem;
+}
+
+.story-panel .story-msg p:last-child {
+  margin-bottom: 0;
+}
+
+.story-panel .story-msg-who {
+  margin-bottom: 0.15rem;
+  font-family: var(--story-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.story-panel .story-tag {
+  display: inline-block;
+  margin-bottom: 0.45rem;
+  padding: 0.12rem 0.5rem;
+  border: 1px solid var(--story-warm);
+  border-radius: 0.4rem;
+  background: var(--story-warm-soft);
+  color: #6e2f1a;
+  font-family: var(--story-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.story-chat--two .story-tag {
+  border-color: var(--sage-700);
+  background: #dcebe2;
+  color: var(--sage-900);
+}
+
+.story-told {
+  padding-left: 0.6rem;
+  border-left: 2px dotted rgba(28, 48, 39, 0.4);
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+/* Notes and things to look at */
+
+.story-note {
+  margin-bottom: 0.85rem;
+  padding: 0.7rem 0.9rem 0.8rem;
+  border-left: 4px solid var(--sage-700);
+  border-radius: 0.3rem 0.7rem 0.7rem 0.3rem;
+  background: #f1f6f2;
+}
+
+.story-note--one {
+  border-left-color: var(--story-warm);
+  background: #fbf1ec;
+}
+
+.story-panel .story-note-title {
+  margin-bottom: 0.2rem;
+  font-family: var(--story-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.story-panel .story-note-text {
+  margin: 0;
+}
+
+.story-look {
+  margin-top: 0.25rem;
+}
+
+.story-look-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 44px;
+  padding: 0.35rem 1rem 0.35rem 0.8rem;
+  border: 2px dashed var(--sage-700);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--sage-900);
+  font: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.story-look-button:hover,
+.story-look-button[aria-expanded="true"] {
+  border-style: solid;
+  background: var(--sage-100);
+}
+
+.story-look-icon {
+  position: relative;
+  width: 0.8rem;
+  height: 0.8rem;
+  flex: none;
+  margin: -0.15rem 0.15rem 0 0;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+}
+
+.story-look-icon::after {
+  content: "";
+  position: absolute;
+  right: -0.35rem;
+  bottom: -0.4rem;
+  width: 2px;
+  height: 0.45rem;
+  background: currentColor;
+  transform: rotate(-45deg);
+}
+
+.story-panel .story-look-text {
+  margin: 0.55rem 0 0;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid #e6d9a8;
+  border-radius: 0.6rem;
+  background: #fffaea;
+}
+
+/* Choices */
+
+.story-panel .story-ask {
+  margin: 1rem 0 0.5rem;
+  font-weight: 600;
+}
+
+.story-choices {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.story-choice {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.6rem 1rem;
+  border: 2px solid var(--sage-900);
+  border-radius: 1rem;
+  background: #ffffff;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.story-choice:hover {
+  background: var(--sage-100);
+}
+
+.story-choice[aria-pressed="true"] {
+  background: var(--sage-900);
+  color: #f7f4ee;
+}
+
+.story-feedback:focus {
+  outline: none;
+}
+
+.story-feedback:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 4px;
+}
+
+/* The comparison at the end */
+
+.story-compare-wrap {
+  overflow-x: auto;
+  margin-bottom: 0.9rem;
+}
+
+.story-compare {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.story-compare th,
+.story-compare td {
+  padding: 0.45rem 0.5rem;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.story-compare thead th {
+  font-family: var(--story-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.story-compare .story-compare-one {
+  color: #8a3f24;
+}
+
+.story-compare .story-compare-two {
+  color: var(--sage-700);
+}
+
+.story-compare tbody th {
+  font-weight: 600;
+}
+
+.story-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  font-weight: 600;
+}
+
+/* Small phones: less padding. */
+
+@media (max-width: 24rem) {
+  .story {
+    padding: 0 0.35rem 0.35rem;
+    border-radius: 1rem;
+  }
+
+  .story-panel {
+    padding: 0.9rem 0.75rem 1rem;
+  }
+
+  .story-msg {
+    margin: 0.45rem;
+  }
+}
+
+/* A narrow panel (a small phone, or a short two-column view): the comparison stacks, and
+   each cell names its week. */
+@container (max-width: 19.5rem) {
+  .story-compare thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  .story-compare tr,
+  .story-compare th,
+  .story-compare td {
+    display: block;
+  }
+
+  .story-compare tbody th {
+    padding: 0.6rem 0 0.15rem;
+    border: 0;
+  }
+
+  .story-compare td {
+    padding: 0.1rem 0 0.1rem 0.6rem;
+    border: 0;
+  }
+
+  .story-compare tr {
+    padding-bottom: 0.45rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .story-compare td::before {
+    content: attr(data-week) ": ";
+    font-weight: 600;
+  }
+}
+
+/* Wider screens, and phones held sideways: the scene beside the panel */
+
+@media (min-width: 40rem) and (max-height: 32rem) {
+  .story-stage {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .story-view {
+    position: sticky;
+    top: var(--story-bar-height);
+    max-height: calc(100vh - var(--story-bar-height) - 0.5rem);
+    overflow-y: auto;
+  }
+}
+
+@media (min-width: 52rem) {
+  .story-stage {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .story-view {
+    position: sticky;
+    top: var(--story-bar-height);
+  }
+
+  .story-panel {
+    min-height: 22rem;
+  }
+}
+
+/* Full screen, native or the fallback view */
+
+html.story-locked,
+html.story-locked body {
+  overflow: hidden;
+}
+
+.story.is-full {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  margin: 0;
+  padding:
+    0
+    max(0.6rem, env(safe-area-inset-right))
+    max(0.6rem, env(safe-area-inset-bottom))
+    max(0.6rem, env(safe-area-inset-left));
+  overflow: hidden;
+  overflow: clip;
+  border-radius: 0;
+}
+
+.story.is-full .story-bar {
+  position: static;
+  padding-top: max(0.6rem, env(safe-area-inset-top));
+}
+
+.story.is-full .story-stage {
+  flex: 1;
+  min-height: 0;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
+  align-items: stretch;
+}
+
+/* Upright screens: the scene on top, the panel scrolling below it. The noticed list is
+   left out for room. In every full-screen view the close repeats the list inside the
+   panel, where it can always be scrolled to. */
+.story.is-full .story-view {
+  position: relative;
+  top: auto;
+  justify-self: center;
+  width: min(100%, calc(42vh * 16 / 9));
+  width: min(100%, calc(42dvh * 16 / 9));
+}
+
+.story.is-full .story-journal {
+  display: none;
+}
+
+.story.is-full .story-recap {
+  display: block;
+}
+
+.story.is-full .story-side {
+  min-height: 0;
+}
+
+.story.is-full .story-panel {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  font-size: 1.05rem;
+}
+
+/* Wide screens: the scene beside the panel. */
+@media (min-aspect-ratio: 5 / 4) {
+  .story.is-full .story-stage {
+    grid-template-columns: minmax(0, 1.5fr) minmax(min(20rem, 100%), 1fr);
+    grid-template-rows: minmax(0, 1fr);
+  }
+
+  .story.is-full .story-view {
+    align-self: center;
+    justify-content: center;
+    min-height: 0;
+    max-height: 100%;
+    width: min(100%, calc((100vh - 5.5rem) * 16 / 9));
+    width: min(100%, calc((100dvh - 5.5rem) * 16 / 9));
+  }
+
+  .story.is-full .story-scene {
+    flex: none;
+  }
+}
+
+/* Wide and tall enough: the noticed list fits under the scene again, and scrolls if long. */
+@media (min-aspect-ratio: 5 / 4) and (min-height: 32.0625rem) {
+  .story.is-full .story-view {
+    width: min(100%, calc((100vh - 11rem) * 16 / 9));
+    width: min(100%, calc((100dvh - 11rem) * 16 / 9));
+  }
+
+  .story.is-full .story-journal {
+    display: block;
+    min-height: 0;
+    overflow-y: auto;
+  }
+}
+
+/* Screens both short and narrow, such as a page zoomed to 300 or 400 percent: one column,
+   and the whole story scrolls under a bar that stays put. A phone held sideways is wide
+   enough for the two-column view above. */
+@media (max-height: 22rem) and (max-width: 36rem) {
+  .story.is-full {
+    overflow-y: auto;
+  }
+
+  .story.is-full .story-bar {
+    position: sticky;
+    top: 0;
+  }
+
+  .story.is-full .story-stage {
+    flex: none;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+  }
+
+  .story.is-full .story-view {
+    align-self: auto;
+    justify-self: center;
+    width: min(100%, 24rem);
+  }
+
+  .story.is-full .story-panel {
+    flex: none;
+    overflow: visible;
+  }
+}
+
+/* On a phone, the bar keeps to one row: its title is the section heading just above it,
+   so it is hidden from sight but kept for the full-screen dialog's name. */
+@media (max-width: 34rem) {
+  .story-bar-title {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  .story-bar {
+    justify-content: flex-end;
+  }
+}
+
+/* Motion, contrast, and print */
+
+@media (prefers-reduced-motion: no-preference) {
+  .story-panel > *,
+  .story-feedback > * {
+    animation: story-in 0.24s ease-out both;
+  }
+}
+
+@keyframes story-in {
+  from {
+    opacity: 0;
+    translate: 0 4px;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@media (forced-colors: active) {
+  .story-bar-button,
+  .story-choice,
+  .story-look-button,
+  .story-chat,
+  .story-tag,
+  .story-time,
+  .story-note,
+  .story-journal,
+  .story-recap,
+  .story-spot {
+    border: 1px solid CanvasText;
+  }
+
+  .story-choice[aria-pressed="true"] {
+    forced-color-adjust: none;
+    border-color: HighlightText;
+    background: Highlight;
+    color: HighlightText;
+  }
+
+  .story-choice[aria-pressed="true"]:focus-visible {
+    outline-color: CanvasText;
+  }
+
+  .story-time.is-late {
+    border: 3px double CanvasText;
+  }
+
+  .story-time.is-late .story-time-day::before {
+    forced-color-adjust: none;
+    background: CanvasText;
+    box-shadow: none;
+  }
+}
+
+@media print {
+  .story,
+  .story.is-full,
+  .story-spacer {
+    display: none;
+  }
+
+  html.story-locked,
+  html.story-locked body {
+    overflow: visible;
+  }
+}

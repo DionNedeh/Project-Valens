@@ -29,7 +29,7 @@ CRISIS_LINE = ("If you are in immediate danger, contact local emergency services
 # Files whose content hash is appended as ?v= wherever a page references them,
 # so a deploy never pairs new HTML with a cached old stylesheet or script.
 VERSIONED_ASSETS = ["styles.css", "benchmarks.css", "site.js", "grounding-game.css",
-                    "grounding-game.js", "library/library.css"]
+                    "grounding-game.js", "story-game.css", "story-game.js", "library/library.css"]
 
 
 def esc(text):
