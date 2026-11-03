@@ -49,7 +49,7 @@
   justify-content: space-between;
   gap: 0.5rem 1rem;
   padding: 0.6rem 0.2rem 0.6rem 0.55rem;
-  border-radius: 0 0 0.8rem 0.8rem;
+  border-radius: 0.8rem;
   background: var(--story-frame);
   color: var(--story-light);
 }
@@ -137,8 +137,6 @@
   position: absolute;
   width: 2.75rem;
   height: 2.75rem;
-  width: clamp(1.75rem, 9cqw, 2.75rem);
-  height: clamp(1.75rem, 9cqw, 2.75rem);
   padding: 0;
   transform: translate(-50%, -50%);
   border: 3px solid #fbf8f3;
@@ -168,7 +166,7 @@
 }
 
 .story-journal .story-journal-title,
-.story-journal-week,
+.story-journal .story-journal-week,
 .story-recap-title {
   margin-bottom: 0.4rem;
   font-family: var(--story-mono);
@@ -239,7 +237,12 @@
   min-width: 0;
 }
 
+/* The panel is the containing block for the visually hidden text inside it, so that text
+   can never stretch the story when it fills the screen. It is also the container the
+   comparison table measures itself against. */
 .story-panel {
+  position: relative;
+  container-type: inline-size;
   min-height: 16rem;
   padding: 1.1rem 1.15rem 1.25rem;
   border-radius: 0.8rem;
@@ -283,11 +286,13 @@
   color: var(--sage-700);
 }
 
-/* Room for the sticky bar when a heading or answer is scrolled into view. (The shared
-   h3[id] rule in styles.css would otherwise win.) */
+/* Room for the sticky bar when a heading, answer, or focused control is scrolled into view.
+   (The shared h3[id] rule in styles.css would otherwise win for the heading.) The script
+   keeps --story-bar-height equal to the bar's real height. */
 .story .story-title,
 .story .story-feedback,
-.story .story-look-text {
+.story .story-look-text,
+.story-stage :focus {
   scroll-margin-top: calc(var(--story-bar-height) + 0.5rem);
 }
 
@@ -653,7 +658,7 @@
   font-weight: 600;
 }
 
-/* Small phones: less padding, and the comparison stacks with each week named. */
+/* Small phones: less padding. */
 
 @media (max-width: 24rem) {
   .story {
@@ -668,7 +673,11 @@
   .story-msg {
     margin: 0.45rem;
   }
+}
 
+/* A narrow panel (a small phone, or a short two-column view): the comparison stacks, and
+   each cell names its week. */
+@container (max-width: 19.5rem) {
   .story-compare thead {
     position: absolute;
     width: 1px;
@@ -716,6 +725,8 @@
   .story-view {
     position: sticky;
     top: var(--story-bar-height);
+    max-height: calc(100vh - var(--story-bar-height) - 0.5rem);
+    overflow-y: auto;
   }
 }
 
@@ -758,6 +769,7 @@ html.story-locked body {
     max(0.6rem, env(safe-area-inset-bottom))
     max(0.6rem, env(safe-area-inset-left));
   overflow: hidden;
+  overflow: clip;
   border-radius: 0;
 }
 
@@ -775,7 +787,8 @@ html.story-locked body {
 }
 
 /* Upright screens: the scene on top, the panel scrolling below it. The noticed list is
-   left out for room, and the close repeats it inside the panel instead. */
+   left out for room. In every full-screen view the close repeats the list inside the
+   panel, where it can always be scrolled to. */
 .story.is-full .story-view {
   position: relative;
   top: auto;
@@ -836,10 +849,6 @@ html.story-locked body {
     display: block;
     min-height: 0;
     overflow-y: auto;
-  }
-
-  .story.is-full .story-recap {
-    display: none;
   }
 }
 
@@ -931,6 +940,10 @@ html.story-locked body {
     border-color: HighlightText;
     background: Highlight;
     color: HighlightText;
+  }
+
+  .story-choice[aria-pressed="true"]:focus-visible {
+    outline-color: CanvasText;
   }
 
   .story-time.is-late {

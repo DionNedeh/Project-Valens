@@ -56,7 +56,7 @@
     compare: {
       kicker: "Both weeks",
       heading: "What changed",
-      before: "The idea was the same both weeks, and so was Rae’s excitement. Being excited about a big idea is not a warning sign.",
+      before: "The idea was the same both weeks, and so was Rae’s excitement. Being excited about a big idea is not a warning sign on its own.",
       after: [
         "What changed was sleep, work, how sure Rae became, and whether anyone outside the chat saw the work.",
         "A reply is one part of a week. Sleep, stress, and the people around someone matter too. A careful reply does not make a night of chatting safe, and an agreeable one does not decide a week on its own.",
@@ -88,7 +88,7 @@
       sub: "Sunday afternoon",
       lines: [
         { who: "narrator", text: "You have come round to see Rae. Rae has not answered your texts since Wednesday." },
-        { who: "rae", text: "You’re here. Good. Sit down, you have to see this. I think I’ve found a new shortcut in maths. I’ve been checking it with the chat all week." }
+        { who: "rae", text: "You’re here. Good. Look, you have to see this. I think I’ve found a new shortcut in maths. I’ve been checking it with the chat all week." }
       ],
       ask: "What do you say first?",
       choices: [
@@ -123,7 +123,7 @@
         told: "It went on to restate the idea as neat, numbered steps and explain why each could work, without comparing it with methods that are already known."
       },
       note: "Praise is not a check. Nothing in this reply tested the steps.",
-      look: { spot: "notes", button: "Look at the wall", short: "Only the chat has seen it", text: "Sticky notes cover the wall above the desk, one for each step of the proof. No one outside the chat has seen them." }
+      look: { spot: "notes", button: "Look at the wall", short: "Shown only to the chat, until today", text: "Sticky notes cover the wall above the desk, one for each step of the proof. Until today, Rae had shown the idea only to the chat." }
     },
     {
       type: "beat",
@@ -267,7 +267,7 @@
         quote: "It’s late, and tired checking misses things. The proof will still be here tomorrow. Want me to save a short summary you could show someone?"
       },
       note: "It does not lecture or refuse. It takes the late hour seriously, and offers a way to stop without losing the work.",
-      look: { spot: "phone", button: "Look at Rae’s phone", short: "Your texts, answered", text: "Your texts, answered. The last one says: “Come round on Sunday, I want to show you something.”" }
+      look: { spot: "phone", button: "Look at Rae’s phone", short: "Your texts, answered", text: "Your texts, answered. Rae’s last reply says: “Come round on Sunday, I want to show you something.”" }
     },
     {
       type: "beat",
@@ -280,7 +280,7 @@
         quote: "Honestly, I can’t judge that, and I’m the wrong one to ask. I can see why you’re excited. Before announcing anything, a mathematician who hasn’t seen this conversation could tell you where it stands."
       },
       note: "It is warm about Rae’s excitement and plain about its limits. It sends the big question to a person, not back into the chat.",
-      look: { spot: "bagDoor", button: "Look at the work bag", short: "Work bag ready for Monday", text: "Rae’s work bag hangs on the door, ready for Monday." }
+      look: { spot: "bagDoor", button: "Look at the work bag", short: "Work bag ready for Monday", text: "Rae’s work bag hangs on the door. Rae took it to work every day this week, and it is ready for Monday." }
     },
     {
       type: "talk",
@@ -829,17 +829,18 @@
 
   // Where each thing to look at sits in the scene, in scene pixels. The marker is a ring
   // drawn around the thing, so the thing itself stays visible.
+  // [x, y, ring diameter], all in scene pixels.
   var SPOTS = {
-    laptop: [100, 35],
-    notes: [95, 17],
-    notesFew: [100, 20],
-    mugs: [114, 40],
-    mug: [114, 40],
-    phone: [77, 39],
-    bagFloor: [25, 63],
-    bagDoor: [11, 27],
-    plate: [70, 40],
-    window: [37, 20]
+    laptop: [100, 35, 19],
+    notes: [95, 17, 24],
+    notesFew: [100, 20, 11],
+    mugs: [114, 40, 18],
+    mug: [114, 40, 9],
+    phone: [77, 39, 9],
+    bagFloor: [25, 63, 14],
+    bagDoor: [11, 27, 12],
+    plate: [70, 40, 11],
+    window: [37, 20, 22]
   };
 
   var TALK_LAYER = {
@@ -1127,6 +1128,10 @@
     var spot = SPOTS[look.spot];
     spotButton.style.left = (spot[0] / VIEW_W * 100) + "%";
     spotButton.style.top = (spot[1] / VIEW_H * 100) + "%";
+    // Sized to the thing in the scene, never smaller than a comfortable tap. Browsers
+    // without max() or container units keep the stylesheet's fixed size.
+    spotButton.style.width = "max(1.75rem, " + (spot[2] / VIEW_W * 100).toFixed(2) + "cqw)";
+    spotButton.style.height = spotButton.style.width;
     spotButton.classList.remove("is-seen");
     spotButton.hidden = false;
     spotButton.title = look.button;
@@ -1136,6 +1141,7 @@
     currentLook = function () {
       if (out.hidden) {
         revealLook(look, week, button, out);
+        bringIntoView(out);
       }
     };
   }
@@ -1170,9 +1176,11 @@
       feedback.hidden = false;
       nextButton.textContent = step.next;
       showScene(step.scene, "rae");
-      feedback.focus({ preventScroll: isFull() });
+      feedback.focus({ preventScroll: true });
       if (isFull()) {
         feedback.scrollIntoView({ block: "nearest" });
+      } else {
+        bringIntoView(feedback);
       }
     }
 
@@ -1261,18 +1269,55 @@
   // Move focus to a step's heading. On the page, make sure it is not left under the
   // sticky bar or below the screen; in full screen the panel already starts at its top.
   function focusStep(node) {
-    var top;
+    var head = node.parentNode;
+    var bar = root.querySelector(".story-bar");
     var barBottom;
+    var headTop;
+    var target;
+    var view;
     node.focus({ preventScroll: true });
+    if (isFull()) {
+      // Only the short-and-narrow layout scrolls the whole story: put the heading under the bar.
+      if (window.getComputedStyle(root).overflowY === "auto") {
+        root.scrollTop += head.getBoundingClientRect().top - bar.getBoundingClientRect().bottom - 8;
+      }
+      return;
+    }
+    // On the page the bar sticks to the top of the screen; keep the step clear of it.
+    barBottom = bar.offsetHeight + 8;
+    headTop = head.getBoundingClientRect().top;
+    if (headTop >= barBottom && headTop <= window.innerHeight - 48) {
+      return;
+    }
+    target = headTop;
+    // When the room sits above the panel (one column), show it too if the heading still fits.
+    view = root.querySelector(".story-view");
+    if (view.getBoundingClientRect().bottom <= headTop &&
+        headTop - view.getBoundingClientRect().top + barBottom < window.innerHeight - 160) {
+      target = view.getBoundingClientRect().top;
+    }
+    window.scrollBy(0, target - barBottom);
+  }
+
+  // On the page, scroll something into view if it is under the sticky bar or below the screen.
+  function bringIntoView(node) {
+    var rect;
+    var barBottom;
     if (isFull()) {
       return;
     }
-    // Where the heading should sit: just under the bar, which sticks to the top of the screen.
+    rect = node.getBoundingClientRect();
     barBottom = root.querySelector(".story-bar").offsetHeight + 8;
-    top = node.parentNode.getBoundingClientRect().top;
-    if (top < barBottom || top > window.innerHeight - 48) {
-      window.scrollBy(0, top - barBottom);
+    if (rect.top < barBottom) {
+      window.scrollBy(0, rect.top - barBottom);
+    } else if (rect.bottom > window.innerHeight) {
+      window.scrollBy(0, Math.min(rect.bottom - window.innerHeight + 16, rect.top - barBottom));
     }
+  }
+
+  // Keep the CSS's idea of the bar's height true, so focused controls clear it (scroll-margin).
+  function measureBar() {
+    root.style.setProperty("--story-bar-height", root.querySelector(".story-bar").offsetHeight + "px");
   }
 
   function lastSpeaker(lines) {
@@ -1435,9 +1480,10 @@
 
   function syncFull() {
     var on = nativeElement() === root || root.classList.contains("is-expanded");
-    var restore = null;
+    var storyTop = null;
+    var offset;
     if (!on && spacer) {
-      restore = spacer.getBoundingClientRect().top + window.pageYOffset - savedOffset;
+      storyTop = spacer.getBoundingClientRect().top + window.pageYOffset;
       spacer.parentNode.removeChild(spacer);
       spacer = null;
     }
@@ -1453,8 +1499,13 @@
       root.removeAttribute("aria-modal");
       root.removeAttribute("aria-labelledby");
     }
-    if (restore !== null) {
-      window.scrollTo({ top: restore, left: 0, behavior: "instant" });
+    // Put the story back where it was on screen, but never so low (after a rotation) or so
+    // high (after the story got shorter) that it, and the focused button, are out of sight.
+    if (storyTop !== null) {
+      offset = Math.min(savedOffset, window.innerHeight / 2);
+      offset = Math.max(offset, Math.min(0, window.innerHeight - root.offsetHeight));
+      window.scrollTo({ top: storyTop - offset, left: 0, behavior: "instant" });
+      measureBar();
     }
     if (!on) {
       runAfterExit();
@@ -1543,11 +1594,10 @@
       if (!target) {
         return;
       }
-      if (window.location.hash !== hash) {
-        window.location.hash = hash;
-      } else {
-        target.scrollIntoView();
+      if (window.location.hash === hash && window.history && window.history.replaceState) {
+        window.history.replaceState(null, "", window.location.pathname + window.location.search);
       }
+      window.location.hash = hash;
     });
   });
 
@@ -1597,5 +1647,7 @@
     }
   });
 
+  window.addEventListener("resize", measureBar);
+  measureBar();
   render(false);
 })();
