@@ -13,11 +13,14 @@ The site is static and served by GitHub Pages from the root of the `main` branch
 - `site.js` — the support page’s optional breathing pause, private self-check, and sorting game
 - `benchmarks.html`, `benchmarks.css` — the published benchmark rates (the page is generated)
 - `grounding-game.html`, `grounding-game.css`, `grounding-game.js` — the separate five-senses noticing game (hand-written; it uses `styles.css` plus its own rules)
+- `story-game.js`, `story-game.css` — the support page’s short story, *The same week, twice*, with its pixel-art room (hand-written)
 - `library/` — the research library as web pages, one per document (generated)
 - `404.html` — the not-found page (generated)
 - `tools/` — the scripts and data that generate pages and check the site
 
-Nothing in the self-check, the breathing pause, or either game is stored or sent. There is no analytics and no external script or font.
+Nothing in the self-check, the breathing pause, the story, or either game is stored or sent. There is no analytics and no external script or font.
+
+Every line a character says in the story and the games is written in advance. No character is backed by a model, whether hosted or running in the browser, and nothing a reader could type feeds the story. That is a rule for this site, not only how things stand today.
 
 ## What is on the page
 
@@ -45,6 +48,8 @@ The original three paths are unchanged: talk with someone you trust, speak with 
 
 Added cards cover asking sooner for a professional conversation, protecting sleep, coming back to trusted people, how a friend or family member can stay close without pretending to agree, and staying with care a person already has. The page does not tell anyone to start, stop, or change a medication or treatment.
 
+The card for a friend or family member links to the short story further down the page.
+
 ### A quiet pause
 
 The optional slow-breath guide is unchanged. It is not a treatment.
@@ -60,6 +65,16 @@ The section ends with a link to the separate grounding game: five senses, no sco
 Added 28 October 2026, and played on the page itself. Eight example sentences, each something a person might think after a chat, are sorted into what happened on the screen or a meaning added on top. The cards come in pairs, so a plain fact sits beside the meaning someone might add to it: a fast reply, a repeated word, an agreeing answer, and a night that ran until four in the morning.
 
 There is no score. Whichever way a card is sorted, it shows one way to see it, and the close points back to the support section. The cards are about example sentences, never about the reader. They draw on the library’s material on chatbots that agree too readily and on lost sleep.
+
+### A short story: the same week, twice
+
+Added 3 November 2026, and played on the page itself. It can also fill the screen; where a browser cannot do that for part of a page, as on an iPhone, the story covers the page instead, and Escape or the same button closes it.
+
+Rae, a made-up older sibling, has spent a week checking a maths idea with a chat assistant. On Sunday, Rae shows the chat to the reader, who plays the sibling. The week is then shown twice, with the same Rae, the same idea, and one unbranded assistant. In the first week, the replies keep agreeing, the messages run past two in the morning, Rae calls in sick, and the reader’s texts go unanswered. In the second, the replies help with the task, say what they cannot check, notice the hour, and point to a person outside the chat; Rae sleeps, goes to work, and sends the idea to a maths teacher. The close sets the two weeks side by side and says that the idea and the excitement were the same both times. What changed was sleep, work, how sure Rae became, and whether anyone outside the chat saw the work. It adds that a reply is one part of a week, not the whole of it.
+
+Each agreeing reply is short. A label names what it does before it is shown, a narrator summarises anything that would add detail, and a note on the same screen says why it matters. The reader can look closer at things in the room, such as cold mugs, unread texts, and a packed work bag, and a list under the scene collects what they noticed. On the first Sunday, two choices let the reader decide what to say to Rae. Each choice gets a short note, and none of them changes how the week ends. There is no score, “Stop here” is always on screen, and every ending has a person in it.
+
+The story follows the library’s synthetic false-breakthrough scenario (document 11), kept below the point where the framework calls for prompt assessment: two late nights, a missed day of work, and a plan to announce the idea that is never carried out. It leaves out medication, substances, dangerous tests, self-harm, minors, grief, missions, and hidden messages. It is written for friends and family, and kept safe for readers who are worried about themselves. It says plainly that it is not a message to send to someone. The pixel art is inline SVG drawn by the script; the scene has a text description, and everything that matters is in the text. Without JavaScript, the panel tells the same story in a short paragraph.
 
 ### What the research behind this page says
 
