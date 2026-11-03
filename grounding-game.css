@@ -1,157 +1,48 @@
-:root {
-  --paper: #f3eee6;
-  --paper-deep: #e7efe9;
-  --ink: #1b2622;
-  --ink-soft: #3a4741;
-  --sage-900: #1c3b2e;
-  --sage-700: #245041;
-  --sage-100: #e5f1ea;
-  --line: rgba(28, 48, 39, 0.14);
-  --card: #fbf8f3;
-  --shadow: 0 18px 40px rgba(70, 55, 35, 0.06);
-  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
-  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --focus: #1c3b2e;
-  --space: clamp(1.25rem, 4vw, 2.5rem);
-}
+/* The grounding game page. Loaded after styles.css, which supplies the tokens,
+   base typography, header, footer, and buttons. These rules are the game's own,
+   plus the places where the game deliberately differs from the support page. */
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-[hidden] {
-  display: none !important;
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  color: var(--ink);
-  background:
-    radial-gradient(ellipse 52rem 34rem at 110% -8%, rgba(186, 214, 198, 0.55), transparent 62%),
-    radial-gradient(ellipse 42rem 30rem at -12% 8%, rgba(222, 204, 184, 0.5), transparent 58%),
-    var(--paper);
-  font-family: var(--sans);
-  font-size: 1.125rem;
-  line-height: 1.65;
-}
-
-main {
-  flex: 1;
-}
-
-h1,
-h2,
-p {
-  margin-top: 0;
-}
-
-h1,
-h2,
-.wordmark-name,
-.sense-name {
-  font-family: var(--serif);
-  font-weight: 500;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-}
-
-h1 {
-  font-size: clamp(2.4rem, 6vw, 4rem);
-  margin-bottom: 1rem;
-}
-
-h2 {
-  font-size: clamp(1.7rem, 4vw, 2.5rem);
-  margin-bottom: 1rem;
-}
-
-p {
-  margin-bottom: 1rem;
-}
-
-p:last-child {
-  margin-bottom: 0;
-}
-
-a {
-  color: var(--sage-900);
-}
-
-:focus-visible {
-  outline: 3px solid var(--focus);
-  outline-offset: 3px;
-}
-
-::selection {
-  background: #c9ddd2;
-  color: var(--ink);
-}
-
-.skip {
-  position: absolute;
-  left: 1rem;
-  top: -5rem;
-  z-index: 5;
-  background: var(--card);
-  color: var(--ink);
-  padding: 0.6rem 1rem;
-  border-radius: 0.5rem;
-}
-
-.skip:focus {
-  top: 1rem;
-}
-
-.wrap {
-  width: min(72rem, calc(100% - (var(--space) * 2)));
-  margin-inline: auto;
-}
+/* Where the game differs from the support page */
 
 .narrow {
   max-width: 42rem;
 }
 
-.site-header {
-  padding: 1.15rem 0 0.5rem;
+.stage h1 {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  margin-bottom: 1rem;
 }
 
-.header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
+.stage h2 {
+  font-size: clamp(1.7rem, 4vw, 2.5rem);
 }
 
-.wordmark {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  color: inherit;
-  text-decoration: none;
+.stage .eyebrow {
+  margin-bottom: 1rem;
 }
 
-.wordmark-name {
-  font-size: 1.4rem;
+.lede {
+  max-width: 40rem;
 }
 
-.wordmark-note,
-.eyebrow {
+.panel {
+  margin-top: 0;
+}
+
+.panel p {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.panel .eyebrow {
   font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--sage-700);
 }
 
-.text-link {
-  text-underline-offset: 0.22em;
+.actions {
+  margin-top: 0.4rem;
 }
+
+/* Layout */
 
 .stage {
   padding: clamp(1.5rem, 5vw, 3.5rem) 0 clamp(2.5rem, 7vw, 4.5rem);
@@ -163,10 +54,7 @@ a {
   align-items: center;
 }
 
-.lede {
-  font-size: 1.2rem;
-  max-width: 40rem;
-}
+/* Sense choices */
 
 .sense-grid {
   display: grid;
@@ -197,13 +85,19 @@ a {
 }
 
 .sense-name {
+  font-family: var(--serif);
+  font-weight: 500;
   font-size: 1.45rem;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
 }
 
 .sense-hint {
   color: var(--ink-soft);
   font-size: 1rem;
 }
+
+/* The orb. The support page positions its orbs absolutely; this one sits in the flow. */
 
 .mark {
   display: grid;
@@ -212,6 +106,7 @@ a {
 }
 
 .orb {
+  position: static;
   width: min(16rem, 70vw);
   height: min(16rem, 70vw);
   border-radius: 50%;
@@ -242,13 +137,7 @@ a {
   box-shadow: 0 14px 30px rgba(47, 86, 68, 0.1);
 }
 
-.panel {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 1.4rem;
-  box-shadow: var(--shadow);
-  padding: clamp(1.25rem, 3vw, 1.8rem);
-}
+/* The optional note */
 
 label {
   display: block;
@@ -268,63 +157,8 @@ textarea {
   resize: vertical;
 }
 
-.hint,
-.footer-quiet {
+.hint {
   color: var(--ink-soft);
-}
-
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 0.4rem;
-}
-
-.quiet-actions {
-  margin-top: 0.85rem;
-}
-
-.button,
-.text-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 48px;
-  padding: 0.7rem 1.2rem;
-  border-radius: 999px;
-  border: 2px solid var(--sage-900);
-  font: inherit;
-  line-height: 1.2;
-  text-decoration: none;
-  cursor: pointer;
-  background: transparent;
-  color: var(--sage-900);
-}
-
-.button-primary {
-  background: var(--sage-900);
-  color: #f7f4ee;
-}
-
-.button-primary:hover {
-  background: #163228;
-}
-
-.button-secondary:hover,
-.sense:hover {
-  background: rgba(28, 59, 46, 0.06);
-}
-
-.sense:hover {
-  background: var(--sage-100);
-}
-
-.text-button {
-  min-height: 44px;
-  padding: 0.4rem 0.2rem;
-  border-color: transparent;
-  text-decoration: underline;
-  text-underline-offset: 0.22em;
 }
 
 blockquote {
@@ -335,9 +169,27 @@ blockquote {
   border-radius: 0 0.8rem 0.8rem 0;
 }
 
-.site-footer {
-  background: var(--paper-deep);
-  padding: 2.5rem 0 3rem;
+/* Quiet actions */
+
+.quiet-actions {
+  margin-top: 0.85rem;
+}
+
+.text-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.4rem 0.2rem;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  font: inherit;
+  line-height: 1.2;
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+  cursor: pointer;
+  background: transparent;
+  color: var(--sage-900);
 }
 
 @media (min-width: 800px) {
@@ -360,37 +212,11 @@ blockquote {
   }
 }
 
-@keyframes drift {
-  0%,
-  100% {
-    translate: 0 0;
-  }
-  50% {
-    translate: 0 -8px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
 @media (forced-colors: active) {
-  .button,
   .sense,
-  .panel,
   .orb,
   textarea {
     border: 1px solid ButtonText;
     box-shadow: none;
-  }
-
-  .button-primary {
-    background: ButtonText;
-    color: ButtonFace;
   }
 }
