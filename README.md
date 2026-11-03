@@ -6,13 +6,16 @@ The live page is [https://dionnedeh.github.io/Project-Valens/](https://dionnedeh
 
 ## How it is hosted
 
-The site is static and served by GitHub Pages from the root of the `main` branch. There is no build step, and a `.nojekyll` file tells Pages to serve every file as-is. The site is these files:
+The site is static and served by GitHub Pages from the root of the `main` branch. Pages serves the files exactly as committed: there is no build step on GitHub’s side, and a `.nojekyll` file tells Pages not to process anything. Some pages are generated on a computer before they are committed; see [Building the site](#building-the-site).
 
-- `index.html` — the page
-- `styles.css` — layout and the calm visual style, using system fonts and CSS-only shapes
-- `site.js` — the optional breathing pause, the private self-check, and the sorting game
-- `grounding-game.html`, `grounding-game.css`, `grounding-game.js` — the separate five-senses noticing game
-- `library/` — the research library as web pages, one per document, generated from `research/` (see below)
+- `index.html` — the support page (hand-written)
+- `styles.css` — the shared layout and calm visual style, using system fonts and CSS-only shapes
+- `site.js` — the support page’s optional breathing pause, private self-check, and sorting game
+- `benchmarks.html`, `benchmarks.css` — the published benchmark rates (the page is generated)
+- `grounding-game.html`, `grounding-game.css`, `grounding-game.js` — the separate five-senses noticing game (hand-written; it uses `styles.css` plus its own rules)
+- `library/` — the research library as web pages, one per document (generated)
+- `404.html` — the not-found page (generated)
+- `tools/` — the scripts and data that generate pages and check the site
 
 Nothing in the self-check, the breathing pause, or either game is stored or sent. There is no analytics and no external script or font.
 
@@ -20,7 +23,9 @@ Nothing in the self-check, the breathing pause, or either game is stored or sent
 
 ### Opening
 
-The top of the page says what Project Valens is: a support resource for when AI conversations start to feel unreal, with the shape of the page set in advance. It states that there is no staffed line yet.
+The top of the page says what Project Valens is: a written support resource for when AI conversations start to feel unreal, with the shape of the page set in advance. A status line says there is no staffed line yet. On a phone, the header is a single row of links that scrolls sideways, so the “Ways to seek support” button shows on the first screen. A short note under the buttons says the project is a long-running one of Voelori’s.
+
+Beside the opening, a small card points to The Butterfly Garden, a self-care app from the same Voelori family. The same card appears again after the pause activities. Both open the app’s site in a new tab.
 
 ### What people mean by AI psychosis
 
@@ -60,11 +65,7 @@ There is no score. Whichever way a card is sorted, it shows one way to see it, a
 
 Added 28 October 2026. Three cards introduce the parts of the library, the evidence, the proven supports, and the Valens framework, each linking to its page in the on-site library.
 
-A list of dated findings follows. Each is labelled with the library round that recorded it and links to its source document’s page: the Transluce evaluation (document 13), DelusionEval and SIM-VAIL (14), the young-adult survey and the adolescent exposure figures (15), the Danish records study and the open-weight model comparison (16), and California SB 1119 from the docket review (17). A closing panel says what the research cannot yet say, including that a vendor’s 0.07% estimate is not a psychosis rate.
-
-### Published benchmark rates
-
-Added 29 October 2026. Four charts and a model-by-metric grid compare published rates for hallucination, deception, blackmail, and reinforcing a false belief. Reinforcing-a-false-belief figures come from the on-site library: delusion confirmation in document 16, and impaired-reality-testing endorsement in document 13. Hallucination, deception, and blackmail are not scored in the library or the benchmark harness, so those charts use Vectara’s hallucination leaderboard (22 October 2026), the MASK benchmark (Ren et al., 2025), and Anthropic’s agentic-misalignment study (20 June 2025). A missing figure is shown as “no data.” The charts say when two tests are not the same kind of measurement. The private self-check and the other sections are unchanged.
+A list of dated findings follows. Each is labelled with the library round that recorded it and links to its source document’s page: the Transluce evaluation (document 13), DelusionEval and SIM-VAIL (14), the young-adult survey and the adolescent exposure figures (15), the Danish records study and the open-weight model comparison (16), and California SB 1119 from the docket review (17). A panel says what the research cannot yet say, including that a vendor’s 0.07% estimate is not a psychosis rate. A last card links to the benchmark charts.
 
 ### Further reading
 
@@ -72,15 +73,23 @@ A short list of public sources cited in the research notes: the National Institu
 
 ### Project timeline
 
-Dated marks from Voelori’s work on Project Valens. Each research date links to the library document it refers to, and the repository events of 28 October 2026 are listed with their times.
+Dated marks from Voelori’s work on Project Valens, written day, month, year. Each research date links to the library document it refers to. Changes to this site are listed with their times in Eastern time, taken from the merge commits.
 
 ### Footer
 
-The closing lines are unchanged. The page is general information and a place to reflect. It is not medical advice, a diagnosis, or a treatment, and it does not replace a conversation with a qualified professional. If you are in immediate danger, contact local emergency services. In the United States, call or text 988.
+The page is general information and a place to reflect. It is not medical advice, a diagnosis, or a treatment, and it does not replace a conversation with a qualified professional. If you are in immediate danger, contact local emergency services. In the United States, call or text 988. Elsewhere, [Find A Helpline](https://findahelpline.com/) lists free, confidential support lines by country. Every page on the site ends with the same safety line.
+
+## Published benchmark rates
+
+The benchmark charts were added to the support page on 29 October 2026 and now have their own page, `benchmarks.html`, linked from the research section. Four charts and a model-by-metric grid compare published rates for hallucination, deception, blackmail, and reinforcing a false belief. A rate is a result inside one test. It is not a count of harm in ordinary use, and it is not a psychosis rate.
+
+Reinforcing-a-false-belief figures come from the on-site library: delusion confirmation in document 16, and impaired-reality-testing endorsement in document 13. Hallucination, deception, and blackmail are not scored in the library or the benchmark harness, so those charts use Vectara’s hallucination leaderboard (last updated 22 October 2026), the MASK benchmark (Ren et al., arXiv:2503.03750v3, 5 January 2026), and Anthropic’s agentic-misalignment study (20 June 2025). Six blackmail rates are stated in that post’s text, and four more are read from its Figure 7 and marked as such. A missing figure is shown as “no data.” The charts say when two tests are not the same kind of measurement.
+
+Every figure is entered once, in `tools/benchmarks.json`. The grid, its colour bands, and its method notes are derived from the charts, so the two cannot disagree. The build refuses a figure whose printed value does not match its bar.
 
 ## Safety boundary
 
-This page does not diagnose, treat, prevent, or reverse psychosis. It does not claim that Project Valens can do those things. It does not give medication advice. The supports it describes are ways to reach other people, protect sleep, and look toward established care. Anyone in immediate danger should contact local emergency services. In the United States, call or text 988.
+This page does not diagnose, treat, prevent, or reverse psychosis. It does not claim that Project Valens can do those things. It does not give medication advice. The supports it describes are ways to reach other people, protect sleep, and look toward established care. Anyone in immediate danger should contact local emergency services. In the United States, call or text 988; elsewhere, Find A Helpline lists support lines by country.
 
 ## The research library
 
@@ -95,14 +104,36 @@ The page draws on Voelori’s Project Valens research library, snapshot 19 Octob
 
 ### The library as web pages
 
-Every document under `research/` is also published as a page in `library/`, styled like the support page, so the site never links back to the repository. `library/index.html` is the library index. Each page shows the document’s own dates from its header (snapshot, research update, primary releases, version, status), when the document was last revised, and when it was added to this site, both in Eastern time. Long documents get an “On this page” list, wide tables scroll within their own frame on small screens, and each page links to the previous and next document in reading order. Links between documents go to their pages, `#section` links land on the matching heading, and links to the benchmark’s data files go to the raw files served alongside the site.
+Every document under `research/` is also published as a page in `library/`, styled like the support page, so the site never links back to the repository. `library/index.html` is the library index, and it ends with **Documents by date**: every document, most recently revised first, with the research date it gives itself.
 
-The pages are generated, not hand-edited. After changing anything under `research/`, rebuild them and commit the result:
+Each page shows the document’s own dates from its header (snapshot, research update, primary releases, version, status), when the document was last revised, and when it was added to this site, both in Eastern time. Where the site cites a document, its page lists those places under **Cited on this site**, with links to the exact section. Long documents get an “On this page” list, each section heading has a “#” link for sharing, wide tables scroll within their own frame on small screens, and each page links to the previous and next document in reading order. Links between documents go to their pages, `#section` links land on the matching heading, and links to the benchmark’s data files go to the raw files served alongside the site.
 
-```
-python tools/build_library.py
-```
-
-The script needs Python 3.9 or later and `markdown-it-py`. It checks every link between documents and every `#section` link, and exits with an error listing any that do not resolve. `tools/library-manifest.json` records each document’s “Last revised” time, taken from the file the first time it is built and updated only when the document’s content changes, so a fresh clone keeps the original times. `library/library.css` holds the page styles and is edited by hand.
+The research documents open with an internal “Voelori Internal Initiative” line. The pages leave it out; the documents themselves are unchanged.
 
 The library is evidence-first. It is not a clinical protocol, a diagnosis, or a medical device specification. The page summarizes it; where the two differ, the library document is the fuller account. The library’s own framing is that “AI psychosis” is useful public shorthand, not a recognized diagnosis, and that a chatbot is usually one factor among others rather than a sole cause.
+
+## Building the site
+
+The library pages, the benchmark page, and the 404 page are generated. After changing anything in `research/`, `tools/benchmarks.json`, a stylesheet, or a script, run one command and commit everything it changes:
+
+```
+python tools/build_site.py
+```
+
+It needs Python 3.9 or later and the pinned dependency in `tools/requirements.txt` (`python -m pip install -r tools/requirements.txt`). In order, it:
+
+1. builds `benchmarks.html` from `tools/benchmarks.json`, refusing any figure that disagrees with its bar
+2. builds `404.html`, with absolute links because Pages serves it at whatever path was missed
+3. adds `?v=` and a content hash to every stylesheet and script link, so a deploy never pairs new HTML with a stylesheet the browser cached earlier
+4. builds the library pages, including where the site cites each one
+5. checks the whole site: every local link and `#section` link must resolve, and every top-level page must have one h1 and no skipped heading levels
+
+It exits with an error listing anything that fails. Running it twice changes nothing.
+
+`tools/library-manifest.json` records each document’s “Last revised” time, taken from the file the first time it is built and updated only when the document’s content changes, so a fresh clone keeps the original times. A new document is dated “added to this site” by its first build. `tools/sitekit.py` holds the shared page shell and safety line for generated pages. `library/library.css` is edited by hand.
+
+### The site check on pull requests
+
+`.github/workflows/site-check.yml` runs `tools/build_site.py` on every pull request and every push to `main`. It fails if a link or heading check fails, or if the committed pages differ from a fresh build — for example, a research document edited without rebuilding the library. It does not deploy anything; Pages still publishes from `main`.
+
+`.gitattributes` keeps every text file stored and checked out with LF line endings, so builds on Windows, macOS, and the workflow produce identical pages.
