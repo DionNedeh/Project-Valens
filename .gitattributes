@@ -1,0 +1,3 @@
+# Store text with LF line endings and check it out the same way everywhere, so a build on
+# Windows, on macOS, and in the site-check workflow produces byte-identical pages.
+* text=auto eol=lf
