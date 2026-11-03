@@ -133,24 +133,12 @@
   function answerCounts() {
     var yes = 0;
     var answered = 0;
+    var picked = checkRoot.querySelectorAll("input:checked");
     var i;
-    var picked;
-    for (i = 1; i <= 4; i += 1) {
-      picked = checkRoot.querySelector('input[name="q' + i + '"]:checked');
-      if (picked) {
-        answered += 1;
-        if (picked.value === "yes") {
-          yes += 1;
-        }
-      }
-    }
-    for (i = 5; i <= 7; i += 1) {
-      picked = checkRoot.querySelector('input[name="q' + i + '"]:checked');
-      if (picked) {
-        answered += 1;
-        if (picked.value === "yes") {
-          yes += 1;
-        }
+    for (i = 0; i < picked.length; i += 1) {
+      answered += 1;
+      if (picked[i].value === "yes") {
+        yes += 1;
       }
     }
     return { yes: yes, answered: answered };

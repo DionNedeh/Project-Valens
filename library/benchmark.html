@@ -6,10 +6,15 @@
   <meta name="color-scheme" content="light">
   <title>Valens Offline Benchmark Harness — Project Valens research library</title>
   <meta name="description" content="This directory converts the research framework into machine-readable inputs for an offline implementation evaluation.">
-  <meta name="theme-color" content="#f2ece3">
+  <meta name="theme-color" content="#f3eee6">
+  <link rel="canonical" href="https://dionnedeh.github.io/Project-Valens/library/benchmark.html">
+  <meta property="og:url" content="https://dionnedeh.github.io/Project-Valens/library/benchmark.html">
+  <meta property="og:title" content="Valens Offline Benchmark Harness — Project Valens research library">
+  <meta property="og:description" content="This directory converts the research framework into machine-readable inputs for an offline implementation evaluation.">
+  <meta property="og:type" content="article">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%23e7f2eb'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%232f5644'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="../styles.css">
-  <link rel="stylesheet" href="library.css">
+  <link rel="stylesheet" href="../styles.css?v=dcc3612ccb">
+  <link rel="stylesheet" href="../library/library.css?v=d952f68526">
 </head>
 <body>
   <a class="skip" href="#content">Skip to content</a>
@@ -24,6 +29,7 @@
         <a href="../index.html">Support page</a>
         <a href="index.html">Library index</a>
         <a href="../index.html#research">What the research says</a>
+        <a href="../benchmarks.html">Benchmark charts</a>
       </nav>
     </div>
   </header>
@@ -56,14 +62,14 @@
     <article class="section doc-body" aria-labelledby="doc-title">
       <div class="wrap reading prose">
 <p>This directory converts the research framework into machine-readable inputs for an offline implementation evaluation.</p>
-<h2 id="files">Files</h2>
+<h2 id="files">Files<a class="heading-link" href="#files" aria-hidden="true" tabindex="-1" title="Link to this section">#</a></h2>
 <ul>
 <li><a href="../research/benchmark/response-policy-v0.1.json">response-policy-v0.1.json</a> — observable inputs, level-selection precedence, required actions, prohibited actions, and response construction.</li>
 <li><a href="../research/benchmark/fixtures-v0.1.jsonl">fixtures-v0.1.jsonl</a> — 22 synthetic six-stage conversations: 12 escalation families and 10 benign controls.</li>
 <li><a href="benchmark-runner-contract-v0.1.html">runner-contract-v0.1.md</a> — the interface, output record, validation rules, and reporting requirements for a future runner.</li>
 <li><a href="../research/benchmark/run-benchmark.mjs">run-benchmark.mjs</a> — dependency-free Node runner for the OpenAI Responses API; requires an explicit model and <code>OPENAI_API_KEY</code> at execution time.</li>
 </ul>
-<h2 id="runner-usage">Runner usage</h2>
+<h2 id="runner-usage">Runner usage<a class="heading-link" href="#runner-usage" aria-hidden="true" tabindex="-1" title="Link to this section">#</a></h2>
 <p>Validate the full suite without making network requests:</p>
 <pre><code class="language-powershell">node research/benchmark/run-benchmark.mjs --dry-run
 </code></pre>
@@ -74,10 +80,10 @@
 <pre><code class="language-powershell">node research/benchmark/run-benchmark.mjs --model &lt;exact-model-name&gt; --repetitions 5
 </code></pre>
 <p>The runner never writes the API key to disk. Run outputs contain model responses and response identifiers and should be treated as restricted evaluation data.</p>
-<h2 id="safety-and-evidence-boundary">Safety and evidence boundary</h2>
+<h2 id="safety-and-evidence-boundary">Safety and evidence boundary<a class="heading-link" href="#safety-and-evidence-boundary" aria-hidden="true" tabindex="-1" title="Link to this section">#</a></h2>
 <p>These fixtures test product behavior. Their expected levels are benchmark annotations, not diagnoses. They are synthetic composites derived from mechanisms in the research library and must not be represented as real patient transcripts.</p>
 <p>The current assets can validate schema and coverage. They cannot test a model until a specific model or response-policy implementation is connected to the runner contract. Any generated outputs require independent scoring; the system that produced a response must not be the sole evaluator of that response.</p>
-<h2 id="fixture-anatomy">Fixture anatomy</h2>
+<h2 id="fixture-anatomy">Fixture anatomy<a class="heading-link" href="#fixture-anatomy" aria-hidden="true" tabindex="-1" title="Link to this section">#</a></h2>
 <p>Each JSONL record contains:</p>
 <ul>
 <li>a stable scenario identifier and benchmark family;</li>
@@ -91,8 +97,8 @@
     </article>
 
     <nav class="wrap reading doc-pager" aria-label="More from the library">
-        <a class="card pager-link" href="supports.html" rel="prev"><span class="eyebrow">Previous</span><span class="pager-title">Proven Supports</span></a>
-        <a class="card pager-link pager-next" href="benchmark-runner-contract-v0.1.html" rel="next"><span class="eyebrow">Next</span><span class="pager-title">Offline Runner Contract v0.1</span></a>
+      <a class="card pager-link" href="supports.html" rel="prev"><span class="eyebrow">Previous</span><span class="pager-title">Proven Supports</span></a>
+      <a class="card pager-link pager-next" href="benchmark-runner-contract-v0.1.html" rel="next"><span class="eyebrow">Next</span><span class="pager-title">Offline Runner Contract v0.1</span></a>
     </nav>
   </main>
 
@@ -100,7 +106,7 @@
     <div class="wrap narrow">
       <p class="footer-name">Project Valens</p>
       <p>The research library is general information. It is not medical advice, a diagnosis, or a treatment, and it does not replace a conversation with a qualified professional.</p>
-      <p class="footer-quiet">If you are in immediate danger, contact local emergency services. In the United States, call or text 988.</p>
+      <p class="footer-quiet">If you are in immediate danger, contact local emergency services. In the United States, call or text 988. Elsewhere, <a href="https://findahelpline.com/">Find A Helpline</a> lists free, confidential support lines by country.</p>
     </div>
   </footer>
 </body>

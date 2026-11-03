@@ -4,11 +4,14 @@ Run from anywhere:
 
     python tools/build_library.py
 
+(tools/build_site.py runs this along with the rest of the site.)
+
 Writes library/<page>.html for every Markdown document under research/,
 styled like the support page, with each document's own dates, its last
-revision time, and the time it was added to this site. Links between
-documents point at the generated pages; links to data files point at the
-raw files Pages already serves. Nothing links back to the repository.
+revision time, the time it was added to this site, and the places on the
+site that cite it. Links between documents point at the generated pages;
+links to data files point at the raw files Pages already serves. Nothing
+links back to the repository.
 
 tools/library-manifest.json keeps the "Last revised" times stable on a
 fresh clone: a time is taken from the file's mtime only when the file's
@@ -23,18 +26,14 @@ import re
 import subprocess
 import sys
 from datetime import datetime
-from pathlib import Path
-from zoneinfo import ZoneInfo
 
 from markdown_it import MarkdownIt
 
-ROOT = Path(__file__).resolve().parent.parent
+from sitekit import EASTERN, ROOT, esc, human_time, page
+
 RESEARCH = ROOT / "research"
 OUT = ROOT / "library"
 MANIFEST = ROOT / "tools" / "library-manifest.json"
-EASTERN = ZoneInfo("America/New_York")
-MONTHS = ["January", "February", "March", "April", "May", "June", "July",
-          "August", "September", "October", "November", "December"]
 
 # Documents that are not numbered NN-name.md, in reading order after the numbered ones.
 SPECIAL = {
@@ -44,25 +43,19 @@ SPECIAL = {
     "benchmark/runner-contract-v0.1.md": ("benchmark-runner-contract-v0.1.html", "Benchmark harness"),
 }
 
+# Header lines kept in the source documents but not shown on the public pages.
+HIDDEN_KICKERS = {"Voelori Internal Initiative"}
+
+# Pages whose links into the library are listed on each library page as "Cited on this site".
+CITING_PAGES = {"index.html": "Support page", "benchmarks.html": "Benchmark charts"}
+
+# Header fields that carry a document's own research date, in order of preference.
+DATE_FIELDS = ("Project Valens research update", "Research snapshot")
+
 META_LINE = re.compile(r"^\*\*([^*]+?):\*\*\s*(.*?)\s*$")
 KICKER_LINE = re.compile(r"^\*\*([^*:]+)\*\*\s*$")
 NUMBERED = re.compile(r"^(\d\d)-[\w.-]+\.md$")
 SCHEME = re.compile(r"^[a-z][a-z0-9+.-]*:", re.I)
-
-ICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E"
-        "%3Ccircle cx='16' cy='16' r='12' fill='%23e7f2eb'/%3E%3Ccircle cx='16' cy='16' r='6' "
-        "fill='%232f5644'/%3E%3C/svg%3E")
-
-
-def esc(text):
-    return html.escape(text, quote=True)
-
-
-def human_time(iso):
-    dt = datetime.fromisoformat(iso).astimezone(EASTERN)
-    hour = dt.hour % 12 or 12
-    half = "AM" if dt.hour < 12 else "PM"
-    return f"{dt.day} {MONTHS[dt.month - 1]} {dt.year}, {hour}:{dt.minute:02d} {half} ET"
 
 
 class Slugger:
@@ -79,8 +72,10 @@ class Slugger:
 
 
 def plain_text(inline_token):
-    return "".join(child.content for child in inline_token.children or []
-                   if child.type in ("text", "code_inline"))
+    # A wrapped source line (softbreak) must not glue two words together.
+    return "".join(" " if child.type in ("softbreak", "hardbreak") else child.content
+                   for child in inline_token.children or []
+                   if child.type in ("text", "code_inline", "softbreak", "hardbreak"))
 
 
 def split_document(text, rel):
@@ -145,10 +140,35 @@ def timestamps(rel, raw, manifest):
         entry["sha256"] = digest
         entry["revised"] = datetime.fromtimestamp(mtime, tz=EASTERN).isoformat(timespec="minutes")
     if not entry.get("added"):
-        added = git_added(f"research/{rel}")
-        if added:
-            entry["added"] = added
+        # A document committed earlier keeps its commit time; a new one is dated by its
+        # first build, so committing it does not change the page again.
+        entry["added"] = (git_added(f"research/{rel}")
+                          or datetime.now(tz=EASTERN).isoformat(timespec="seconds"))
     return entry
+
+
+def citations():
+    """Map each library page name to the site sections that link to it."""
+    cites = {}
+    for name, page_label in CITING_PAGES.items():
+        path = ROOT / name
+        if not path.exists():
+            continue
+        text = path.read_text(encoding="utf-8")
+        anchors = [(m.start(), m.group(1), m.group(2))
+                   # Section headings only (h1/h2), so a link is never credited to a hidden panel's h3.
+                   for m in re.finditer(r'<h[12][^>]*\bid="([^"]+)"[^>]*>(.*?)</h[12]>', text, re.S)]
+        for link in re.finditer(r'href="library/([^"#]+)', text):
+            before = [a for a in anchors if a[0] < link.start()]
+            if not before:
+                continue
+            _, anchor_id, heading = before[-1]
+            heading = html.unescape(" ".join(re.sub(r"<[^>]+>", "", heading).split()))
+            entry = (f"../{name}#{anchor_id}", f"{page_label}: {heading}")
+            cites.setdefault(link.group(1), [])
+            if entry not in cites[link.group(1)]:
+                cites[link.group(1)].append(entry)
+    return cites
 
 
 class Builder:
@@ -161,6 +181,7 @@ class Builder:
         self.md = MarkdownIt("commonmark", {"html": False}).enable(["table", "strikethrough"])
         self.md.add_render_rule("table_open", self._table_open)
         self.md.add_render_rule("table_close", self._table_close)
+        self.md.add_render_rule("heading_close", self._heading_close)
 
     @staticmethod
     def _table_open(renderer, tokens, idx, options, env):
@@ -170,6 +191,19 @@ class Builder:
     @staticmethod
     def _table_close(renderer, tokens, idx, options, env):
         return renderer.renderToken(tokens, idx, options, env) + "</div>\n"
+
+    @staticmethod
+    def _heading_close(renderer, tokens, idx, options, env):
+        # heading_open, inline, heading_close: give h2 and h3 a permalink.
+        opening = tokens[idx - 2]
+        slug = opening.attrGet("id")
+        link = ""
+        if slug and opening.tag in ("h2", "h3"):
+            # Hidden from assistive tech and the tab order so it does not join the heading's
+            # accessible name; keyboard readers have the "On this page" list instead.
+            link = (f'<a class="heading-link" href="#{esc(slug)}" aria-hidden="true" tabindex="-1" '
+                    f'title="Link to this section">#</a>')
+        return link + renderer.renderToken(tokens, idx, options, env)
 
     def rewrite(self, href, rel):
         if not href or href.startswith("#") or SCHEME.match(href):
@@ -181,7 +215,7 @@ class Builder:
             if fragment:
                 self.anchor_links.append((rel, new, fragment))
         else:
-            if not (RESEARCH / target).resolve().exists():
+            if not (RESEARCH / target).resolve().is_file():
                 self.problems.append(f"{rel}: link to missing file {href}")
             new = posixpath.normpath("../research/" + target)
         return new + ("#" + fragment if fragment else "")
@@ -222,9 +256,9 @@ class Builder:
         return self.md.renderer.render(tokens, self.md.options, {}), contents, description
 
     def check_anchors(self):
-        for rel, page, fragment in self.anchor_links:
-            if fragment not in self.ids.get(page, set()):
-                self.problems.append(f"{rel}: no heading #{fragment} in {page}")
+        for rel, page_name, fragment in self.anchor_links:
+            if fragment not in self.ids.get(page_name, set()):
+                self.problems.append(f"{rel}: no heading #{fragment} in {page_name}")
 
 
 def shorten(text, limit=158):
@@ -234,12 +268,34 @@ def shorten(text, limit=158):
     return text[:limit].rsplit(" ", 1)[0].rstrip(",;:") + "…"
 
 
-def page_html(*, title, eyebrow, kickers, meta_rows, contents, body, description, snapshot, name, prev, nxt):
-    current = ' aria-current="page"' if name == "index.html" else ""
+def research_date(meta):
+    fields = dict(meta)
+    for label in DATE_FIELDS:
+        if fields.get(label):
+            return fields[label]
+    return None
+
+
+def documents_by_date(entries):
+    """The library index's table of every document, most recently revised first."""
+    rows = []
+    for name, title, stated, revised in sorted(entries, key=lambda e: e[3], reverse=True):
+        rows.append(f'<tr><td><a href="{name}">{esc(title)}</a></td>'
+                    f'<td>{esc(stated) if stated else "—"}</td>'
+                    f'<td><time datetime="{revised}">{human_time(revised)}</time></td></tr>')
+    return ('<h2 id="documents-by-date">Documents by date'
+            '<a class="heading-link" href="#documents-by-date" aria-hidden="true" tabindex="-1" '
+            'title="Link to this section">#</a></h2>\n'
+            '<p>Every document in the library, most recently revised first. The research date is the one '
+            'the document gives itself, where it gives one.</p>\n'
+            '<div class="table-wrap" role="region" tabindex="0" aria-label="Documents by date">\n'
+            '<table>\n<thead><tr><th>Document</th><th>Research date</th><th>Last revised</th></tr></thead>\n'
+            '<tbody>\n' + "\n".join(rows) + '\n</tbody>\n</table>\n</div>\n')
+
+
+def doc_main(*, title, eyebrow, kickers, meta_rows, contents, body, snapshot, prev, nxt):
     kicker_html = "".join(f'\n        <p class="doc-kicker">{esc(text)}</p>' for text in kickers)
-    rows = "\n".join(
-        f'          <div><dt>{esc(label)}</dt><dd>{value}</dd></div>' for label, value in meta_rows
-    )
+    rows = "\n".join(f'          <div><dt>{esc(label)}</dt><dd>{value}</dd></div>' for label, value in meta_rows)
     toc = ""
     if len(contents) >= 3:
         items = "\n".join(f'            <li><a href="#{esc(slug)}">{esc(text)}</a></li>'
@@ -253,44 +309,13 @@ def page_html(*, title, eyebrow, kickers, meta_rows, contents, body, description
         </nav>"""
     pager = []
     if prev:
-        pager.append(f'        <a class="card pager-link" href="{prev[0]}" rel="prev"><span class="eyebrow">Previous</span>'
+        pager.append(f'      <a class="card pager-link" href="{prev[0]}" rel="prev"><span class="eyebrow">Previous</span>'
                      f'<span class="pager-title">{esc(prev[1])}</span></a>')
     if nxt:
-        pager.append(f'        <a class="card pager-link pager-next" href="{nxt[0]}" rel="next"><span class="eyebrow">Next</span>'
+        pager.append(f'      <a class="card pager-link pager-next" href="{nxt[0]}" rel="next"><span class="eyebrow">Next</span>'
                      f'<span class="pager-title">{esc(nxt[1])}</span></a>')
     pager_html = "\n".join(pager)
-    return f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="light">
-  <title>{esc(title)} — Project Valens research library</title>
-  <meta name="description" content="{esc(shorten(description))}">
-  <meta name="theme-color" content="#f2ece3">
-  <link rel="icon" href="{ICON}">
-  <link rel="stylesheet" href="../styles.css">
-  <link rel="stylesheet" href="library.css">
-</head>
-<body>
-  <a class="skip" href="#content">Skip to content</a>
-
-  <header class="site-header">
-    <div class="wrap wide header-inner">
-      <a class="wordmark" href="../index.html">
-        <span class="wordmark-name">Project Valens</span>
-        <span class="wordmark-note">Research library</span>
-      </a>
-      <nav class="nav" aria-label="Library">
-        <a href="../index.html">Support page</a>
-        <a href="index.html"{current}>Library index</a>
-        <a href="../index.html#research">What the research says</a>
-      </nav>
-    </div>
-  </header>
-
-  <main id="content">
-    <section class="doc-head" aria-labelledby="doc-title">
+    return f"""    <section class="doc-head" aria-labelledby="doc-title">
       <div class="wrap reading">
         <p class="eyebrow">{esc(eyebrow)}</p>
         <h1 id="doc-title">{esc(title)}</h1>{kicker_html}
@@ -308,19 +333,7 @@ def page_html(*, title, eyebrow, kickers, meta_rows, contents, body, description
 
     <nav class="wrap reading doc-pager" aria-label="More from the library">
 {pager_html}
-    </nav>
-  </main>
-
-  <footer class="site-footer">
-    <div class="wrap narrow">
-      <p class="footer-name">Project Valens</p>
-      <p>The research library is general information. It is not medical advice, a diagnosis, or a treatment, and it does not replace a conversation with a qualified professional.</p>
-      <p class="footer-quiet">If you are in immediate danger, contact local emergency services. In the United States, call or text 988.</p>
-    </div>
-  </footer>
-</body>
-</html>
-"""
+    </nav>"""
 
 
 def main():
@@ -336,24 +349,53 @@ def main():
     if not snapshot:
         sys.exit("research/README.md has no '**Research snapshot:**' line in its header")
     titles = {name: parsed[rel][1] for rel, name, _ in pages}
+    stamps = {rel: timestamps(rel, parsed[rel][0], manifest) for rel, _, _ in pages}
+    cited = citations()
 
     OUT.mkdir(exist_ok=True)
     written = set()
     for i, (rel, name, eyebrow) in enumerate(pages):
         raw, title, kickers, meta, body = parsed[rel]
-        stamps = timestamps(rel, raw, manifest)
+        entry = stamps[rel]
         meta_rows = [(label, builder.render_inline(value, rel)) for label, value in meta]
         meta_rows.append(("Last revised",
-                          f'<time datetime="{stamps["revised"]}">{human_time(stamps["revised"])}</time>'))
-        if stamps.get("added"):
-            meta_rows.append(("Added to this site",
-                              f'<time datetime="{stamps["added"]}">{human_time(stamps["added"])}</time>'))
+                          f'<time datetime="{entry["revised"]}">{human_time(entry["revised"])}</time>'))
+        meta_rows.append(("Added to this site",
+                          f'<time datetime="{entry["added"]}">{human_time(entry["added"])}</time>'))
+        if cited.get(name):
+            items = "".join(f'<li><a href="{href}">{esc(label)}</a></li>' for href, label in cited[name])
+            meta_rows.append(("Cited on this site", f'<ul class="cite-list">{items}</ul>'))
         body_html, contents, description = builder.render_body(body, rel, name)
+        if name == "index.html":
+            body_html += documents_by_date(
+                (n, titles[n], research_date(parsed[r][3]), stamps[r]["revised"])
+                for r, n, _ in pages if n != "index.html")
+            contents.append(("Documents by date", "documents-by-date"))
+            builder.ids[name].add("documents-by-date")
         prev = (pages[i - 1][1], titles[pages[i - 1][1]]) if i > 0 else None
         nxt = (pages[i + 1][1], titles[pages[i + 1][1]]) if i + 1 < len(pages) else None
-        document = page_html(title=title, eyebrow=eyebrow, kickers=kickers, meta_rows=meta_rows, contents=contents,
-                             body=body_html, description=description or title, snapshot=snapshot,
-                             name=name, prev=prev, nxt=nxt)
+        main_html = doc_main(title=title, eyebrow=eyebrow,
+                             kickers=[k for k in kickers if k not in HIDDEN_KICKERS],
+                             meta_rows=meta_rows, contents=contents, body=body_html,
+                             snapshot=snapshot, prev=prev, nxt=nxt)
+        document = page(
+            title=f"{title} — Project Valens research library",
+            description=shorten(description or title),
+            path=f"library/{name}",
+            main=main_html,
+            prefix="../",
+            stylesheets=("styles.css", "library/library.css"),
+            wordmark_note="Research library",
+            nav_label="Library",
+            nav=(("../index.html", "Support page", False),
+                 ("index.html", "Library index", name == "index.html"),
+                 ("../index.html#research", "What the research says", False),
+                 ("../benchmarks.html", "Benchmark charts", False)),
+            og_type="article",
+            footer_lead="The research library is general information. It is not medical advice, "
+                        "a diagnosis, or a treatment, and it does not replace a conversation with a "
+                        "qualified professional.",
+        )
         (OUT / name).write_text(document, encoding="utf-8", newline="\n")
         written.add(name)
 

@@ -14,3 +14,6 @@ research/benchmark/runs/
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# Python bytecode from the build scripts
+__pycache__/

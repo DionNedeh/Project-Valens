@@ -229,6 +229,34 @@
   text-underline-offset: 0.22em;
 }
 
+/* Section permalinks: quiet until the heading is hovered or the link is focused. */
+.heading-link {
+  margin-left: 0.45rem;
+  font-family: var(--sans);
+  font-size: 0.7em;
+  font-weight: 400;
+  color: var(--sage-700);
+  text-decoration: none;
+  opacity: 0.35;
+}
+
+.prose h2:hover .heading-link,
+.prose h3:hover .heading-link,
+.heading-link:focus-visible {
+  opacity: 1;
+}
+
+/* "Cited on this site" in the document header. */
+.cite-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cite-list li + li {
+  margin-top: 0.25rem;
+}
+
 @media (min-width: 700px) {
   .doc-pager {
     grid-template-columns: repeat(2, minmax(0, 1fr));
