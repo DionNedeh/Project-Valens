@@ -62,7 +62,8 @@ def page(*, title, description, path, main, prefix="", stylesheets=("styles.css"
          scripts=()):
     """A full HTML page in the site's shell.
 
-    path is the page's URL path under SITE_URL, used for the canonical link.
+    path is the page's URL path under SITE_URL, used for the canonical link (None: no
+    canonical or og:url, as for the 404 page, which is served at whatever path was missed).
     nav is a sequence of (href, label, is_current).
     """
     links = "\n".join(f'  <link rel="stylesheet" href="{asset(s, prefix)}">' for s in stylesheets)
@@ -72,7 +73,12 @@ def page(*, title, description, path, main, prefix="", stylesheets=("styles.css"
         f'        <a href="{href}"{current_attr if current else ""}>{esc(label)}</a>'
         for href, label, current in nav
     )
-    canonical = SITE_URL + path
+    if path is None:
+        place = ""
+    else:
+        url = SITE_URL + path
+        place = (f'\n  <link rel="canonical" href="{url}">'
+                 f'\n  <meta property="og:url" content="{url}">')
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,12 +87,10 @@ def page(*, title, description, path, main, prefix="", stylesheets=("styles.css"
   <meta name="color-scheme" content="light">
   <title>{esc(title)}</title>
   <meta name="description" content="{esc(description)}">
-  <meta name="theme-color" content="#f3eee6">
-  <link rel="canonical" href="{canonical}">
+  <meta name="theme-color" content="#f3eee6">{place}
   <meta property="og:title" content="{esc(title)}">
   <meta property="og:description" content="{esc(description)}">
   <meta property="og:type" content="{og_type}">
-  <meta property="og:url" content="{canonical}">
   <link rel="icon" href="{ICON}">
 {links}
 </head>
