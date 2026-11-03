@@ -8,8 +8,9 @@
   --story-warm: #a9583b;
   --story-warm-soft: #f7e3d9;
   --story-mono: ui-monospace, "SFMono-Regular", "Cascadia Mono", Menlo, Consolas, monospace;
+  --story-bar-height: 4.25rem;
   margin-top: 1.75rem;
-  padding: 0.6rem;
+  padding: 0 0.6rem 0.6rem;
   border-radius: 1.4rem;
   background: var(--story-frame);
   box-shadow: var(--shadow);
@@ -20,7 +21,7 @@
   background: #1f2d27;
 }
 
-/* Without JavaScript, only the short summary in the panel shows. */
+/* Until the script runs (or if it never does), only the short summary in the panel shows. */
 .story:not(.is-ready) .story-view,
 .story:not(.is-ready) .story-bar-actions,
 .story:not(.is-ready) .story-actions {
@@ -35,15 +36,21 @@
   min-height: 0;
 }
 
-/* The bar above the scene */
+/* The bar above the scene. On the page it stays at the top of the screen while the
+   story is in view, so "Stop here" and "Full screen" are always within reach. */
 
 .story-bar {
+  position: sticky;
+  top: 0;
+  z-index: 3;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem 1rem;
-  padding: 0.15rem 0.2rem 0.6rem 0.55rem;
+  padding: 0.6rem 0.2rem 0.6rem 0.55rem;
+  border-radius: 0 0 0.8rem 0.8rem;
+  background: var(--story-frame);
   color: var(--story-light);
 }
 
@@ -114,6 +121,7 @@
   overflow: hidden;
   border-radius: 0.8rem;
   background: var(--story-scene);
+  container-type: inline-size;
 }
 
 .story-art {
@@ -123,45 +131,25 @@
   forced-color-adjust: none;
 }
 
+/* A ring around the thing to look at, so the thing itself stays visible. It scales with
+   the scene, and goes once the thing has been looked at. */
 .story-spot {
   position: absolute;
   width: 2.75rem;
   height: 2.75rem;
+  width: clamp(1.75rem, 9cqw, 2.75rem);
+  height: clamp(1.75rem, 9cqw, 2.75rem);
   padding: 0;
   transform: translate(-50%, -50%);
   border: 3px solid #fbf8f3;
   border-radius: 50%;
-  background: rgba(28, 59, 46, 0.62);
-  box-shadow: 0 0 0 2px #1c3b2e, 0 6px 14px rgba(0, 0, 0, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 0 2px #1c3b2e, inset 0 0 0 1px #1c3b2e;
   cursor: pointer;
 }
 
-.story-spot::before,
-.story-spot::after {
-  content: "";
-  position: absolute;
-}
-
-.story-spot::before {
-  left: 0.55rem;
-  top: 0.5rem;
-  width: 0.85rem;
-  height: 0.85rem;
-  border: 3px solid #fbf8f3;
-  border-radius: 50%;
-}
-
-.story-spot::after {
-  left: 1.45rem;
-  top: 1.35rem;
-  width: 3px;
-  height: 0.55rem;
-  background: #fbf8f3;
-  transform: rotate(-45deg);
-}
-
 .story-spot.is-seen {
-  opacity: 0.45;
+  display: none;
 }
 
 /* What you noticed, under the scene */
@@ -180,12 +168,17 @@
 }
 
 .story-journal .story-journal-title,
-.story-journal .story-journal-week {
+.story-journal-week,
+.story-recap-title {
   margin-bottom: 0.4rem;
   font-family: var(--story-mono);
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.story-journal .story-journal-title,
+.story-journal .story-journal-week {
   color: #cfe0d6;
 }
 
@@ -211,6 +204,32 @@
   border: 1px solid rgba(243, 238, 230, 0.4);
   border-radius: 0.4rem;
   background: rgba(243, 238, 230, 0.08);
+}
+
+/* The same list inside the panel at the close, for screens where the one under the scene
+   is left out for room (see the full-screen rules below). */
+.story-recap {
+  display: none;
+  margin-bottom: 0.9rem;
+  padding: 0.7rem 0.9rem 0.8rem;
+  border-radius: 0.7rem;
+  background: #f1f6f2;
+}
+
+.story-panel .story-recap-title,
+.story-panel .story-recap .story-journal-week {
+  margin: 0 0 0.35rem;
+  color: var(--ink-soft);
+}
+
+.story-panel .story-recap .story-journal-week {
+  margin-top: 0.5rem;
+}
+
+.story-recap .story-journal-list li {
+  border-color: var(--line);
+  background: #ffffff;
+  font-size: 0.92rem;
 }
 
 .story-side {
@@ -262,6 +281,14 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--sage-700);
+}
+
+/* Room for the sticky bar when a heading or answer is scrolled into view. (The shared
+   h3[id] rule in styles.css would otherwise win.) */
+.story .story-title,
+.story .story-feedback,
+.story .story-look-text {
+  scroll-margin-top: calc(var(--story-bar-height) + 0.5rem);
 }
 
 .story-title {
@@ -330,15 +357,9 @@
   border-radius: 0.45rem;
   background: #eef3ef;
   font-family: var(--story-mono);
-  font-size: 0.72rem;
+  font-size: 0.76rem;
   line-height: 1.2;
   text-align: center;
-}
-
-.story-time.is-late {
-  border-color: #2b3550;
-  background: #2b3550;
-  color: var(--story-light);
 }
 
 .story-time-day {
@@ -346,6 +367,12 @@
   align-items: center;
   gap: 0.3rem;
   font-weight: 700;
+}
+
+.story-time.is-late {
+  border-color: #2b3550;
+  background: #2b3550;
+  color: var(--story-light);
 }
 
 .story-time.is-late .story-time-day::before {
@@ -433,7 +460,7 @@
   background: var(--story-warm-soft);
   color: #6e2f1a;
   font-family: var(--story-mono);
-  font-size: 0.74rem;
+  font-size: 0.8rem;
   font-weight: 700;
   line-height: 1.4;
 }
@@ -626,7 +653,71 @@
   font-weight: 600;
 }
 
-/* Wider screens: the scene beside the panel */
+/* Small phones: less padding, and the comparison stacks with each week named. */
+
+@media (max-width: 24rem) {
+  .story {
+    padding: 0 0.35rem 0.35rem;
+    border-radius: 1rem;
+  }
+
+  .story-panel {
+    padding: 0.9rem 0.75rem 1rem;
+  }
+
+  .story-msg {
+    margin: 0.45rem;
+  }
+
+  .story-compare thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  .story-compare tr,
+  .story-compare th,
+  .story-compare td {
+    display: block;
+  }
+
+  .story-compare tbody th {
+    padding: 0.6rem 0 0.15rem;
+    border: 0;
+  }
+
+  .story-compare td {
+    padding: 0.1rem 0 0.1rem 0.6rem;
+    border: 0;
+  }
+
+  .story-compare tr {
+    padding-bottom: 0.45rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .story-compare td::before {
+    content: attr(data-week) ": ";
+    font-weight: 600;
+  }
+}
+
+/* Wider screens, and phones held sideways: the scene beside the panel */
+
+@media (min-width: 40rem) and (max-height: 32rem) {
+  .story-stage {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .story-view {
+    position: sticky;
+    top: var(--story-bar-height);
+  }
+}
 
 @media (min-width: 52rem) {
   .story-stage {
@@ -636,7 +727,7 @@
 
   .story-view {
     position: sticky;
-    top: 1rem;
+    top: var(--story-bar-height);
   }
 
   .story-panel {
@@ -662,12 +753,17 @@ html.story-locked body {
   height: 100dvh;
   margin: 0;
   padding:
-    max(0.6rem, env(safe-area-inset-top))
+    0
     max(0.6rem, env(safe-area-inset-right))
     max(0.6rem, env(safe-area-inset-bottom))
     max(0.6rem, env(safe-area-inset-left));
   overflow: hidden;
   border-radius: 0;
+}
+
+.story.is-full .story-bar {
+  position: static;
+  padding-top: max(0.6rem, env(safe-area-inset-top));
 }
 
 .story.is-full .story-stage {
@@ -678,16 +774,22 @@ html.story-locked body {
   align-items: stretch;
 }
 
+/* Upright screens: the scene on top, the panel scrolling below it. The noticed list is
+   left out for room, and the close repeats it inside the panel instead. */
 .story.is-full .story-view {
   position: relative;
   top: auto;
   justify-self: center;
+  width: min(100%, calc(42vh * 16 / 9));
   width: min(100%, calc(42dvh * 16 / 9));
 }
 
-/* Upright screens are short on room in full screen: the panel lists each notice anyway. */
 .story.is-full .story-journal {
   display: none;
+}
+
+.story.is-full .story-recap {
+  display: block;
 }
 
 .story.is-full .story-side {
@@ -702,25 +804,80 @@ html.story-locked body {
   font-size: 1.05rem;
 }
 
+/* Wide screens: the scene beside the panel. */
 @media (min-aspect-ratio: 5 / 4) {
   .story.is-full .story-stage {
-    grid-template-columns: minmax(0, 1.5fr) minmax(20rem, 1fr);
+    grid-template-columns: minmax(0, 1.5fr) minmax(min(20rem, 100%), 1fr);
     grid-template-rows: minmax(0, 1fr);
   }
 
   .story.is-full .story-view {
     align-self: center;
+    justify-content: center;
+    min-height: 0;
+    max-height: 100%;
+    width: min(100%, calc((100vh - 5.5rem) * 16 / 9));
+    width: min(100%, calc((100dvh - 5.5rem) * 16 / 9));
+  }
+
+  .story.is-full .story-scene {
+    flex: none;
+  }
+}
+
+/* Wide and tall enough: the noticed list fits under the scene again, and scrolls if long. */
+@media (min-aspect-ratio: 5 / 4) and (min-height: 32.0625rem) {
+  .story.is-full .story-view {
+    width: min(100%, calc((100vh - 11rem) * 16 / 9));
     width: min(100%, calc((100dvh - 11rem) * 16 / 9));
   }
 
   .story.is-full .story-journal {
     display: block;
+    min-height: 0;
+    overflow-y: auto;
+  }
+
+  .story.is-full .story-recap {
+    display: none;
   }
 }
 
-/* On a phone in full screen, the bar keeps to one row. */
+/* Screens both short and narrow, such as a page zoomed to 300 or 400 percent: one column,
+   and the whole story scrolls under a bar that stays put. A phone held sideways is wide
+   enough for the two-column view above. */
+@media (max-height: 22rem) and (max-width: 36rem) {
+  .story.is-full {
+    overflow-y: auto;
+  }
+
+  .story.is-full .story-bar {
+    position: sticky;
+    top: 0;
+  }
+
+  .story.is-full .story-stage {
+    flex: none;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+  }
+
+  .story.is-full .story-view {
+    align-self: auto;
+    justify-self: center;
+    width: min(100%, 24rem);
+  }
+
+  .story.is-full .story-panel {
+    flex: none;
+    overflow: visible;
+  }
+}
+
+/* On a phone, the bar keeps to one row: its title is the section heading just above it,
+   so it is hidden from sight but kept for the full-screen dialog's name. */
 @media (max-width: 34rem) {
-  .story.is-full .story-bar-title {
+  .story-bar-title {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -729,7 +886,7 @@ html.story-locked body {
     white-space: nowrap;
   }
 
-  .story.is-full .story-bar {
+  .story-bar {
     justify-content: flex-end;
   }
 }
@@ -764,18 +921,38 @@ html.story-locked body {
   .story-time,
   .story-note,
   .story-journal,
+  .story-recap,
   .story-spot {
     border: 1px solid CanvasText;
   }
 
   .story-choice[aria-pressed="true"] {
+    forced-color-adjust: none;
+    border-color: HighlightText;
     background: Highlight;
     color: HighlightText;
+  }
+
+  .story-time.is-late {
+    border: 3px double CanvasText;
+  }
+
+  .story-time.is-late .story-time-day::before {
+    forced-color-adjust: none;
+    background: CanvasText;
+    box-shadow: none;
   }
 }
 
 @media print {
-  .story {
+  .story,
+  .story.is-full,
+  .story-spacer {
     display: none;
+  }
+
+  html.story-locked,
+  html.story-locked body {
+    overflow: visible;
   }
 }
