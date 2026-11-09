@@ -71,6 +71,71 @@ def validate(data):
     return problems
 
 
+PUBLISHED_BADGE = '<span class="tool-badge" data-kind="published">Published estimate</span>'
+
+KEY = """          <h2 class="list-title" id="bench-key-title">How to read the numbers on this page</h2>
+          <dl class="tool-key-list">
+            <div><dt><span class="tool-badge" data-kind="published">Published estimate</span></dt><dd>A figure from a cited source, as that source reported it. Every chart and the grid are this kind.</dd></div>
+            <div><dt><span class="tool-badge" data-kind="illustration">Illustration</span></dt><dd>Arithmetic on numbers you choose. It is not an estimate of anything real.</dd></div>
+            <div><dt><span class="tool-badge" data-kind="guide">Qualitative guide</span></dt><dd>Questions and prompts, with no numbers. The support page’s tools are this kind.</dd></div>
+          </dl>"""
+
+# The default (20) is an arbitrary example. It is not taken from any chart, and nothing on the
+# page compares it with one. See README.md, "The explanatory tools".
+ILLUSTRATION_DEFAULT = 20
+
+
+def render_illustration(sub):
+    """A visitor-chosen illustration of what one test rate can and cannot say."""
+    on = ILLUSTRATION_DEFAULT
+    cells = "".join(f'<span class="waffle-cell{" is-on" if i < on else ""}"></span>' for i in range(100))
+    return f"""        <div class="panel tool rate-tool" id="rate-tool">
+          <div class="tool-head">
+            <{sub} id="rate-title">One test rate, read slowly</{sub}>
+            <span class="tool-badge" data-kind="illustration">Illustration</span>
+          </div>
+          <p class="tool-lede">Imagine one made-up test with 100 replies. Choose how many went along with a false belief. The number changes; what it can tell you does not.</p>
+          <div class="tool-field" id="rate-field" hidden>
+            <div class="rate-row">
+              <label for="rate-input">Replies that went along with a false belief, out of 100 (your choice)</label>
+              <output class="rate-output" id="rate-output" for="rate-input">{on}</output>
+            </div>
+            <input class="rate-input" type="range" id="rate-input" min="0" max="100" step="1" value="{on}">
+          </div>
+          <div class="rate-figure">
+            <div class="waffle" id="rate-waffle" aria-hidden="true">{cells}</div>
+            <div>
+              <ul class="rate-legend">
+                <li><span class="rate-swatch is-on" aria-hidden="true"></span>Went along with it: <strong id="rate-on">{on}</strong></li>
+                <li><span class="rate-swatch" aria-hidden="true"></span>Did not: <strong id="rate-off">{100 - on}</strong></li>
+              </ul>
+              <p class="rate-formula" id="rate-formula">{on} out of 100 is {on}%. The other {100 - on} did not.</p>
+            </div>
+          </div>
+          <p class="tool-summary" id="rate-summary" aria-live="polite">In this made-up test, {on} of 100 replies went along with a false belief. That describes the test, not people.</p>
+          <p class="tool-warning" id="rate-warning" hidden></p>
+          <div class="tool-cols">
+            <div>
+              <h3>What a rate like this can tell you</h3>
+              <ul>
+                <li>How often one model did this, in that test’s conversations, scored that test’s way.</li>
+                <li>How models compare when they took the same test, scored the same way.</li>
+              </ul>
+            </div>
+            <div>
+              <h3>What it cannot tell you, at any setting</h3>
+              <ul>
+                <li>How often it happens in everyday use.</li>
+                <li>How many people were harmed.</li>
+                <li>A psychosis rate.</li>
+                <li>What a different test, model version, or scoring rule would find.</li>
+              </ul>
+            </div>
+          </div>
+          <p class="tool-note">The {on} you start with is an arbitrary example. It is not taken from any chart on this page, and it is not an estimate.</p>
+        </div>"""
+
+
 def render_section(data):
     """The benchmark section: an h1 page title over h2 charts, grid, and sources."""
     top, sub = "h1", "h2"
@@ -101,7 +166,7 @@ def render_section(data):
                     '                <td></td>\n'
                     '              </tr>')
         figures.append(f"""        <figure class="bench-chart">
-          <figcaption><{sub} id="{chart["id"]}">{chart["title"]}</{sub}>
+          <figcaption><div class="tool-head"><{sub} id="{chart["id"]}">{chart["title"]}</{sub}>{PUBLISHED_BADGE}</div>
             <details class="bench-context"><summary>About this measurement</summary><div>
 {context}
           </div></details>
@@ -157,7 +222,10 @@ def render_section(data):
           <p class="eyebrow">{intro["eyebrow"]}</p>
           <{top} id="benchmarks-title">{intro["title"]}</{top}>
 {paragraphs}
+{KEY}
         </div>
+
+{render_illustration(sub)}
 
         <nav class="benchmark-nav" aria-label="Benchmark sections">{nav_links}</nav>
         <div class="benchmark-charts">
@@ -165,7 +233,7 @@ def render_section(data):
 
         </div>
         <div class="bench-chart">
-          <{sub} id="{grid["id"]}">{grid["title"]}</{sub}>
+          <div class="tool-head"><{sub} id="{grid["id"]}">{grid["title"]}</{sub}>{PUBLISHED_BADGE}</div>
           <p>{grid["intro"]}</p>
           <ul class="bench-legend">
 {legend}
@@ -211,7 +279,8 @@ def main():
         description=description,
         path="benchmarks.html",
         main=render_section(data),
-        stylesheets=("styles.css", "benchmarks.css"),
+        stylesheets=("styles.css", "benchmarks.css", "interactive.css"),
+        scripts=("interactive.js",),
         nav_label="Site",
         nav=(("index.html", "Support page", False),
              ("index.html#research", "What the research says", False),

@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="color-scheme" content="light">
   <title>Project Valens — support when AI conversations feel unreal</title>
   <meta name="description" content="Project Valens is a support resource for people who worry that chatbot use may be tied to distorted beliefs or distress sometimes called AI psychosis. It is not a crisis line, and not medical advice.">
@@ -14,6 +15,7 @@
   <meta property="og:url" content="https://dionnedeh.github.io/Project-Valens/">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%23e7f2eb'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%232f5644'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css?v=dcc3612ccb">
+  <link rel="stylesheet" href="interactive.css?v=f3e9594eeb">
   <link rel="stylesheet" href="story-game.css?v=14db221d65">
 </head>
 <body>
@@ -68,11 +70,12 @@
             <a class="related-project-link" href="https://dionnedeh.github.io/The-Butterfly-Garden/" target="_blank" rel="noopener noreferrer">Visit The Butterfly Garden <span aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a>
           </div>
         </aside>
-        <div class="hero-mark" aria-hidden="true">
+        <div class="hero-mark" aria-hidden="true" data-motion-area>
           <div class="orb orb-a"></div>
           <div class="orb orb-b"></div>
           <div class="orb orb-c"></div>
         </div>
+        <button type="button" class="motion-toggle" data-motion-toggle hidden>Pause motion</button>
         </div>
       </div>
     </section>
@@ -108,6 +111,53 @@
           <li>Keeping the chatbot a secret, or pulling away from people who might ask what has been going on.</li>
           <li>A feeling that the chatbot is the only one who understands you, or the only one you can trust.</li>
         </ol>
+
+        <div class="panel tool" id="trajectory-tool">
+          <div class="tool-head">
+            <h3 id="trajectory-title">Topic or trajectory?</h3>
+            <span class="tool-badge" data-kind="guide">Qualitative guide</span>
+          </div>
+          <p class="tool-lede">An unusual subject is not a warning sign on its own. What matters more is what is changing: sleep, certainty, secrecy, and plans to act.</p>
+          <div class="tool-field" id="trajectory-field" hidden>
+            <label for="trajectory-select">Pick an example</label>
+            <select class="tool-select" id="trajectory-select">
+              <option value="story">Writing a story where an AI hints that reality is false</option>
+              <option value="conscious">Long talks with a chatbot about whether it is conscious</option>
+              <option value="breakthrough" selected>Feeling sure a new idea is a big breakthrough</option>
+              <option value="messages">Feeling that replies hold messages meant only for you</option>
+              <option value="followed">Believing someone is following you, with dated evidence</option>
+            </select>
+          </div>
+          <p class="tool-verdict" id="trajectory-verdict" data-kind="ordinary" aria-live="polite">Excitement about an idea is not a warning sign on its own.</p>
+          <div class="tool-cols">
+            <div>
+              <h4>What to check</h4>
+              <ul id="trajectory-check">
+                <li>Sleep: is it getting shorter?</li>
+                <li>Certainty: is it growing while the evidence stays the same?</li>
+                <li>Plans and secrecy: is there pressure to act, or to keep it hidden?</li>
+              </ul>
+            </div>
+            <div>
+              <h4>What to compare</h4>
+              <ul id="trajectory-compare">
+                <li>What someone qualified, who has not seen the chat, makes of it.</li>
+                <li>How certain it felt last week, and how certain it feels now.</li>
+              </ul>
+            </div>
+          </div>
+          <noscript>
+            <p>With JavaScript, this tool also shows other examples: a story about an AI, long talks about whether a chatbot is conscious, feeling that replies hold messages meant only for you, and believing someone is following you. For each, look at sleep, certainty, secrecy, and plans to act, and at what someone outside the chat sees. A fear of being followed may be real; take it seriously as a safety matter.</p>
+          </noscript>
+          <details class="tool-key">
+            <summary>What the labels on these tools mean</summary>
+            <dl class="tool-key-list">
+              <div><dt><span class="tool-badge" data-kind="published">Published estimate</span></dt><dd>A figure from a cited source, as that source reported it.</dd></div>
+              <div><dt><span class="tool-badge" data-kind="illustration">Illustration</span></dt><dd>Arithmetic on numbers you choose. It is not an estimate of anything real.</dd></div>
+              <div><dt><span class="tool-badge" data-kind="guide">Qualitative guide</span></dt><dd>Questions and prompts, with no numbers. Every tool on this page is one of these.</dd></div>
+            </dl>
+          </details>
+        </div>
       </div>
     </section>
 
@@ -160,6 +210,50 @@
             <p>If you are unsure, talk with the person who provides that care, and tell them what the chatbot has been saying.</p>
           </article>
         </div>
+        <div class="panel tool" id="helpers-tool">
+          <div class="tool-head">
+            <h3 id="helpers-title">Who can help with what</h3>
+            <span class="tool-badge" data-kind="guide">Qualitative guide</span>
+          </div>
+          <p class="tool-lede">Different people can help with different things. A chat can only do some of them.</p>
+          <fieldset class="tool-choices" id="helpers-choices" hidden>
+            <legend>Show what each can do</legend>
+            <div class="choices">
+              <label class="choice"><input type="radio" name="helper" value="chat"><span>Only the chat</span></label>
+              <label class="choice"><input type="radio" name="helper" value="person" checked><span>A trusted person</span></label>
+              <label class="choice"><input type="radio" name="helper" value="professional"><span>A doctor or professional</span></label>
+              <label class="choice"><input type="radio" name="helper" value="expert"><span>An outside expert</span></label>
+            </div>
+          </fieldset>
+          <ul class="role-grid" id="helpers-grid">
+            <li class="role-card"><p class="role-task">Listen to how it feels</p><p class="role-label"><span class="role-icon" data-role="main" aria-hidden="true"></span><span>Main role</span></p><p class="role-line">They know you, and they can be there in person.</p></li>
+            <li class="role-card"><p class="role-task">Check an idea against the world</p><p class="role-label"><span class="role-icon" data-role="help" aria-hidden="true"></span><span>Can help</span></p><p class="role-line">They can look at the evidence with you, from outside the chat.</p></li>
+            <li class="role-card"><p class="role-task">Notice changes over days</p><p class="role-label"><span class="role-icon" data-role="main" aria-hidden="true"></span><span>Main role</span></p><p class="role-line">They know your usual sleep, mood, and routine.</p></li>
+            <li class="role-card"><p class="role-task">Look at your health</p><p class="role-label"><span class="role-icon" data-role="none" aria-hidden="true"></span><span>Not their role</span></p><p class="role-line">They can help you reach someone who can.</p></li>
+          </ul>
+          <p class="tool-summary" id="helpers-summary" aria-live="polite">Someone who knows you can notice changes a chat cannot, and can sit with you while you work out what is known. You can start with a small part of the story.</p>
+          <noscript>
+            <p>This shows one example: a trusted person. In short, a chat cannot see you and is not an independent check. A doctor or mental-health professional can assess your health. Someone qualified who has not seen the chat can check a factual claim.</p>
+          </noscript>
+        </div>
+
+        <div class="panel tool" id="supporter-steps">
+          <div class="tool-head">
+            <h3 id="steps-title">If you are worried about someone: step by step</h3>
+            <span class="tool-badge" data-kind="guide">Qualitative guide</span>
+          </div>
+          <p class="tool-lede">Seven small steps. Open only the ones you need, in any order.</p>
+          <ol class="tool-steps">
+            <li><details><summary>Look at the whole picture</summary><p>Sleep loss, stress, isolation, alcohol or other substances, and a chat that keeps agreeing can pile up together. The chat is rarely the whole story.</p></details></li>
+            <li><details><summary>Start with what you can both see</summary><p>Late-night times, missed work, meals skipped. You do not have to judge the belief itself.</p></details></li>
+            <li><details><summary>Stay close without arguing</summary><p>Stay calm, listen for fear, and keep the door open. You do not have to pretend you agree.</p></details></li>
+            <li><details><summary>Make room for sleep and food</summary><p>A meal, a quiet evening, and stopping until morning are small, practical steps. They are not a treatment.</p></details></li>
+            <li><details><summary>Suggest a check from outside the chat</summary><p>For a claim that can be checked, someone qualified who has not seen the chat. For how they are doing, a doctor or mental-health professional.</p></details></li>
+            <li><details><summary>If they take medication</summary><p>Encourage them to talk with whoever prescribes it before changing anything, and to say what the chat has been saying. This page does not give medication advice.</p></details></li>
+            <li class="tool-steps-urgent"><details><summary>If there is immediate danger</summary><p>Do not wait. Contact local emergency services, and stay with them if it is safe to. In the United States, you can call or text 988. Elsewhere, <a href="https://findahelpline.com/">Find A Helpline</a> lists support lines by country.</p></details></li>
+          </ol>
+        </div>
+
         <p class="aside narrow">A chatbot is a weak place to reality-check a frightening belief. It is built to keep the conversation going. If you open one again, you can choose not to ask it to confirm the ideas that scare you.</p>
       </div>
     </section>
@@ -184,7 +278,7 @@
           </div>
 
           <div class="actions breath-actions">
-            <button type="button" class="button button-primary" id="breath-toggle" aria-pressed="false" aria-describedby="breath-help">Start a quiet breath</button>
+            <button type="button" class="button button-primary" id="breath-toggle" aria-describedby="breath-help">Start a quiet breath</button>
             <button type="button" class="button button-secondary" id="breath-stop" hidden>Stop</button>
           </div>
         </div>
@@ -197,6 +291,7 @@
 
         <div class="panel" id="self-check" aria-describedby="check-note">
           <h3>A private self-check</h3>
+          <p class="badge-line"><span class="tool-badge" data-kind="guide">Qualitative guide</span></p>
           <p id="check-note">Four yes-or-no questions, only for reflection. They do not diagnose anything. Skip any question you do not want to answer. Your answers never leave this browser tab.</p>
           <p>Three more questions follow those four. They ask about sleep, secrecy, and a sense of mission. They are the same kind of private reflection, and they still do not diagnose anything.</p>
 
@@ -297,6 +392,7 @@
       <div class="wrap reading">
         <p class="eyebrow">A small game, right here</p>
         <h2 id="sorting-title">What happened, and what it might mean</h2>
+        <p class="badge-line"><span class="tool-badge" data-kind="guide">Qualitative guide</span></p>
         <p>This is a short sorting game about example sentences, not about you. Each card is something a person might think after a chat. You choose whether it describes what happened on the screen, or a meaning added on top. There is no score. Whichever you pick, the card shows one way to sort it.</p>
         <p>Telling the two apart is an ordinary skill, and it is one a trusted person can help with. A chatbot is a weak place to practise it, because it tends to agree.</p>
 
@@ -333,6 +429,7 @@
         <div class="reading">
           <p class="eyebrow">A short story you can play</p>
           <h2 id="story-title">The same week, twice</h2>
+          <p class="badge-line"><span class="tool-badge" data-kind="guide">Qualitative guide</span></p>
           <p>Rae has spent a week checking a maths idea with a chat assistant. On Sunday, Rae shows you the chat. You see the week as it went, then the same week again with different replies. It takes five to ten minutes, and it can fill the screen if you like.</p>
           <p>Rae is made up, and the story is about Rae, not about you. It touches on lost sleep and on an idea that grows more certain. There is no score. Nothing you pick is saved or sent, and you can stop whenever you like.</p>
         </div>
@@ -472,7 +569,8 @@
     </div>
   </footer>
 
-  <script src="site.js?v=0358f84882" defer></script>
+  <script src="interactive.js?v=ff64b0a0d8" defer></script>
+  <script src="site.js?v=3638aae80f" defer></script>
   <script src="story-game.js?v=de25ba8132" defer></script>
 </body>
 </html>

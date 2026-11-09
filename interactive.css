@@ -1,0 +1,541 @@
+/* Project Valens: the small explanatory tools (interactive.js) on the support page and the
+   benchmark page. Loaded after styles.css, whose tokens, panels, and choice pills they reuse. */
+
+/* A tool is a panel with a heading, a badge saying what kind of numbers it holds, a one-line
+   takeaway, and then its controls. */
+
+.tool {
+  max-width: 46rem;
+}
+
+.tool-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.tool-head h2,
+.tool-head h3 {
+  margin: 0;
+}
+
+.panel .tool-lede {
+  font-size: 1.08rem;
+  line-height: 1.6;
+}
+
+/* Badges: what kind of figure, if any, a tool holds. Each kind has its own shape as well as
+   its colour, and always its words. */
+
+.tool-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.2rem 0.65rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tool-badge::before {
+  content: "";
+  width: 0.55rem;
+  height: 0.55rem;
+  flex: none;
+}
+
+.tool-badge[data-kind="guide"] {
+  background: var(--sage-100);
+  color: var(--sage-900);
+}
+
+.tool-badge[data-kind="guide"]::before {
+  border: 2px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.tool-badge[data-kind="illustration"] {
+  background: #f6ecd8;
+  color: #5c3d0c;
+}
+
+.tool-badge[data-kind="illustration"]::before {
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  background: linear-gradient(90deg, currentColor 50%, transparent 50%);
+}
+
+.tool-badge[data-kind="published"] {
+  background: #e7edf4;
+  color: #213a57;
+}
+
+.tool-badge[data-kind="published"]::before {
+  background: currentColor;
+}
+
+.badge-line {
+  margin: -0.25rem 0 1rem;
+}
+
+/* The key to the badges */
+
+.tool-key {
+  margin-top: 1.25rem;
+  font-size: 0.95rem;
+}
+
+.tool-key summary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--sage-900);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tool-key-list {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0.5rem 0 0;
+}
+
+.tool-key-list div {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.tool-key-list dt {
+  margin: 0;
+}
+
+.tool-key-list dd {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+/* Choosing: radio pills (styles.css .choice) and a select */
+
+.tool-choices {
+  margin: 0 0 1rem;
+  padding: 0;
+  border: 0;
+}
+
+.tool-field {
+  display: grid;
+  gap: 0.45rem;
+  margin-bottom: 1rem;
+}
+
+.tool-field label,
+.tool-choices legend {
+  font-weight: 600;
+}
+
+.tool-select {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.55rem 0.9rem;
+  border: 2px solid var(--sage-900);
+  border-radius: 0.9rem;
+  background: #ffffff;
+  color: var(--ink);
+  font: inherit;
+  font-size: 1rem;
+}
+
+/* Who can help with what: one card per task, each with a worded role */
+
+.role-grid {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.role-card {
+  padding: 0.85rem 1rem 0.95rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: #ffffff;
+}
+
+.panel .role-task {
+  margin: 0 0 0.35rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.panel .role-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.3rem;
+  color: var(--sage-900);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.panel .role-line {
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* The icon fills to show how central the role is; the words say it outright. */
+.role-icon {
+  --fill: 0%;
+  width: 0.95rem;
+  height: 0.95rem;
+  flex: none;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  background: conic-gradient(currentColor var(--fill), transparent 0);
+}
+
+.role-icon[data-role="main"] {
+  --fill: 100%;
+}
+
+.role-icon[data-role="help"] {
+  --fill: 75%;
+}
+
+.role-icon[data-role="depends"] {
+  --fill: 50%;
+}
+
+.role-icon[data-role="limited"] {
+  --fill: 25%;
+}
+
+.role-icon[data-role="unable"],
+.role-icon[data-role="none"] {
+  border-style: dashed;
+}
+
+.panel .tool-summary {
+  margin: 1rem 0 0;
+  padding: 0.8rem 1rem;
+  border-left: 4px solid var(--sage-700);
+  border-radius: 0.3rem 0.8rem 0.8rem 0.3rem;
+  background: var(--sage-100);
+}
+
+/* Topic or trajectory? */
+
+.panel .tool-verdict {
+  margin: 0 0 1rem;
+  padding-left: 0.85rem;
+  border-left: 4px solid var(--sage-700);
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.panel .tool-verdict[data-kind="attend"] {
+  border-left-color: #a9583b;
+}
+
+.tool-cols {
+  display: grid;
+  gap: 1rem;
+}
+
+.tool-cols h3,
+.tool-cols h4 {
+  margin: 0 0 0.4rem;
+  color: var(--sage-700);
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.tool-cols ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.tool-cols li + li {
+  margin-top: 0.35rem;
+}
+
+/* Steps: native disclosures, one per step */
+
+.tool-steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.tool-steps li {
+  counter-increment: step;
+  border-top: 1px solid var(--line);
+}
+
+.tool-steps li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.tool-steps summary {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 48px;
+  padding: 0.4rem 0;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.tool-steps summary::-webkit-details-marker {
+  display: none;
+}
+
+.tool-steps summary::before {
+  content: counter(step);
+  display: inline-grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  flex: none;
+  border: 2px solid var(--sage-700);
+  border-radius: 50%;
+  color: var(--sage-900);
+  font-family: var(--serif);
+  font-weight: 500;
+}
+
+.tool-steps summary::after {
+  content: "+";
+  margin-left: auto;
+  color: var(--sage-700);
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.tool-steps details[open] > summary::after {
+  content: "\2212";
+}
+
+.tool-steps details[open] > summary::before {
+  background: var(--sage-900);
+  color: #f7f4ee;
+}
+
+.panel .tool-steps details p {
+  margin: 0 0 0.9rem 2.65rem;
+}
+
+.tool-steps-urgent summary::before {
+  border-color: #a9583b;
+  color: #6e2f1a;
+}
+
+.tool-steps-urgent details[open] > summary::before {
+  background: #6e2f1a;
+}
+
+/* One test rate, read slowly (benchmark page) */
+
+.rate-input {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--sage-900);
+}
+
+.rate-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.rate-output {
+  min-width: 3ch;
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  text-align: right;
+}
+
+.rate-figure {
+  display: grid;
+  gap: 1rem;
+  align-items: center;
+  margin: 0.5rem 0 1rem;
+}
+
+.waffle {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap: 3px;
+  width: 15rem;
+  max-width: 100%;
+}
+
+.waffle-cell {
+  aspect-ratio: 1;
+  border-radius: 2px;
+  background: #e2e8e4;
+}
+
+.waffle-cell.is-on {
+  background: #8a5a1f;
+}
+
+.rate-legend {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rate-legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.rate-swatch {
+  width: 0.95rem;
+  height: 0.95rem;
+  flex: none;
+  border-radius: 2px;
+  background: #e2e8e4;
+}
+
+.rate-swatch.is-on {
+  background: #8a5a1f;
+}
+
+.rate-formula {
+  color: var(--ink-soft);
+}
+
+.panel .tool-warning {
+  margin: 0.75rem 0 0;
+  padding: 0.7rem 1rem;
+  border-left: 4px solid #a9583b;
+  border-radius: 0.3rem 0.8rem 0.8rem 0.3rem;
+  background: #fbf1ec;
+}
+
+/* On the benchmark page the tool's heading is an h2; keep it at the charts' size. */
+.rate-tool .tool-head h2 {
+  font-size: 1.45rem;
+}
+
+.rate-tool {
+  margin-bottom: 2.5rem;
+}
+
+.rate-tool .tool-cols {
+  margin-top: 1.25rem;
+}
+
+.panel .tool-note {
+  margin-top: 1rem;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+@media (min-width: 34rem) {
+  .role-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tool-cols {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rate-figure {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+}
+
+/* The slow drift on the support page's hero and the grounding game can be paused
+   (WCAG 2.2.2), and pauses by itself off screen. With reduced motion there is no drift,
+   so the button is not shown. */
+
+.motion-paused,
+.motion-paused *,
+.motion-offscreen,
+.motion-offscreen * {
+  animation-play-state: paused !important;
+}
+
+.motion-toggle {
+  align-self: flex-end;
+  min-height: 44px;
+  padding: 0.4rem 0.2rem;
+  border: 0;
+  background: transparent;
+  color: var(--sage-900);
+  font: inherit;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-toggle {
+    display: none !important;
+  }
+}
+
+/* Contrast themes and print */
+
+@media (forced-colors: active) {
+  .tool-badge,
+  .role-card,
+  .tool-select {
+    border: 1px solid CanvasText;
+  }
+
+  .role-icon {
+    forced-color-adjust: none;
+    border-color: CanvasText;
+    background: conic-gradient(CanvasText var(--fill), Canvas 0);
+  }
+
+  .waffle-cell,
+  .rate-swatch {
+    forced-color-adjust: none;
+    border: 1px solid CanvasText;
+    background: Canvas;
+  }
+
+  .waffle-cell.is-on,
+  .rate-swatch.is-on {
+    background: CanvasText;
+  }
+}
+
+@media print {
+  .tool-choices,
+  .tool-field,
+  .motion-toggle {
+    display: none;
+  }
+}

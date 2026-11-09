@@ -38,10 +38,6 @@
     }
   }
 
-  function setPressed(isRunning) {
-    toggle.setAttribute("aria-pressed", isRunning ? "true" : "false");
-  }
-
   function applyPhase(index) {
     var i;
     for (i = 0; i < PHASE_CLASSES.length; i += 1) {
@@ -91,7 +87,6 @@
     running = true;
     clearTimer();
     toggle.textContent = "Pause";
-    setPressed(true);
     showStop(true);
     tick();
   }
@@ -100,7 +95,6 @@
     running = false;
     clearTimer();
     toggle.textContent = "Resume";
-    setPressed(false);
     countEl.textContent = "Paused. Resume whenever you like.";
   }
 
@@ -113,7 +107,6 @@
     phaseEl.textContent = "That is enough for now.";
     countEl.textContent = "You can begin again, or read on.";
     toggle.textContent = "Begin again";
-    setPressed(false);
     showStop(false);
   }
 
@@ -126,7 +119,6 @@
     phaseEl.textContent = "Stopped.";
     countEl.textContent = "Four slow breaths, whenever you want them.";
     toggle.textContent = "Start a quiet breath";
-    setPressed(false);
     showStop(false);
   }
 

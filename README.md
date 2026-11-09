@@ -14,11 +14,14 @@ The site is static and served by GitHub Pages from the root of the `main` branch
 - `benchmarks.html`, `benchmarks.css` — the published benchmark rates (the page is generated)
 - `grounding-game.html`, `grounding-game.css`, `grounding-game.js` — the separate five-senses noticing game (hand-written; it uses `styles.css` plus its own rules)
 - `story-game.js`, `story-game.css` — the support page’s short story, *The same week, twice*, with its pixel-art room (hand-written)
+- `interactive.js`, `interactive.css` — the small explanatory tools on the support page and the benchmark page, their badges, and the pause button for the drifting shapes (hand-written; see [The explanatory tools](#the-explanatory-tools))
 - `library/` — the research library as web pages, one per document (generated)
 - `404.html` — the not-found page (generated)
 - `tools/` — the scripts and data that generate pages and check the site
 
-Nothing in the self-check, the breathing pause, the story, or either game is stored or sent. There is no analytics and no external script or font.
+Nothing in the self-check, the breathing pause, the explanatory tools, the story, or either game is stored or sent. There is no analytics and no external script or font.
+
+The support page and the grounding game carry a Content-Security-Policy meta tag that allows only the site’s own scripts, stylesheets, and images (plus the inline icon). The generated pages do not carry it yet: the benchmark bars and some library tables use inline `style` attributes, which that policy would block.
 
 Every line a character says in the story and the games is written in advance. No character is backed by a model, whether hosted or running in the browser, and nothing a reader could type feeds the story. That is a rule for this site, not only how things stand today.
 
@@ -29,6 +32,8 @@ Every line a character says in the story and the games is written in advance. No
 The top of the page says what Project Valens is: a written support resource for when AI conversations start to feel unreal, with the shape of the page set in advance. A status line says there is no staffed line yet. On a phone, the header is a single row of links that scrolls sideways, so the “Ways to seek support” button shows on the first screen. A short note under the buttons says the project is a long-running one of Voelori’s.
 
 Beside the opening, a small card points to The Butterfly Garden, a self-care app from the same Voelori family. The same card appears again after the pause activities. Both open the app’s site in a new tab.
+
+The soft shapes beside the opening drift slowly. A “Pause motion” button under them stops the drift (WCAG 2.2.2), and the drift also pauses while the shapes are off screen. With reduced motion there is no drift and no button. The grounding game has the same button in its header.
 
 ### What people mean by AI psychosis
 
@@ -42,6 +47,8 @@ The original seven signs are unchanged. They are offered as patterns people some
 
 Four further signs were added from the research notes: many chats across a day or a stretch that runs past usual sleep time; a secret mission, breakthrough, or hidden message that feels urgent; keeping the chatbot secret or pulling away from people who might ask; and feeling that the chatbot is the only one who understands or can be trusted.
 
+After the list, a small tool, *Topic or trajectory?*, lets the reader pick an example and see what to check and what to compare. See [The explanatory tools](#the-explanatory-tools).
+
 ### How to seek support
 
 The original three paths are unchanged: talk with someone you trust, speak with a doctor or mental-health professional, and step back from AI use. The page still says a chatbot is a weak place to reality-check a frightening belief.
@@ -49,6 +56,8 @@ The original three paths are unchanged: talk with someone you trust, speak with 
 Added cards cover asking sooner for a professional conversation, protecting sleep, coming back to trusted people, how a friend or family member can stay close without pretending to agree, and staying with care a person already has. The page does not tell anyone to start, stop, or change a medication or treatment.
 
 The card for a friend or family member links to the short story further down the page.
+
+After the cards come two small tools: *Who can help with what*, and *If you are worried about someone: step by step*. The section still ends with its line that a chatbot is a weak place to reality-check a frightening belief.
 
 ### A quiet pause
 
@@ -101,6 +110,29 @@ The benchmark charts were added to the support page on 29 October 2026 and now h
 Reinforcing-a-false-belief figures come from the on-site library: delusion confirmation in document 16, and impaired-reality-testing endorsement in document 13. Hallucination, deception, and blackmail are not scored in the library or the benchmark harness, so those charts use Vectara’s hallucination leaderboard (last updated 22 October 2026), the MASK benchmark (Ren et al., arXiv:2503.03750v3, 5 January 2026), and Anthropic’s agentic-misalignment study (20 June 2025). Six blackmail rates are stated in that post’s text, and four more are read from its Figure 7 and marked as such. A missing figure is shown as “no data.” The charts say when two tests are not the same kind of measurement.
 
 Every figure is entered once, in `tools/benchmarks.json`. The grid, its colour bands, and its method notes are derived from the charts, so the two cannot disagree. The build refuses a figure whose printed value does not match its bar.
+
+Under the introduction, a short key, “How to read the numbers on this page”, defines the three badges used on the site’s tools. Every chart and the grid carry the *Published estimate* badge. Before the charts, one tool, *One test rate, read slowly*, is an *Illustration*: see [The explanatory tools](#the-explanatory-tools).
+
+## The explanatory tools
+
+Added 9 November 2026, after feedback that the page is read by people who are already tired, and that information lands better when taking it in feels effortless. The tools present what the page and the library already say; they add no new claims. Each opens with a one-line takeaway, so the point is there even for someone who never touches a control. There are no scores and no games. Each tool works without JavaScript: the page ships a default in its HTML, and the controls stay hidden until the script runs.
+
+Every tool carries one of three badges, defined in a key on each page:
+
+- **Published estimate**: a figure from a cited source, as that source reported it.
+- **Illustration**: arithmetic on numbers the reader chooses. It is not an estimate of anything real.
+- **Qualitative guide**: questions and prompts, with no numbers.
+
+| Tool | Where | Badge | What it shows | Default | Limits |
+|---|---|---|---|---|---|
+| Topic or trajectory? | Support page, after the warning signs | Qualitative guide | A select of five examples. Each shows a one-line reading, three things to check, and two things to compare. | “Feeling sure a new idea is a big breakthrough” | Prompts, not a test. One example, a fear of being followed with dated evidence, says the fear may be real and is a safety matter. |
+| Who can help with what | Support page, after the support cards | Qualitative guide | Four radio choices (only the chat, a trusted person, a doctor or professional, an outside expert). Each shows a worded role for four tasks, plus a short summary. | A trusted person | Roles are general patterns, not rules about any one person or service. |
+| If you are worried about someone: step by step | Support page, after the tool above | Qualitative guide | Seven native disclosures. It adds the cases of medication and of immediate danger. | All closed | It does not give medication advice, and it points to emergency services for danger. |
+| One test rate, read slowly | Benchmark page, before the charts | Illustration | A slider sets how many of 100 imagined test replies went along with a false belief. A 10 × 10 grid, a legend, and the sum update: *n* out of 100 is *n*%, and the other 100 − *n* did not. | 20, an arbitrary example | The number comes from no chart, and nothing on the page compares it with one. At 0 it says a zero in one test does not show a model never does this. At 100 it says the test still cannot say how many people were harmed. The list of what a rate cannot tell you stays the same at every setting. |
+
+Sources: the roles and steps follow the library’s guidance that repeated chat answers are not independent evidence, that a trusted person and a qualified source who has not seen the conversation are better checks, and that assessment is a professional’s role (documents 05 and 10). The examples follow its false-positive protections and the benchmark’s control scenarios (documents 04, 10, and 11; fixtures V-C01, V-C02, V-C05, and V-A06).
+
+The drifting shapes on the support page and in the grounding game can be paused with a button whose label changes (“Pause motion”, “Play motion”), with no pressed state. The breathing guide’s button also changes its label, so it no longer carries a pressed state either.
 
 ## Safety boundary
 
