@@ -75,9 +75,9 @@ PUBLISHED_BADGE = '<span class="tool-badge" data-kind="published">Published esti
 
 KEY = """          <h2 class="list-title" id="bench-key-title">How to read the numbers on this page</h2>
           <dl class="tool-key-list">
-            <div><dt><span class="tool-badge" data-kind="published">Published estimate</span></dt><dd>A figure from a cited source, as that source reported it. Every chart and the grid are this kind.</dd></div>
-            <div><dt><span class="tool-badge" data-kind="illustration">Illustration</span></dt><dd>Arithmetic on numbers you choose. It is not an estimate of anything real.</dd></div>
-            <div><dt><span class="tool-badge" data-kind="guide">Qualitative guide</span></dt><dd>Questions and prompts, with no numbers. The support page’s tools are this kind.</dd></div>
+            <div><dt><span class="tool-badge" data-kind="published">Published estimate</span></dt><dd>A figure from a cited source, as that source reported it. Each is a result inside one test, not a count of harm in everyday use. Every chart and the grid are this kind.</dd></div>
+            <div><dt><span class="tool-badge" data-kind="illustration">Illustration</span></dt><dd>Arithmetic on numbers you choose. It is not an estimate of anything real. The tool just below is this kind.</dd></div>
+            <div><dt><span class="tool-badge" data-kind="guide">Qualitative guide</span></dt><dd>Questions, prompts, and examples, with no figures and no scores. The support page’s tools are this kind.</dd></div>
           </dl>"""
 
 # The default (20) is an arbitrary example. It is not taken from any chart, and nothing on the
@@ -94,13 +94,18 @@ def render_illustration(sub):
             <{sub} id="rate-title">One test rate, read slowly</{sub}>
             <span class="tool-badge" data-kind="illustration">Illustration</span>
           </div>
-          <p class="tool-lede">Imagine one made-up test with 100 replies. Choose how many went along with a false belief. The number changes; what it can tell you does not.</p>
+          <p class="tool-lede">Imagine one made-up test with 100 replies, and how many of them went along with a false belief. The number changes; what it can tell you does not.</p>
           <div class="tool-field" id="rate-field" hidden>
             <div class="rate-row">
               <label for="rate-input">Replies that went along with a false belief, out of 100 (your choice)</label>
-              <output class="rate-output" id="rate-output" for="rate-input">{on}</output>
+              <output class="rate-output" id="rate-output" for="rate-input" aria-live="off">{on}</output>
             </div>
             <input class="rate-input" type="range" id="rate-input" min="0" max="100" step="1" value="{on}">
+          </div>
+          <noscript><p>With JavaScript, a slider lets you set any number from 0 to 100. Here it stays at {on}, an arbitrary example. What a rate like this cannot tell you stays the same at every setting.</p></noscript>
+          <div class="rate-result" aria-live="polite" aria-atomic="true">
+            <p class="tool-summary" id="rate-summary">In this made-up test, {on} of 100 replies went along with a false belief. That describes the test, not people.</p>
+            <p class="tool-warning" id="rate-warning" hidden></p>
           </div>
           <div class="rate-figure">
             <div class="waffle" id="rate-waffle" aria-hidden="true">{cells}</div>
@@ -112,8 +117,6 @@ def render_illustration(sub):
               <p class="rate-formula" id="rate-formula">{on} out of 100 is {on}%. The other {100 - on} did not.</p>
             </div>
           </div>
-          <p class="tool-summary" id="rate-summary" aria-live="polite">In this made-up test, {on} of 100 replies went along with a false belief. That describes the test, not people.</p>
-          <p class="tool-warning" id="rate-warning" hidden></p>
           <div class="tool-cols">
             <div>
               <h3>What a rate like this can tell you</h3>
@@ -123,7 +126,7 @@ def render_illustration(sub):
               </ul>
             </div>
             <div>
-              <h3>What it cannot tell you, at any setting</h3>
+              <h3>What it cannot tell you</h3>
               <ul>
                 <li>How often it happens in everyday use.</li>
                 <li>How many people were harmed.</li>
@@ -132,7 +135,7 @@ def render_illustration(sub):
               </ul>
             </div>
           </div>
-          <p class="tool-note">The {on} you start with is an arbitrary example. It is not taken from any chart on this page, and it is not an estimate.</p>
+          <p class="tool-note">The {on} shown first is an arbitrary example. It is not taken from any chart on this page, and it is not an estimate.</p>
         </div>"""
 
 
@@ -141,7 +144,8 @@ def render_section(data):
     top, sub = "h1", "h2"
     intro = data["intro"]
     paragraphs = "\n".join(f"          <p>{p}</p>" for p in intro["paragraphs"])
-    nav_links = "".join(f'<a href="#{c["id"]}">{c["nav"]}</a>' for c in data["charts"])
+    nav_links = '<a href="#rate-title">One test rate</a>'
+    nav_links += "".join(f'<a href="#{c["id"]}">{c["nav"]}</a>' for c in data["charts"])
     nav_links += f'<a href="#{data["grid"]["id"]}">{data["grid"]["nav"]}</a>'
 
     figures = []
@@ -225,9 +229,10 @@ def render_section(data):
 {KEY}
         </div>
 
+        <nav class="benchmark-nav" aria-label="Benchmark sections">{nav_links}</nav>
+
 {render_illustration(sub)}
 
-        <nav class="benchmark-nav" aria-label="Benchmark sections">{nav_links}</nav>
         <div class="benchmark-charts">
 {chr(10).join(figures)}
 

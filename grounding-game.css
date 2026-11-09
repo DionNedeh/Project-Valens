@@ -226,6 +226,10 @@ blockquote {
 .header-links {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: baseline;
   gap: 0.25rem 1.25rem;
+}
+
+.header-links .motion-toggle {
+  padding-inline: 0;
 }

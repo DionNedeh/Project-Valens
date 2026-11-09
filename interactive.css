@@ -94,18 +94,45 @@
 }
 
 .tool-key summary {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  gap: 0.6rem;
   min-height: 44px;
   color: var(--sage-900);
   font-weight: 600;
   cursor: pointer;
+  list-style: none;
+}
+
+.tool-key summary::-webkit-details-marker {
+  display: none;
+}
+
+/* The same open/close mark as the steps; the empty alt text keeps it out of the name. */
+.tool-key summary::before {
+  content: "+";
+  content: "+" / "";
+  display: inline-grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: none;
+  border: 2px solid var(--sage-700);
+  border-radius: 50%;
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.tool-key[open] > summary::before {
+  content: "\2212";
+  content: "\2212" / "";
 }
 
 .tool-key-list {
   display: grid;
   gap: 0.6rem;
   margin: 0.5rem 0 0;
+  font-size: 0.95rem;
 }
 
 .tool-key-list div {
@@ -327,6 +354,7 @@
 
 .tool-steps summary::after {
   content: "+";
+  content: "+" / "";
   margin-left: auto;
   color: var(--sage-700);
   font-size: 1.3rem;
@@ -335,6 +363,7 @@
 
 .tool-steps details[open] > summary::after {
   content: "\2212";
+  content: "\2212" / "";
 }
 
 .tool-steps details[open] > summary::before {
@@ -396,10 +425,12 @@
   aspect-ratio: 1;
   border-radius: 2px;
   background: #e2e8e4;
+  box-shadow: inset 0 0 0 1px #7d8c83;
 }
 
 .waffle-cell.is-on {
   background: #8a5a1f;
+  box-shadow: none;
 }
 
 .rate-legend {
@@ -422,10 +453,20 @@
   flex: none;
   border-radius: 2px;
   background: #e2e8e4;
+  box-shadow: inset 0 0 0 1px #7d8c83;
 }
 
 .rate-swatch.is-on {
   background: #8a5a1f;
+  box-shadow: none;
+}
+
+.rate-result {
+  margin-bottom: 1rem;
+}
+
+.rate-result .tool-summary {
+  margin-top: 0;
 }
 
 .rate-formula {
@@ -453,10 +494,40 @@
   margin-top: 1.25rem;
 }
 
+.tool noscript p {
+  margin-top: 1rem;
+}
+
 .panel .tool-note {
   margin-top: 1rem;
   color: var(--ink-soft);
   font-size: 0.92rem;
+}
+
+@media (max-width: 33.99rem) {
+  .tool-choices .choices {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tool-choices .choice span {
+    width: 100%;
+    min-width: 0;
+    padding-inline: 0.6rem;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .role-card {
+    padding: 0.7rem 0.85rem 0.8rem;
+  }
+}
+
+/* The narrowest phones: one choice per row, each on one line. */
+@media (max-width: 23rem) {
+  .tool-choices .choices {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 @media (min-width: 34rem) {
@@ -476,6 +547,11 @@
 /* The slow drift on the support page's hero and the grounding game can be paused
    (WCAG 2.2.2), and pauses by itself off screen. With reduced motion there is no drift,
    so the button is not shown. */
+
+[data-motion-area]:not(.motion-ready),
+[data-motion-area]:not(.motion-ready) * {
+  animation: none !important;
+}
 
 .motion-paused,
 .motion-paused *,
@@ -507,6 +583,26 @@
 /* Contrast themes and print */
 
 @media (forced-colors: active) {
+  /* The checked pill (here and in the self-check) would otherwise lose its words to the
+     forced backplate. */
+  .choice input:checked + span {
+    forced-color-adjust: none;
+    border-color: SelectedItem;
+    background: SelectedItem;
+    color: SelectedItemText;
+  }
+
+  .tool-badge[data-kind="published"]::before {
+    background: none;
+    border: 0.275rem solid CanvasText;
+  }
+
+  .tool-badge[data-kind="illustration"]::before {
+    forced-color-adjust: none;
+    border-color: CanvasText;
+    background: linear-gradient(90deg, CanvasText 50%, transparent 50%);
+  }
+
   .tool-badge,
   .role-card,
   .tool-select {

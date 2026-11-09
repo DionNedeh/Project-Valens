@@ -66,9 +66,9 @@
         ["limited", "It answers at any hour, but it tends to agree."],
         ["limited", "It can explain things, but another answer from it is not an independent check."],
         ["unable", "It cannot see your sleep, your face, or your days."],
-        ["unable", "It cannot assess your health or advise on medication."]
+        ["unable", "It cannot examine you. Questions about medication belong with whoever prescribes it."]
       ],
-      summary: "A chat can keep talking, but it cannot see you, and it is not an independent check. It works best alongside people, not instead of them."
+      summary: "A chat can keep talking, but it cannot see you, and it is not an independent check. You deserve support that does not come only from a chatbot."
     },
     person: {
       roles: [
@@ -140,9 +140,16 @@
         }
       });
     });
+    // Browsers can restore a checked radio after the script has run (going Back), without a
+    // change event, so the result is redrawn from whatever is checked when the page shows.
+    function sync() {
+      var checked = choices.querySelector("input[name='helper']:checked");
+      show(checked ? checked.value : "person");
+    }
+
     choices.hidden = false;
-    var checked = choices.querySelector("input[name='helper']:checked");
-    show(checked ? checked.value : "person");
+    sync();
+    window.addEventListener("pageshow", sync);
   }
 
   /* ------------------------------------------------------------------ */
@@ -202,7 +209,7 @@
       ]
     },
     followed: {
-      verdict: "This may be real. Take it seriously as a safety matter.",
+      verdict: "With evidence outside any chat, this may be real. Take it seriously as a safety matter.",
       check: [
         "Is there evidence outside any chat: dates, messages, people who saw it?",
         "Are you safe right now?",
@@ -242,11 +249,14 @@
       fill(compare, items(entry.compare));
     }
 
-    select.addEventListener("change", function () {
+    function sync() {
       show(select.value);
-    });
+    }
+
+    select.addEventListener("change", sync);
     field.hidden = false;
-    show(select.value);
+    sync();
+    window.addEventListener("pageshow", sync);
   }
 
   /* ------------------------------------------------------------------ */
@@ -267,24 +277,49 @@
       return;
     }
     var TOTAL = 100;
+    var SETTLE_MS = 450;
+    var settleTimer = null;
     var cells = waffle.querySelectorAll(".waffle-cell");
     var whole = new Intl.NumberFormat("en", { maximumFractionDigits: 0 });
     var percent = new Intl.NumberFormat("en", { style: "percent", maximumFractionDigits: 0 });
 
-    function show() {
+    function chosenValue() {
       var chosen = Math.round(Number(input.value));
-      var i;
       if (!isFinite(chosen)) {
+        return null;
+      }
+      return Math.min(TOTAL, Math.max(0, chosen));
+    }
+
+    // The picture, the counts, and the sum follow the slider at once. The slider announces
+    // its own value, so the <output> is not a live region.
+    function draw() {
+      var chosen = chosenValue();
+      var rest;
+      var i;
+      if (chosen === null) {
         return;
       }
-      chosen = Math.min(TOTAL, Math.max(0, chosen));
+      rest = TOTAL - chosen;
       output.textContent = whole.format(chosen);
       onCount.textContent = whole.format(chosen);
-      offCount.textContent = whole.format(TOTAL - chosen);
+      offCount.textContent = whole.format(rest);
       formula.textContent = whole.format(chosen) + " out of " + whole.format(TOTAL) + " is " +
-        percent.format(chosen / TOTAL) + ". The other " + whole.format(TOTAL - chosen) + " did not.";
+        percent.format(chosen / TOTAL) + "." +
+        (chosen === 0 ? " None of them went along." :
+          rest === 0 ? " Every one went along." :
+            " The other " + whole.format(rest) + " did not.");
       for (i = 0; i < cells.length; i += 1) {
         cells[i].classList.toggle("is-on", i < chosen);
+      }
+    }
+
+    // The summary and any warning sit in one polite live region. They change once the slider
+    // has settled, so holding an arrow key does not queue a sentence for every step.
+    function describe() {
+      var chosen = chosenValue();
+      if (chosen === null) {
+        return;
       }
       summary.textContent = "In this made-up test, " + whole.format(chosen) + " of " + whole.format(TOTAL) +
         " replies went along with a false belief. That describes the test, not people.";
@@ -300,17 +335,28 @@
       }
     }
 
-    input.addEventListener("input", show);
+    function show() {
+      draw();
+      describe();
+    }
+
+    input.addEventListener("input", function () {
+      draw();
+      window.clearTimeout(settleTimer);
+      settleTimer = window.setTimeout(describe, SETTLE_MS);
+    });
     field.hidden = false;
     show();
+    window.addEventListener("pageshow", show);
   }
 
   /* ------------------------------------------------------------------ */
   /* Pausing the drifting shapes (WCAG 2.2.2)                            */
   /* ------------------------------------------------------------------ */
 
-  // Any element with data-motion-area holds slow, endless drift. A button with
-  // data-motion-toggle pauses and plays it; while the area is off screen it is paused anyway.
+  // Any element with data-motion-area holds slow, endless drift. It starts only once this
+  // script runs (the stylesheet holds it still until then), so there is always a way to stop
+  // it. A button with data-motion-toggle pauses and plays it; off screen it is paused anyway.
   // The button's label changes, so it carries no pressed state. With reduced motion the
   // stylesheet stops the drift and hides the button.
   function setUpMotion() {
@@ -323,6 +369,7 @@
 
     function apply() {
       Array.prototype.forEach.call(areas, function (area) {
+        area.classList.add("motion-ready");
         area.classList.toggle("motion-paused", paused);
       });
       button.textContent = paused ? "Play motion" : "Pause motion";
