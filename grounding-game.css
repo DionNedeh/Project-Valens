@@ -220,3 +220,16 @@ blockquote {
     box-shadow: none;
   }
 }
+
+/* The header holds the motion button beside the link back. */
+
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 1.25rem;
+}
+
+.header-links .motion-toggle {
+  padding-inline: 0;
+}

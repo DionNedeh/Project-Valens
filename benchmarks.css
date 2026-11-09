@@ -465,7 +465,9 @@
     grid-row: 2 / 5;
   }
 
-  .benchmark-section .intro-block > p:not(.eyebrow) {
+  .benchmark-section .intro-block > p:not(.eyebrow),
+  .benchmark-section .intro-block > .list-title,
+  .benchmark-section .intro-block > .tool-key-list {
     grid-column: 2;
   }
 }

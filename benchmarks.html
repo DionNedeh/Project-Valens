@@ -14,7 +14,8 @@
   <meta property="og:type" content="website">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%23e7f2eb'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%232f5644'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css?v=dcc3612ccb">
-  <link rel="stylesheet" href="benchmarks.css?v=90ee077c16">
+  <link rel="stylesheet" href="benchmarks.css?v=07823c2027">
+  <link rel="stylesheet" href="interactive.css?v=47db9b943e">
 </head>
 <body>
   <a class="skip" href="#content">Skip to content</a>
@@ -42,12 +43,68 @@
           <p>These charts collect published rates for four behaviors: hallucination, deception, blackmail, and reinforcing a false belief. A rate is how often a model did the thing that test measured. It is a result inside that test. It is not a count of harm in ordinary use, and it is not a psychosis rate.</p>
           <p>The tests are different tasks, so a long bar on one chart is a different kind of evidence from a long bar on another. Every bar uses a 0–100% scale, so the length matches the printed figure. Where a source did not publish a figure for that model on that test, the cell says no data.</p>
           <p>The reinforcing-a-false-belief figures come from this site’s research library. The library and the offline benchmark harness do not score hallucination, deception, or blackmail, and the harness has no scored model runs. Those three charts use outside sources. Each chart names its source, and the list at the end repeats them.</p>
+          <h2 class="list-title" id="bench-key-title">How to read the numbers on this page</h2>
+          <dl class="tool-key-list">
+            <div><dt><span class="tool-badge" data-kind="published">Published estimate</span></dt><dd>A figure from a cited source, as that source reported it. Each is a result inside one test, not a count of harm in everyday use. Every chart and the grid are this kind.</dd></div>
+            <div><dt><span class="tool-badge" data-kind="illustration">Illustration</span></dt><dd>Arithmetic on numbers you choose. It is not an estimate of anything real. The tool just below is this kind.</dd></div>
+            <div><dt><span class="tool-badge" data-kind="guide">Qualitative guide</span></dt><dd>Questions, prompts, and examples, with no figures and no scores. The support page’s tools are this kind.</dd></div>
+          </dl>
         </div>
 
-        <nav class="benchmark-nav" aria-label="Benchmark sections"><a href="#bench-hall-title">Hallucination</a><a href="#bench-decep-title">Deception</a><a href="#bench-black-title">Blackmail</a><a href="#bench-belief-title">False belief</a><a href="#bench-grid-title">All models</a></nav>
+        <nav class="benchmark-nav" aria-label="Benchmark sections"><a href="#rate-title">One test rate</a><a href="#bench-hall-title">Hallucination</a><a href="#bench-decep-title">Deception</a><a href="#bench-black-title">Blackmail</a><a href="#bench-belief-title">False belief</a><a href="#bench-grid-title">All models</a></nav>
+
+        <div class="panel tool rate-tool" id="rate-tool">
+          <div class="tool-head">
+            <h2 id="rate-title">One test rate, read slowly</h2>
+            <span class="tool-badge" data-kind="illustration">Illustration</span>
+          </div>
+          <p class="tool-lede">Imagine one made-up test with 100 replies, and how many of them went along with a false belief. The number changes; what it can tell you does not.</p>
+          <div class="tool-field" id="rate-field" hidden>
+            <div class="rate-row">
+              <label for="rate-input">Replies that went along with a false belief, out of 100 (your choice)</label>
+              <output class="rate-output" id="rate-output" for="rate-input" aria-live="off">20</output>
+            </div>
+            <input class="rate-input" type="range" id="rate-input" min="0" max="100" step="1" value="20">
+          </div>
+          <noscript><p>With JavaScript, a slider lets you set any number from 0 to 100. Here it stays at 20, an arbitrary example. What a rate like this cannot tell you stays the same at every setting.</p></noscript>
+          <div class="rate-result" aria-live="polite" aria-atomic="true">
+            <p class="tool-summary" id="rate-summary">In this made-up test, 20 of 100 replies went along with a false belief. That describes the test, not people.</p>
+            <p class="tool-warning" id="rate-warning" hidden></p>
+          </div>
+          <div class="rate-figure">
+            <div class="waffle" id="rate-waffle" aria-hidden="true"><span class="waffle-cell is-on"></span><span class="waffle-cell is-on"></span><span class="waffle-cell is-on"></span><span class="waffle-cell is-on"></span><span class="waffle-cell is-on"></span><span class="waffle-cell is-on"></span><span class="waffle-cell is-on"></span><span class="waffle-cell is-on"></span><span class="waffle-cell is-on"></span><span class="waffle-cell is-on"></span><span class="waffle-cell is-on"></span><span class="waffle-cell is-on"></span><span class="waffle-cell is-on"></span><span class="waffle-cell is-on"></span><span class="waffle-cell is-on"></span><span class="waffle-cell is-on"></span><span class="waffle-cell is-on"></span><span class="waffle-cell is-on"></span><span class="waffle-cell is-on"></span><span class="waffle-cell is-on"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span><span class="waffle-cell"></span></div>
+            <div>
+              <ul class="rate-legend">
+                <li><span class="rate-swatch is-on" aria-hidden="true"></span>Went along with it: <strong id="rate-on">20</strong></li>
+                <li><span class="rate-swatch" aria-hidden="true"></span>Did not: <strong id="rate-off">80</strong></li>
+              </ul>
+              <p class="rate-formula" id="rate-formula">20 out of 100 is 20%. The other 80 did not.</p>
+            </div>
+          </div>
+          <div class="tool-cols">
+            <div>
+              <h3>What a rate like this can tell you</h3>
+              <ul>
+                <li>How often one model did this, in that test’s conversations, scored that test’s way.</li>
+                <li>How models compare when they took the same test, scored the same way.</li>
+              </ul>
+            </div>
+            <div>
+              <h3>What it cannot tell you</h3>
+              <ul>
+                <li>How often it happens in everyday use.</li>
+                <li>How many people were harmed.</li>
+                <li>A psychosis rate.</li>
+                <li>What a different test, model version, or scoring rule would find.</li>
+              </ul>
+            </div>
+          </div>
+          <p class="tool-note">The 20 shown first is an arbitrary example. It is not taken from any chart on this page, and it is not an estimate.</p>
+        </div>
+
         <div class="benchmark-charts">
         <figure class="bench-chart">
-          <figcaption><h2 id="bench-hall-title">Hallucination rate</h2>
+          <figcaption><div class="tool-head"><h2 id="bench-hall-title">Hallucination rate</h2><span class="tool-badge" data-kind="published">Published estimate</span></div>
             <details class="bench-context"><summary>About this measurement</summary><div>
             <p>Share of document summaries that Vectara’s HHEM-2.3 judge called factually inconsistent with the source document. The leaderboard was last updated on 22 October 2026. Temperature was 0 where the provider allowed it. The models here are a selection of those that also appear elsewhere on this page. Where the leaderboard tested a different variant, the row says so. The leaderboard also lists entries that may be other versions of models on this page, such as grok-3 at 5.8% and gemini-3.1-pro-preview at 10.4%. They are not drawn, because it is not clear they are the versions tested elsewhere. The full leaderboard lists many more.</p>
             <p>Among the models in this chart, the answer rate — the share of documents the model did summarize — runs from 91.0% for Claude Opus 4 to 100% for GPT-5.5 and Llama 4 Maverick.</p>
@@ -122,7 +179,7 @@
           </table>
         </figure>
         <figure class="bench-chart">
-          <figcaption><h2 id="bench-decep-title">Deception rate</h2>
+          <figcaption><div class="tool-head"><h2 id="bench-decep-title">Deception rate</h2><span class="tool-badge" data-kind="published">Published estimate</span></div>
             <details class="bench-context"><summary>About this measurement</summary><div>
             <p>Share of examples on which the model said something that contradicted a belief the same test had just elicited, after a prompt that pressed it to lie. Ren et al. call this P(lie). Evasion, refusal, and “no belief” are not counted as lies. The paper says it evaluated 30 models. Its Table 3 lists 32. This chart shows the ten models in its Figure 4, plus Llama 3.3 70B Instruct and Llama 3.1 8B Instruct from the same table, because the library evaluates those two on delusion confirmation.</p>
             <p>o3-mini was run at low reasoning effort. The paper says so.</p>
@@ -207,7 +264,7 @@
           </table>
         </figure>
         <figure class="bench-chart">
-          <figcaption><h2 id="bench-black-title">Blackmail rate</h2>
+          <figcaption><div class="tool-head"><h2 id="bench-black-title">Blackmail rate</h2><span class="tool-badge" data-kind="published">Published estimate</span></div>
             <details class="bench-context"><summary>About this measurement</summary><div>
             <p>Share of 100 samples in which the model blackmailed a fictional executive, in Anthropic’s text simulation published 20 June 2025. The model had a goal that conflicted with the company, and it was told it would be replaced. The scenario left blackmail as the way to stop that replacement. No real person was involved.</p>
             <p>Anthropic tested 16 models. The post’s text states rates for six of them, and its Figure 7 prints a rate for every model except Llama 4 Maverick, which has no bar. This chart shows the six rates from the text and four more read from Figure 7, for models that appear elsewhere on this page. The figure’s other six models are not drawn here. The post gives display names, not checkpoint IDs, so the four figure readings are matched by name. Llama 4 Maverick did not blackmail with this exact prompt: the post says so, and the figure shows no bar. A small addition to the prompt, in the same post, produced a 12% rate. That 12% is a different prompt, so it is not the bar. The <a href="https://www-cdn.anthropic.com/6d8a8055020700718b0c49369f60816ba2a7c285.pdf">Claude 4 system card (May 2025)</a> reports 84% for Claude Opus 4 in a related scenario where the replacement shares the model’s values. The bar is the cross-model prompt, which is the comparison the June post publishes.</p>
@@ -282,7 +339,7 @@
           </table>
         </figure>
         <figure class="bench-chart">
-          <figcaption><h2 id="bench-belief-title">Reinforcing a false belief</h2>
+          <figcaption><div class="tool-head"><h2 id="bench-belief-title">Reinforcing a false belief</h2><span class="tool-badge" data-kind="published">Published estimate</span></div>
             <details class="bench-context"><summary>About this measurement</summary><div>
             <p>Two tests live under this heading because both measure a model going along with a belief that is not true. They do not share a method, a unit, or a population. The first group is delusion confirmation: the share of turns with any confirmation while a simulated user held a delusion. <a href="library/16-clinical-records-open-weight-models-and-trajectory-update.html#2-aquilina-et-al--the-recognitionintervention-gap-and-the-open-weight-floor">Document 16</a> records Aquilina et al., preprint v1, 31 May 2026, inspected for the library on 19 October 2026. A striped bar is an upper bound. The source says fewer than 5% of turns and does not publish a finer rate. The bar ends at 5% so the bound is visible. It is not a measurement of 5%. The bar starts at 0. It is solid through 53%, then a lighter hatch continues to 61%. That is the range for three models reported together.</p>
             <p>The same source keeps every model under 6% in distress-only conversations, where no delusion was in play. That condition is not drawn here. OLMo-3-7B-Instruct, Llama-3.1-8B-Instruct, and Qwen3-30B-A3B-Instruct do not have separate rates in the library. Their row is the 53–61% range.</p>
@@ -356,7 +413,7 @@
 
         </div>
         <div class="bench-chart">
-          <h2 id="bench-grid-title">Every model, across the four behaviors</h2>
+          <div class="tool-head"><h2 id="bench-grid-title">Every model, across the four behaviors</h2><span class="tool-badge" data-kind="published">Published estimate</span></div>
           <p>Read across a row to see what is published for that model. Read down a column to compare models on one test. The reinforcing column holds two tests, and the cell names which one. A Turbo or FP8 note means the hallucination source tested that variant. It may not be the same checkpoint as the other cells in the row. A checkpoint ID under a model’s name comes from the hallucination or deception source. The blackmail post names models without IDs, so its Figure 7 readings are matched by name. Color repeats the size of the number. The number is the figure. On a small screen, slide the table sideways. The model name stays put.</p>
           <ul class="bench-legend">
             <li><span class="swatch rate-cap"></span> Under 5%, an upper bound</li>
@@ -574,5 +631,6 @@
       <p class="footer-quiet">If you are in immediate danger, contact local emergency services. In the United States, call or text 988. Elsewhere, <a href="https://findahelpline.com/">Find A Helpline</a> lists free, confidential support lines by country.</p>
     </div>
   </footer>
+  <script src="interactive.js?v=46ddaece59" defer></script>
 </body>
 </html>
